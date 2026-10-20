@@ -1,9 +1,11 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import crypto from 'node:crypto';
+import os from 'node:os';
 import { installHeroVideoControls } from './hero-video';
 import { installFaqControls } from './faq-controls';
 import { installLinkControls } from './link-controls';
+import { installMediaScheduling } from './media-scheduling';
 import { capturePage, pageKey, readIndex } from './page-cache';
 
 import { localize } from './localize.mjs';
@@ -58,6 +60,10 @@ function localizeDocument(html) {
 }
 
 const rendered = new Map();
+async function readPage(file, temporary) {
+  if (temporary) return fs.readFile(path.join(/* turbopackIgnore: true */ os.tmpdir(), 'kota-pages', path.basename(file)), 'utf8');
+  return fs.readFile(path.join(root, 'reference/pages', path.basename(file)), 'utf8');
+}
 async function memoize(key, render) {
   if (!key) return render();
   if (rendered.has(key)) return rendered.get(key);
@@ -69,6 +75,7 @@ async function memoize(key, render) {
 }
 
 const boot = `<script data-replica-runtime>
+(${installMediaScheduling.toString()})();
 (${installHeroVideoControls.toString()})();
 (${installFaqControls.toString()})();
 (${installLinkControls.toString()})();
@@ -98,25 +105,26 @@ export async function documentResponse(request, route) {
   if (redirects[key]) return Response.redirect(new URL(redirects[key], request.url), 307);
   const variants = await readIndex('variants.json');
   let file = key === route ? routes[route] : variants[key];
-  let directory = path.join(root, 'reference/pages');
+  let temporary = false;
   const cacheable = key === route && Boolean(file);
   if (!file) {
     const captured = await capturePage(key);
     if (captured.redirect) return Response.redirect(new URL(captured.redirect, request.url), 307);
     if (!captured.filename) return new Response(captured.status === 404 ? 'Page not found.' : 'This page could not be loaded. Please try again.', { status: captured.status });
     file = captured.filename;
-    directory = captured.directory || directory;
+    temporary = Boolean(captured.temporary);
   }
   if (request.headers.get('rsc') === '1') {
     try {
-      const flight = await memoize(cacheable && file + ':rsc', async () => localizeFlight(await fs.readFile(path.join(directory, file.replace('.html', '.rsc')), 'utf8')));
+      const flight = await memoize(cacheable && file + ':rsc', async () => localizeFlight(await readPage(file.replace('.html', '.rsc'), temporary)));
       return new Response(flight, { headers: { 'Content-Type': 'text/x-component', 'Cache-Control': 'no-cache', Vary: 'RSC, Next-Router-State-Tree, Next-Router-Prefetch' } });
     } catch { /* Next's client falls back to document navigation if uncaptured. */ }
   }
   const html = await memoize(cacheable && route + ':' + file, async () => {
-  let html = await fs.readFile(path.join(directory, file), 'utf8');
+  const { version } = await readIndex('static-assets.json');
+  let html = await readPage(file, temporary);
   html = localizeDocument(html);
-  html = html.replace(/((?:src|href)="\/_next\/static\/[^"?]+\.(?:js|css))"/g, '$1?replica=faq-navigation-v2"');
+  html = html.replace(/((?:src|href)="\/_next\/static\/[^"?]+\.(?:js|css))"/g, '$1?replica=' + version + '"');
   // Fresh principal pages use untouched source markup. Older mirrored documents
   // have rewritten relative URLs; a base restores their original directory.
   const base = route === '/' ? '/' : route.slice(0, route.lastIndexOf('/') + 1);
@@ -124,7 +132,7 @@ export async function documentResponse(request, route) {
   html = html.replace(/<script[^>]*src="https:\/\/(?:www\.)?(?:googletagmanager\.com|vercel\.live)[^>]*><\/script>/g, '');
   return html;
   });
-  return new Response(html, { headers: { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'no-cache' } });
+  return new Response(html, { headers: { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'no-cache', Vary: 'RSC, Next-Router-State-Tree, Next-Router-Prefetch' } });
 }
 
 export async function assetResponse(request, host, asset) {

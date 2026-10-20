@@ -9,6 +9,22 @@ npm run dev -- --port 3100
 
 Open http://127.0.0.1:3100. For production, run `npm run build`, then `npm start -- --port 3101`.
 
+## Vercel performance
+
+Use the standard **Next.js** framework preset with build command `npm run build` and the default output directory. Redeploy after these changes; the existing deployment will not update from local edits alone.
+
+`prebuild` prepares all captured assets in a versioned `public/__static/` directory. Images, videos, fonts, CSS, and JavaScript are delivered as static files instead of running through the catch-all server function. Existing frontend URLs are rewritten directly to those files. Versioned files receive immutable caching; compatibility asset URLs have shorter browser caching. The generated directory and manifest are intentionally ignored by Git and recreated during every build. The original `reference/assets/` archive must be present in the deployment's source.
+
+The asset preparation step losslessly moves MP4 playback metadata before the encoded media, so playback can begin without fetching the end of the file first. Encoded frames, audio, resolution, and duration remain unchanged. Byte ranges and seeking use the static file server. Large media files are excluded from server-function tracing. Unknown assets redirect to their original allowlisted public CDN rather than buffering entire videos in a function.
+
+Decorative project videos retain `preload="none"` and start within 600 pixels of the viewport, then pause when distant or the tab is hidden. The visible hero preview and full showreel keep their existing controls and playback behavior. `node scripts/media-scheduling-check.cjs` verifies that distant loops make no initial media requests, start near the viewport, pause after leaving it, and hydrate without errors.
+
+The captured gradient renderer is patched in `src/lib/runtime-performance.mjs`: it uses only the composer's scene draw, skips fully transparent backgrounds and hidden tabs, cancels its animation frame on disposal, and removes its resize listener correctly. Decorative WebGL canvases cap their pixel ratio at 1.5; DOM typography and layout retain the screen's full resolution. Versioned script query strings invalidate the previous captured runtime after a new build. `node scripts/profile-scroll.cjs --baseline` compares the original gradient renderer against `node scripts/profile-scroll.cjs` using the same scroll sequence at device scale 2. Results describe local headless Chrome, not a guarantee of frame rate on other devices.
+
+Production instances reuse parsed indexes and keep a bounded cache of transformed public documents/Flight responses. Personalized query responses are excluded from this render cache, and HTML/Flight remain distinct. Previously uncaptured page variants use Vercel's writable temporary directory; that cache is instance-local and can disappear after a cold start. Media is prepared at build time and needs no writable runtime cache.
+
+Run `node scripts/performance-check.mjs` against the production server on port 3101 (or set `REPLICA_URL`). It checks lossless fast-start, static range delivery, immutable caching, function-bundle exclusions, and HTML/Flight content types. Use `node scripts/production-check.cjs` to verify playback and interactive behavior. These local checks do not measure latency from the deployed Vercel region to a visitor's network.
+
 ## What this project contains
 
 This is a Next.js 16 App Router host for a captured KOTA frontend. It retains the original public HTML, CSS, Montreal font files, compiled React components, GSAP/ScrollTrigger/Flip animations, Lenis scrolling, WebGL backgrounds, Swiper carousels, video, and React Flight navigation responses. Keeping the matching runtime and navigation payloads preserves animated client navigation rather than replacing links with hard page reloads.

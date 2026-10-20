@@ -1,0 +1,18 @@
+{
+  "result": {
+    "width": 390,
+    "contentWidth": 390,
+    "canvases": [
+      {
+        "width": 585,
+        "height": 1266
+      },
+      {
+        "width": 585,
+        "height": 1266
+      }
+    ],
+    "loadedProjectVideos": 0
+  },
+  "errors": []
+}

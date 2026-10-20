@@ -1,4 +1,9 @@
 import fs from 'node:fs';
+import { execFileSync } from 'node:child_process';
+// Some deployment adapters inspect next.config before invoking the build script.
+if (!fs.existsSync('reference/static-assets.json')) {
+  execFileSync(process.execPath, ['scripts/prepare-assets.mjs'], { stdio: 'inherit' });
+}
 const { prefix } = JSON.parse(fs.readFileSync('reference/static-assets.json', 'utf8'));
 /** Keep captured assets on the static CDN, outside the server function. */
 const config = {

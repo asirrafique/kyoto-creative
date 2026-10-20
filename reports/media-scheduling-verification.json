@@ -1,0 +1,29 @@
+{
+  "checks": [
+    {
+      "name": "Distant project videos make no initial media requests",
+      "pass": true,
+      "detail": {
+        "videos": 5,
+        "initialVideoRequests": 1
+      }
+    },
+    {
+      "name": "Project animation loads and plays near the viewport",
+      "pass": true,
+      "detail": {
+        "time": 0.576818,
+        "state": 4
+      }
+    },
+    {
+      "name": "Distant project animation pauses",
+      "pass": true
+    },
+    {
+      "name": "Hydration and playback have no browser errors",
+      "pass": true,
+      "detail": []
+    }
+  ]
+}

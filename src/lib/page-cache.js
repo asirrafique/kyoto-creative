@@ -47,7 +47,7 @@ export async function capturePage(key) {
       try {
         await fs.access(htmlPath);
         await fs.access(htmlPath.replace('.html', '.rsc'));
-        return { status: 200, filename, directory: captureDirectory };
+        return { status: 200, filename, temporary: true };
       } catch { /* First request on this instance. */ }
     }
     const url = new URL(key, 'https://kota.co.uk');
@@ -66,7 +66,7 @@ export async function capturePage(key) {
       await fs.mkdir(captureDirectory, { recursive: true });
       await fs.writeFile(htmlPath, await response.text());
       await fs.writeFile(htmlPath.replace('.html', '.rsc'), await flight.text());
-      return { status: 200, filename, directory: captureDirectory };
+      return { status: 200, filename, temporary: Boolean(process.env.VERCEL) };
     } catch { return { status: 503 }; }
   })();
   inflight.set(key, operation);

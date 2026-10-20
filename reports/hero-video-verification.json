@@ -5,7 +5,7 @@
       "pass": true,
       "detail": {
         "src": "http://127.0.0.1:3101/__assets/kota-content.b-cdn.net/app/uploads/2025/10/Short-Preview-homepage.mp4",
-        "time": 1.775978,
+        "time": 6.633707,
         "paused": false,
         "muted": true,
         "loop": true,
@@ -21,7 +21,7 @@
         "src": "http://127.0.0.1:3101/__assets/kota-content.b-cdn.net/app/uploads/2025/10/00-Kota-Showreel-2025-Final.mp4",
         "paused": false,
         "muted": false,
-        "time": 1.483237,
+        "time": 1.26018,
         "width": 1906,
         "height": 966,
         "radius": "0px"

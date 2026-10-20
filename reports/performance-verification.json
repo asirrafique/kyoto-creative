@@ -1,0 +1,59 @@
+{
+  "checks": [
+    {
+      "name": "All MP4s have fast-start metadata and unchanged encoded media",
+      "pass": true,
+      "detail": {
+        "videos": 87,
+        "moved": 65
+      }
+    },
+    {
+      "name": "Function bundle excludes media and public static files",
+      "pass": true,
+      "detail": {
+        "files": 821
+      }
+    },
+    {
+      "name": "Short-Preview-homepage.mp4 is served directly as static partial content",
+      "pass": true,
+      "detail": {
+        "accept-ranges": "bytes",
+        "cache-control": "public, max-age=3600, s-maxage=86400",
+        "connection": "keep-alive",
+        "content-length": "100",
+        "content-range": "bytes 0-99/3059412",
+        "content-type": "video/mp4",
+        "date": "Tue, 20 Oct 2026 19:51:21 GMT",
+        "etag": "W/\"2eaed4-1a15adcd75a\"",
+        "keep-alive": "timeout=5",
+        "last-modified": "Tue, 20 Oct 2026 19:49:44 GMT"
+      }
+    },
+    {
+      "name": "00-Kota-Showreel-2025-Final.mp4 is served directly as static partial content",
+      "pass": true,
+      "detail": {
+        "accept-ranges": "bytes",
+        "cache-control": "public, max-age=3600, s-maxage=86400",
+        "connection": "keep-alive",
+        "content-length": "100",
+        "content-range": "bytes 0-99/90255698",
+        "content-type": "video/mp4",
+        "date": "Tue, 20 Oct 2026 19:51:21 GMT",
+        "etag": "W/\"5613152-1a15adcd5c8\"",
+        "keep-alive": "timeout=5",
+        "last-modified": "Tue, 20 Oct 2026 19:49:44 GMT"
+      }
+    },
+    {
+      "name": "Versioned static assets have immutable caching",
+      "pass": true
+    },
+    {
+      "name": "HTML and Flight retain distinct content types",
+      "pass": true
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "build": "passed",
+  "environment": "Local production Next.js, Chrome headless, 1440x900, device scale 2. Sequential controlled scroll profiles; original background renderer vs optimized renderer.",
+  "scroll": {
+    "baseline": {
+      "variant": "baseline",
+      "frames": 349,
+      "meanMs": 19.72349570200573,
+      "p95Ms": 33.399999999999636,
+      "over33ms": 8,
+      "longTasks": 3
+    },
+    "optimized": {
+      "variant": "optimized",
+      "frames": 376,
+      "meanMs": 17.55292553191489,
+      "p95Ms": 17.099999999999454,
+      "over33ms": 3,
+      "longTasks": 0
+    }
+  },
+  "media": {
+    "checks": [
+      {
+        "name": "Distant project videos make no initial media requests",
+        "pass": true,
+        "detail": {
+          "videos": 5,
+          "initialVideoRequests": 1
+        }
+      },
+      {
+        "name": "Project animation loads and plays near the viewport",
+        "pass": true,
+        "detail": {
+          "time": 0.576818,
+          "state": 4
+        }
+      },
+      {
+        "name": "Distant project animation pauses",
+        "pass": true
+      },
+      {
+        "name": "Hydration and playback have no browser errors",
+        "pass": true,
+        "detail": []
+      }
+    ]
+  },
+  "assets": {
+    "files": 997,
+    "sourceMegabytes": 605.6,
+    "staticDelivery": true,
+    "mp4s": 87,
+    "fastStartConversions": 65
+  },
+  "deployment": "Requires redeployment to Vercel; public deployment URL has not been supplied or measured."
+}

@@ -1,5 +1,13 @@
+import { optimizeBackgroundRuntime } from './runtime-performance.mjs';
 const hosts = new Set(['kota.co.uk', 'content.kota.co.uk', 'kota-content.b-cdn.net', 'prod.spline.design', 'unpkg.com']);
 export function localize(text) {
+  text = optimizeBackgroundRuntime(text);
+  // Keep SSR, Flight and client JSX in agreement. Autoplay overrides preload=none
+  // and was downloading distant project videos before the hero was ready.
+  text = text.replaceAll('autoPlay:!0,muted:!0,loop:!0,preload:"none"', 'autoPlay:!1,muted:!0,loop:!0,preload:"none"');
+  text = text.replaceAll('"autoPlay":true,"muted":true,"loop":true,"preload":"none"', '"autoPlay":false,"muted":true,"loop":true,"preload":"none"');
+  text = text.replace(/<video\b[^>]*>/gi, tag => /preload="none"/.test(tag) && /\bloop(?:=|\s|>)/.test(tag)
+    ? tag.replace(/\sautoplay(?:="[^"]*")?/i, '') : tag);
   // Apply the same substitutions to server HTML, Flight data, and client modules.
   // Matching all three is essential to avoid React hydration mismatches.
   for (const host of hosts) {
