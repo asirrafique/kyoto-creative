@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
+    "assets:prepare": "node scripts/prepare-assets.mjs",
+    "predev": "npm run assets:prepare",
+    "prebuild": "npm run assets:prepare",
     "dev": "next dev --hostname 127.0.0.1",
     "build": "next build",
     "start": "next start --hostname 127.0.0.1",

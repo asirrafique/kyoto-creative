@@ -1,9 +1,11 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import crypto from 'node:crypto';
+import os from 'node:os';
 
 const directory = path.join(process.cwd(), 'reference/pages');
 const inflight = new Map();
+const indexes = new Map();
 
 /** Internal Next cache-busters and marketing parameters do not identify content. */
 export function pageKey(route, search) {
@@ -16,7 +18,12 @@ export function pageKey(route, search) {
 }
 
 export async function readIndex(name) {
-  try { return JSON.parse(await fs.readFile(path.join(process.cwd(), 'reference', name), 'utf8')); }
+  if (process.env.NODE_ENV === 'production' && indexes.has(name)) return indexes.get(name);
+  try {
+    const value = JSON.parse(await fs.readFile(path.join(process.cwd(), 'reference', name), 'utf8'));
+    if (process.env.NODE_ENV === 'production') indexes.set(name, value);
+    return value;
+  }
   catch (error) { if (error.code === 'ENOENT') return {}; throw error; }
 }
 
@@ -26,12 +33,23 @@ export async function capturePage(key) {
   if (inflight.has(key)) return inflight.get(key);
   const operation = (async () => {
     const filename = crypto.createHash('sha256').update(key).digest('hex') + '.html';
-    const htmlPath = path.join(directory, filename);
+    let captureDirectory = directory;
+    let htmlPath = path.join(directory, filename);
     try {
       await fs.access(htmlPath);
       await fs.access(htmlPath.replace('.html', '.rsc'));
       return { status: 200, filename };
     } catch { /* Capture a previously unvisited public variant once. */ }
+    // Vercel's deployment filesystem is read-only. Uncaptured variants use /tmp.
+    if (process.env.VERCEL) {
+      captureDirectory = path.join(os.tmpdir(), 'kota-pages');
+      htmlPath = path.join(captureDirectory, filename);
+      try {
+        await fs.access(htmlPath);
+        await fs.access(htmlPath.replace('.html', '.rsc'));
+        return { status: 200, filename, directory: captureDirectory };
+      } catch { /* First request on this instance. */ }
+    }
     const url = new URL(key, 'https://kota.co.uk');
     if (url.origin !== 'https://kota.co.uk') return { status: 400 };
     try {
@@ -45,10 +63,10 @@ export async function capturePage(key) {
       flightUrl.searchParams.set('_rsc', 'replica');
       const flight = await fetch(flightUrl, { headers: { RSC: '1' }, signal: AbortSignal.timeout(45000) });
       if (!flight.ok || !flight.headers.get('content-type')?.includes('text/x-component')) return { status: 502 };
-      await fs.mkdir(directory, { recursive: true });
+      await fs.mkdir(captureDirectory, { recursive: true });
       await fs.writeFile(htmlPath, await response.text());
       await fs.writeFile(htmlPath.replace('.html', '.rsc'), await flight.text());
-      return { status: 200, filename };
+      return { status: 200, filename, directory: captureDirectory };
     } catch { return { status: 503 }; }
   })();
   inflight.set(key, operation);

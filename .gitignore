@@ -5,3 +5,5 @@ data/
 reports/*.png
 reports/*.jpg
 intern/
+public/__static/
+reference/static-assets.json
