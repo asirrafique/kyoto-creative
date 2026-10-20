@@ -1,0 +1,44 @@
+{
+  "checks": [
+    {
+      "name": "Menu opens",
+      "pass": true
+    },
+    {
+      "name": "Hero video opens fullscreen",
+      "pass": true
+    },
+    {
+      "name": "Hero video closes from visual close control",
+      "pass": true
+    },
+    {
+      "name": "Framework carousel changes slide",
+      "pass": true
+    },
+    {
+      "name": "Results carousel advances",
+      "pass": true,
+      "detail": {
+        "before": "104.9%\nincrease in organic visits after 1 month\nView project",
+        "after": "83.14%\nincrease in sales after 1 year.\nView Project"
+      }
+    },
+    {
+      "name": "Homepage runs with external requests blocked",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "Video byte-range streaming",
+      "pass": true
+    },
+    {
+      "name": "Unknown route returns 404",
+      "pass": true
+    }
+  ],
+  "errors": [],
+  "failed": [],
+  "external": []
+}

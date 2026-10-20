@@ -1,0 +1,21 @@
+{
+  "checks": [
+    {
+      "name": "WebGL background responds over time and pointer motion",
+      "pass": true
+    },
+    {
+      "name": "Lenis wheel scroll interpolates",
+      "pass": true,
+      "detail": {
+        "early": 231,
+        "late": 698
+      }
+    },
+    {
+      "name": "ScrollTrigger pinned animations initialize",
+      "pass": true,
+      "detail": 6
+    }
+  ]
+}

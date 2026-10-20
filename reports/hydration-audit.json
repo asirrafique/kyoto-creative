@@ -1,0 +1,2061 @@
+{
+  "total": 335,
+  "checked": 335,
+  "failures": [],
+  "upstreamWarnings": [
+    "/service/creative-web-design",
+    "/service/web-design-development/creative-web-design"
+  ],
+  "results": [
+    {
+      "route": "/agencies",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/b2b-transformation",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/brand-pulse",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/b2b-tech-software-saas",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/briefing",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/healthcare",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/index",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/media-entertainment",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/newsletter",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/privacy-policy",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/retail",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/contact",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/10-creative-websites-to-inspire-your-next-web-design-2025-update",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/10-golden-rules-for-writing-content-for-your-website",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/10-interactive-websites-to-inspire-your-next-redesign",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/10-signs-you-probably-need-a-new-website",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/10-stand-out-examples-of-tech-brand-websites",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/2019-a-year-in-the-kota-studio",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/2023-so-far-at-kota",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/3-examples-of-brands-that-have-aced-their-tone-of-voice",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/5-beautifully-designed-agency-websites-and-what-you-can-learn-from-them",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/5-cool-brands-in-characteristically-boring-industries",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/5-examples-of-great-e-commerce-product-pages",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/5-examples-of-playful-design-in-branding",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/5-finance-brands-that-ditched-corporate-design-and-won",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/6-website-design-trends-you-cant-ignore-in-2025",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/7-must-have-features-for-e-commerce-websites",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/a-guide-to-nailing-title-tags-and-meta-descriptions",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/a-guide-to-providing-effective-design-feedback",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/a-step-by-step-guide-to-crafting-a-powerful-brand-manifesto",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/advertising-on-tiktok-101-how-brands-can-successfully-utilize-tiktok-in-their-marketing-strategy",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/aesthetic-vs-function-do-beautiful-websites-convert",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/agency-not-going-back-to-the-office",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/ai-search-is-here-is-your-brand-showing-up",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/ai-search-zero-click-seo",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/ais-a-tool-not-the-talent-how-we-use-it-at-kota",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/annoushka-star-charm-online-advertising",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/bad-ux-kills-seo-conversions-and-trust-heres-how-to-fix-it",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/behind-the-scenes-at-kota-web-design-process",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/behind-the-scenes-of-the-kota-website-redesign",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/beyond-linkedin-social-media-for-the-serious-b2b-marketer",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/beyond-responsive-5-great-examples-of-interactive-mobile-web-design",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/brand-building-how-to-lean-into-what-makes-you-different",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/brand-checklist-what-should-be-included-in-a-brand-style-guide",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/brand-design-trends-for-2025",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/brand-first-vs-dev-first-what-actually-sets-kota-apart-and-why-it-matters",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/brand-identity-services-what-actually-makes-a-brand-work",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/branding-inspiration-brand-design-trends-for-2026",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/business-planning-managing-team-interview-jonny",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/can-interactive-website-designs-be-seo-friendly",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/check-it-off-the-ultimate-website-revamp-checklist",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/choosing-the-right-typography-for-your-brand",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/chrome-extension:",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/cinematic-web-design-crafting-digital-experiences-for-film-tv",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/clutch-names-kota-a-2024-global-winner-clutch-champion-and-top-branding-company",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/clutch-names-kota-as-one-of-the-game-changing-php-developers-in-the-united-kingdom",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/creating-the-kotaverse-to-celebrate-10-years-of-kota",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/creative-web-design-trends-for-tech-startups",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/creative-websites-were-obsessed-with-this-month",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/custom-vs-cookie-cutter-why-discovery-and-strategy-drive-better-roi",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/design-for-social-media-how-to-align-the-design-and-content-marketing-strategy",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/design-with-guts-kotas-manifesto-for-creative-bravery",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/designing-a-memorable-brand-identity",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/designing-more-sustainable-websites",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/digital-design-trends-2024",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/does-llms-txt-actually-matter-heres-whats-hype-whats-useful-and-what-to-fix-first",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/e-commerce-seo-tips-for-boosting-your-online-stores-visibility",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/feast-famine-how-to-break-the-agency-curse",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/ffion-hughes-marketing-interview",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/fundraising-launching-repositioning-heres-when-to-redesign-your-website",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/how-b2b-saas-brands-are-copying-b2cs-playbook-and-winning",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/how-bad-ux-can-kill-even-the-most-beautiful-website",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/how-can-brands-stay-authentic-in-an-ai-driven-world",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/how-fintech-brands-like-revolut-and-monzo-use-ux-to-build-trust",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/how-growing-agencies-lose-their-identity-and-how-to-fix-it",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/how-homepage-redesign-can-improve-business-performance-amidst-covid-19-crisis",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/how-social-is-redefining-search",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/how-to-build-successful-brands",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/how-to-choose-the-right-brand-design-agency-in-2026",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/how-to-define-your-tone-of-voice-with-examples",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/how-to-find-a-brand-voice-that-doesnt-sound-like-everyone-else",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/how-to-inject-fresh-energy-into-established-b2b-brands",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/faqs",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/how-to-master-the-linkedin-algorithm-in-2024",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/how-to-pick-the-right-web-design-agency-for-your-brand",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/how-to-prepare-your-website-for-black-friday-2023",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/how-to-reduce-bounce-rate",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/how-we-approach-luxury-brand-design",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/insights-into-our-digital-first-work-culture",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/if-when-and-how-to-revise-your-brand-strategy",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/keeping-wordpress-websites-secure",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/is-this-ai-contents-reckoning-googles-march-2024-core-update-explained",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/key-website-kpis-a-guide-to-your-websites-performance",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/kota-christmas-at-stranger-things-secret-cinema",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/kota-earns-2025-great-place-to-work-certification",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/kota-is-cyber-essentials-certified",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/kota-named-as-a-clutch-global-champion-winner-for-autumn-2024",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/kota-named-one-of-the-top-creative-b2b-companies-in-the-uk-by-clutch",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/kota-project-discovery-phase-our-recipe-for-your-success",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/kota-recognised-for-bold-ideas-and-big-results-on-clutchs-1000-list",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/kota-team-trip-to-porto",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/kota-user-experience-design-process-why-is-ux-important",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/culture",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/kota-user-interface-design-process-the-power-of-good-ui",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/kota-web-development-process-how-good-websites-are-built",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/kota-welcome-senior-digital-designer-james-huse",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/kota-welcomes-upp-the-oscar-emmy-winning-vfx-studio-as-our-newest-client",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/kota-wins-a-lovie-award-for-best-web-design-aesthetic",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/lets-talk-about-why-seo-and-ux-go-hand-in-hand",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/local-vs-global-marketing-strategies-for-success",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/most-brands-dont-have-a-design-problem-they-have-a-decision-problem",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/motion-graphics-in-web-design",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/our-guide-to-website-animation-the-good-and-the-bad",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/new-partnership-7-ways-campaign-for-penguin-books-and-jamie-oliver",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/on-starting-a-creative-agency-with-james-our-creative-director",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/our-remote-team-meet-up-a-fun-day-out-in-london",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/work",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/rebelling-against-the-grid-unconventional-layouts-in-web-design",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/rebellious-typography-the-importance-of-the-humble-font",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/redirects-the-key-to-keeping-your-traffic-after-website-migration",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/seo-in-2025-why-brand-trust-and-off-site-signals-matter",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/shopify-editions-summer-23-everything-you-need-to-know",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/seo-process-web-design",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/shopifys-e-commerce-boom-here-to-stay",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/should-b2b-brands-be-embracing-influencer-marketing",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/six-brands-that-commit-to-the-bit",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/should-marketing-teams-be-preparing-for-searchgpt",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/start-your-project",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/sitecare-management-website-maintenance",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/small-details-big-impact-a-guide-to-website-micro-animations",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/tech-against-the-grain-tech-brands-redefining-the-industry",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/social-media-marketing-services-at-kota",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/the-business-case-for-beauty-measuring-the-roi-of-aesthetic-web-design",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/the-coolest-websites-weve-seen-recently",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/the-death-of-passive-media-consumption-designing-for-interaction",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/the-essential-role-content-plays-in-web-design",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/the-evolution-of-kota",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/the-evolution-of-website-design-from-flat-to-immersive-experiences",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/the-role-of-rebranding-in-message-consistency",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/the-texture-of-trust-how-visual-tactility-sells-online",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/the-power-of-wordpress-as-a-headless-cms",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/the-hallmarks-of-an-effective-tone-of-voice",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/the-ultimate-e-commerce-website-guide-10-tips-for-success",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/top-brand-positioning-cliches-in-tech-and-how-to-avoid-them",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/top-3-highlights-from-shopify-unite-2021",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/web-design-e-commerce-businesses",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/time-for-a-rebrand-start-with-our-brand-pulse-audit-tool",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/understanding-googles-e-e-a-t-guidelines",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/web-design-trends-2023",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/web-design-inspiration-50-sites-to-bookmark",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/web-design-project-timing",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/website-design-for-tech-saas-done-right",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/website-briefing-template",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/website-brief-7-big-questions-you-should-ask-yourself",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/agency",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/what-are-the-pros-and-cons-of-headless-wordpress-for-content-teams",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/what-is-sensory-web-design",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/what-is-a-headless-cms-and-do-you-need-one",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/what-your-2026-website-brief-should-include",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/whats-driving-your-customers-tech-purchases-in-2024",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/who-on-earth-is-alexander-vasilakis",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/when-to-rebrand-recognising-the-right-time-to-revamp",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/who-on-earth-is-bekah-mcdonald",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/who-on-earth-is-em-mackenzie",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/who-on-earth-is-ffion-hughes",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/whats-next-marketing-predictions-for-2025",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/who-on-earth-is-nicola-cook",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/who-on-earth-is-maja-fulconis",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/who-on-earth-is-rebecca-da-silva",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/who-on-earth-is-james-huse",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/writing-a-website-brief-7-big-questions-you-should-ask-yourself",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/wordcamp-europe-my-seven-key-takeaways",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/your-content-quality-is-under-the-microscope-with-googles-march-2025-core-update",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/wordpress-in-2025-the-drama-the-outlook-and-what-it-means-for-you",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/how-to-jump-on-design-trends-whilst-staying-true-to-you-brand",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/service/copywriting",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/service/creative-web-design",
+      "status": 200,
+      "hydrated": true,
+      "errors": [
+        "Minified React error #418; visit https://react.dev/errors/418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.",
+        "Minified React error #418; visit https://react.dev/errors/418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.",
+        "Minified React error #418; visit https://react.dev/errors/418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.",
+        "Minified React error #418; visit https://react.dev/errors/418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.",
+        "Minified React error #418; visit https://react.dev/errors/418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.",
+        "Minified React error #418; visit https://react.dev/errors/418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.",
+        "Minified React error #418; visit https://react.dev/errors/418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.",
+        "Minified React error #423; visit https://react.dev/errors/423 for the full message or use the non-minified dev environment for full errors and additional helpful warnings."
+      ],
+      "upstreamErrors": [
+        "Minified React error #418; visit https://react.dev/errors/418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.",
+        "Minified React error #418; visit https://react.dev/errors/418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.",
+        "Minified React error #418; visit https://react.dev/errors/418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.",
+        "Minified React error #418; visit https://react.dev/errors/418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.",
+        "Minified React error #418; visit https://react.dev/errors/418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.",
+        "Minified React error #418; visit https://react.dev/errors/418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.",
+        "Minified React error #418; visit https://react.dev/errors/418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.",
+        "Minified React error #423; visit https://react.dev/errors/423 for the full message or use the non-minified dev environment for full errors and additional helpful warnings."
+      ],
+      "matchesOriginalWarnings": true
+    },
+    {
+      "route": "/service/brand-strategy",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/service/brand-identity-design",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/service",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/service/sitecare",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/service/seo-geo",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/service/wordpress-cms",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/service/branding",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/service/web-development",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/service/tone-of-voice",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/service/web-design-development/creative-web-design",
+      "status": 200,
+      "hydrated": true,
+      "errors": [
+        "Minified React error #418; visit https://react.dev/errors/418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.",
+        "Minified React error #418; visit https://react.dev/errors/418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.",
+        "Minified React error #418; visit https://react.dev/errors/418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.",
+        "Minified React error #418; visit https://react.dev/errors/418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.",
+        "Minified React error #418; visit https://react.dev/errors/418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.",
+        "Minified React error #418; visit https://react.dev/errors/418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.",
+        "Minified React error #418; visit https://react.dev/errors/418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.",
+        "Minified React error #423; visit https://react.dev/errors/423 for the full message or use the non-minified dev environment for full errors and additional helpful warnings."
+      ],
+      "upstreamErrors": [
+        "Minified React error #418; visit https://react.dev/errors/418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.",
+        "Minified React error #418; visit https://react.dev/errors/418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.",
+        "Minified React error #418; visit https://react.dev/errors/418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.",
+        "Minified React error #418; visit https://react.dev/errors/418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.",
+        "Minified React error #418; visit https://react.dev/errors/418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.",
+        "Minified React error #418; visit https://react.dev/errors/418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.",
+        "Minified React error #418; visit https://react.dev/errors/418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.",
+        "Minified React error #423; visit https://react.dev/errors/423 for the full message or use the non-minified dev environment for full errors and additional helpful warnings."
+      ],
+      "matchesOriginalWarnings": true
+    },
+    {
+      "route": "/work/aardvark",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/work/adams-butler",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/work/anacap",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/work/arcturis",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/work/antheon",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/work/bms-performance",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/work/bounce",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/work/bipsync",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/work/bellsant",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/work/bankrate",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/work/british-red-cross",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/work/bucher-suter",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/work/box-to-box",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/work/brinkworth",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/work/design4retail",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/work/contractpodai",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/work/finura",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/work/copper",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/work/cynozure",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/work/florence",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/work/dka",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/work/floan",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/work/hassan-allam",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/work/futureform",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/work/isi-global",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/work/holland-green",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/work/incentive-games",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/work/jazz-cafe",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/work/jamie-oliver-5-ingredients",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/work/littles-coffee",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/work/jumo-health",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/work/jamie-oliver-7-ways",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/work/mgn-events",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/work/love-brands",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/work/mercury-filmworks",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/work/navarino",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/work/martin-building",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/work/okopod",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/work/opta-pro",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/work/patchwork-health",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/work/pison",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/work/penhaligons-videos",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/work/optomen",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/work/pixelartworks",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/work/right-formula",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/work/records-bars",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/work/sonovate",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/work/stepping-stone-media",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/work/super-yachts-monaco",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/work/stoli",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/work/tanooki",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/work/the-goat-agency",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/work/tangerine",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/work/trace-solutions",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/work/tribepad",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/work/the-halo-group",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/work/upp",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/work/understanding-jewellery",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/work/ymu-group",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/work/ziipline",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/work/wogan-coffee",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/service/brand-strategy-and-identity",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/service/web-design-development",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/service/growth-marketing",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/a-simple-guide-to-utm-links-in-ga4",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/3-eye-opening-insights-from-neons-marketing-campaigns",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/5-examples-of-successful-logo-redesigns",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/301-redirects-decoded",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/7-best-creative-campaigns-of-2024-so-far",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/announcing-new-partnerships",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/august-2021-organic-search-update",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/best-of-2021-our-projects-and-awards",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/bespoke-vs-templated-websites-pros-and-cons",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/branding-for-startups-getting-it-right-from-the-start",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/breaking-language-barriers-tips-for-creating-multilingual-websites",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/creative-inspiration-digital-worlds-wed-happily-get-lost-in",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/creating-content-that-builds-trust-in-a-low-trust-world",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/distinct-by-design-crafting-a-brand-that-breaks-the-mould",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/crafting-narratives-what-story-does-your-website-design-tell",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/email-marketing-newsletter-design",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/error-handling-how-to-keep-users-happy-when-things-go-wrong",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/fonts-that-give-us-the-ick",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/ga4-for-dummies",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/how-did-liquid-death-do-it",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/how-motion-design-boosts-website-engagement-time-on-page",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/how-to-brief-an-agency-after-a-bad-agency-experience",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/how-to-choose-the-right-website-builder-for-your-business",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/how-to-design-awesome-user-journeys-with-the-help-of-ctas",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/how-to-fix-poor-website-navigation",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/how-to-measure-your-websites-domain-authority",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/how-to-follow-eco-friendly-web-design-principles",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/how-we-built-our-new-website",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/how-to-measure-the-impact-of-your-creative-campaigns",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/how-to-sell-brand-investment-to-stakeholders-without-losing-your-mind",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/how-to-turn-a-brand-audit-into-actionable-results",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/interactive-maps-in-web-design",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/kota-is-one-of-the-uks-best-workplaces-in-advertising-media-marketing-2025",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/july-2021-organic-search-update-2",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/making-room-for-brand-how-to-balance-performance-and-creativity-in-your-marketing",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/may-2021-organic-search-update",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/march-2021-organic-search-update",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/minimalism-in-brand-design-less-is-more-but-is-it-always-better",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/nostalgia-in-branding-why-looking-back-can-propel-your-brand-forward",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/our-b2b-marketing-strategy-2020-website-redesign-results",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/project-management-with-notion",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/questions-to-ask-before-hiring-a-web-agency",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/repeat-after-me-build-the-brand-before-you-burn-the-ad-budget",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/site-care-top-tips-for-website-maintenance",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/shopify-summer-editions-25-whats-new",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/small-budget-big-impact-10-creative-campaigns-that-defied-the-odds",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/social-media-update-instagrams-grid-tiktok-drama-and-the-xodus",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/strong-websites-start-with-sharper-brand-positioning",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/speed-demons-tips-to-improve-your-websites-load-times",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/superyachtsmonaco-partner-with-kota-to-land-digital-transformation",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/the-anatomy-of-a-high-converting-landing-page",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/successful-start-of-the-year-at-kota",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/the-best-uses-of-motion-in-web-design-and-when-to-hold-back",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/the-joy-of-a-weird-idea-well-executed",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/the-principles-of-visual-hierarchy-in-web-design",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/the-clarity-gap-what-happens-when-brands-skip-real-positioning",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/the-first-90-days-a-marketing-leaders-guide-to-auditing-the-brand-you-just-inherited",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/the-science-of-trust-how-tech-startups-can-win-over-skeptical-buyers",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/tips-for-boosting-newsletter-sign-ups",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/unlocking-loyalty-8-e-commerce-loyalty-schemes-that-win-customers-over",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/website-projects-what-slows-them-down-and-how-to-keep-things-moving",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/weve-just-bagged-an-honourable-mention-from-awwwards",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/what-to-do-with-underperforming-content",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/what-b2b-buyers-actually-want-from-a-website-hint-its-not-a-whitepaper",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/what-to-prioritise-when-you-cant-do-a-full-website-redesign-yet",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/who-on-earth-is-emily-malone",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/why-your-pre-seed-startup-needs-a-strong-brand-not-just-a-product",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/why-your-sites-pace-motion-transitions-rhythm-matters-more-than-ever",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/april-2021-organic-search-update",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/why-your-website-is-your-most-undervalued-brand-asset",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/your-black-friday-ux-checklist",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/your-instagram-posts-are-about-to-show-up-on-google-heres-why-that-matters",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/your-saas-brand-looks-like-everyone-elses-heres-how-to-fix-it",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/insignia",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/brand-pulse-results",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/work/gore-street-capital",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/design-for-everyone-accessibility-in-web-development",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/how-to-create-an-intuitive-user-interface",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/july-2021-organic-search-update",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/work/zebra",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/what-makes-a-great-landing-page",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/why-agencies-struggle-to-build-their-dream-portfolio-website-and-how-to-fix-it",
+      "status": 200,
+      "hydrated": true,
+      "errors": []
+    }
+  ]
+}

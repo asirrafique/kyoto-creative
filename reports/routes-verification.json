@@ -1,0 +1,35 @@
+{
+  "checks": [
+    {
+      "name": "All 335 captured pages return HTML and Flight",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "Deep page /agency",
+      "pass": true
+    },
+    {
+      "name": "Deep page /culture",
+      "pass": true
+    },
+    {
+      "name": "Deep page /contact",
+      "pass": true
+    },
+    {
+      "name": "Deep page /service/web-design-development",
+      "pass": true
+    },
+    {
+      "name": "Deep page /work/upp",
+      "pass": true
+    },
+    {
+      "name": "Deep page /blog/branding-inspiration-brand-design-trends-for-2026",
+      "pass": true
+    }
+  ],
+  "errors": [],
+  "failed": []
+}

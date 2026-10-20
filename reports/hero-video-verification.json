@@ -1,0 +1,52 @@
+{
+  "checks": [
+    {
+      "name": "Original preview loops silently inside the o",
+      "pass": true,
+      "detail": {
+        "src": "http://127.0.0.1:3101/__assets/kota-content.b-cdn.net/app/uploads/2025/10/Short-Preview-homepage.mp4",
+        "time": 1.775978,
+        "paused": false,
+        "muted": true,
+        "loop": true,
+        "inline": true,
+        "fit": "cover",
+        "radius": "45%"
+      }
+    },
+    {
+      "name": "Original full showreel plays across the viewport",
+      "pass": true,
+      "detail": {
+        "src": "http://127.0.0.1:3101/__assets/kota-content.b-cdn.net/app/uploads/2025/10/00-Kota-Showreel-2025-Final.mp4",
+        "paused": false,
+        "muted": false,
+        "time": 1.483237,
+        "width": 1906,
+        "height": 966,
+        "radius": "0px"
+      }
+    },
+    {
+      "name": "Full showreel playback advances",
+      "pass": true
+    },
+    {
+      "name": "Close control restores muted preview",
+      "pass": true
+    },
+    {
+      "name": "Keyboard opens the showreel",
+      "pass": true
+    },
+    {
+      "name": "Escape closes the showreel",
+      "pass": true
+    },
+    {
+      "name": "Closing resumes smooth page scrolling",
+      "pass": true
+    }
+  ],
+  "errors": []
+}

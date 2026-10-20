@@ -1,0 +1,820 @@
+{
+  "/work": {
+    "buttons": [
+      {
+        "tag": "BUTTON",
+        "text": "Accept",
+        "class": "CookieBanner_button__eD4su",
+        "type": "submit"
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Reject",
+        "class": "CookieBanner_button__eD4su",
+        "type": "submit"
+      },
+      {
+        "tag": "BUTTON",
+        "text": "",
+        "class": "PrimaryNavigation_icon__qAQCe",
+        "type": "submit"
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Sectors",
+        "class": "Filters_trigger__2suyY ",
+        "type": "submit"
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Services",
+        "class": "Filters_trigger__2suyY ",
+        "type": "submit"
+      }
+    ],
+    "queryLinks": [],
+    "forms": []
+  },
+  "/blog": {
+    "buttons": [
+      {
+        "tag": "BUTTON",
+        "text": "Accept",
+        "class": "CookieBanner_button__eD4su",
+        "type": "submit"
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Reject",
+        "class": "CookieBanner_button__eD4su",
+        "type": "submit"
+      },
+      {
+        "tag": "BUTTON",
+        "text": "",
+        "class": "PrimaryNavigation_icon__qAQCe",
+        "type": "submit"
+      },
+      {
+        "tag": "BUTTON",
+        "text": "All articles",
+        "class": "CategoryFilters_clearAll__FIvKM CategoryFilters_active__2xXay",
+        "type": "submit"
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Culture",
+        "class": "CategoryFilter_filter__zpR21",
+        "type": "submit"
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Expertise",
+        "class": "CategoryFilter_filter__zpR21",
+        "type": "submit"
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Inspiration",
+        "class": "CategoryFilter_filter__zpR21",
+        "type": "submit"
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Our work",
+        "class": "CategoryFilter_filter__zpR21",
+        "type": "submit"
+      }
+    ],
+    "queryLinks": [],
+    "forms": []
+  },
+  "/faqs": {
+    "buttons": [
+      {
+        "tag": "BUTTON",
+        "text": "Accept",
+        "class": "CookieBanner_button__eD4su",
+        "type": "submit"
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Reject",
+        "class": "CookieBanner_button__eD4su",
+        "type": "submit"
+      },
+      {
+        "tag": "BUTTON",
+        "text": "",
+        "class": "PrimaryNavigation_icon__qAQCe",
+        "type": "submit"
+      },
+      {
+        "tag": "INPUT",
+        "text": "",
+        "class": "",
+        "type": "checkbox"
+      },
+      {
+        "tag": "INPUT",
+        "text": "",
+        "class": "",
+        "type": "checkbox"
+      },
+      {
+        "tag": "INPUT",
+        "text": "",
+        "class": "",
+        "type": "checkbox"
+      },
+      {
+        "tag": "INPUT",
+        "text": "",
+        "class": "",
+        "type": "checkbox"
+      },
+      {
+        "tag": "INPUT",
+        "text": "",
+        "class": "",
+        "type": "checkbox"
+      },
+      {
+        "tag": "INPUT",
+        "text": "",
+        "class": "",
+        "type": "checkbox"
+      },
+      {
+        "tag": "INPUT",
+        "text": "",
+        "class": "",
+        "type": "checkbox"
+      },
+      {
+        "tag": "INPUT",
+        "text": "",
+        "class": "",
+        "type": "checkbox"
+      },
+      {
+        "tag": "INPUT",
+        "text": "",
+        "class": "",
+        "type": "checkbox"
+      },
+      {
+        "tag": "INPUT",
+        "text": "",
+        "class": "",
+        "type": "checkbox"
+      }
+    ],
+    "queryLinks": [],
+    "forms": []
+  },
+  "/start-your-project": {
+    "buttons": [
+      {
+        "tag": "BUTTON",
+        "text": "Accept",
+        "class": "CookieBanner_button__eD4su",
+        "type": "submit"
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Reject",
+        "class": "CookieBanner_button__eD4su",
+        "type": "submit"
+      },
+      {
+        "tag": "BUTTON",
+        "text": "",
+        "class": "PrimaryNavigation_icon__qAQCe",
+        "type": "submit"
+      },
+      {
+        "tag": "INPUT",
+        "text": "interestedIn",
+        "class": "",
+        "type": "checkbox"
+      },
+      {
+        "tag": "INPUT",
+        "text": "interestedIn",
+        "class": "",
+        "type": "checkbox"
+      },
+      {
+        "tag": "INPUT",
+        "text": "interestedIn",
+        "class": "",
+        "type": "checkbox"
+      },
+      {
+        "tag": "INPUT",
+        "text": "interestedIn",
+        "class": "",
+        "type": "checkbox"
+      },
+      {
+        "tag": "INPUT",
+        "text": "interestedIn",
+        "class": "",
+        "type": "checkbox"
+      },
+      {
+        "tag": "INPUT",
+        "text": "interestedIn",
+        "class": "",
+        "type": "checkbox"
+      },
+      {
+        "tag": "INPUT",
+        "text": "interestedIn",
+        "class": "",
+        "type": "checkbox"
+      },
+      {
+        "tag": "INPUT",
+        "text": "First name*",
+        "class": "Form_quarterWidth__sYVWE",
+        "type": "text"
+      },
+      {
+        "tag": "INPUT",
+        "text": "Last name*",
+        "class": "Form_quarterWidth__sYVWE",
+        "type": "text"
+      },
+      {
+        "tag": "INPUT",
+        "text": "Email*",
+        "class": "Form_halfWidth__mwquS Form_email__utu1q",
+        "type": "email"
+      },
+      {
+        "tag": "INPUT",
+        "text": "Budget (£)",
+        "class": "Form_inputBudget__lcmBw",
+        "type": "text"
+      },
+      {
+        "tag": "INPUT",
+        "text": "attachments",
+        "class": "Form_inputfile__ZF6M3",
+        "type": "file"
+      },
+      {
+        "tag": "INPUT",
+        "text": "Message",
+        "class": "Form_fullWidth__8_h_i",
+        "type": "text"
+      },
+      {
+        "tag": "INPUT",
+        "text": "Referrer",
+        "class": "Form_fullWidth__8_h_i",
+        "type": "text"
+      },
+      {
+        "tag": "INPUT",
+        "text": "pageTitle",
+        "class": "Form_fullWidth__8_h_i",
+        "type": "text"
+      },
+      {
+        "tag": "INPUT",
+        "text": "pageUrl",
+        "class": "Form_fullWidth__8_h_i",
+        "type": "text"
+      },
+      {
+        "tag": "INPUT",
+        "text": "phone",
+        "class": "Form_honeypot__2s3Fd",
+        "type": "text"
+      },
+      {
+        "tag": "INPUT",
+        "text": "newsletter",
+        "class": "",
+        "type": "checkbox"
+      },
+      {
+        "tag": "INPUT",
+        "text": "privacy",
+        "class": "",
+        "type": "checkbox"
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Submit",
+        "class": "Form_submit__Dnq6N ",
+        "type": "submit"
+      }
+    ],
+    "queryLinks": [],
+    "forms": [
+      {
+        "html": "<form class=\"Form_form___noC4 \" action=\"\" enctype=\"multipart/form-data\" method=\"POST\"><input type=\"hidden\" name=\"$ACTION_REF_1\"><input type=\"hidden\" name=\"$ACTION_1:0\" value=\"{&quot;id&quot;:&quot;ed9936b7e6c93f4df39adc7b63f53de659104e89&quot;,&quot;bound&quot;:&quot;$@1&quot;}\"><input type=\"hidden\" name=\"$ACTION_1:1\" value=\"[{&quot;message&quot;:null,&quot;buttonText&quot;:null,&quot;status&quot;:null}]\"><input type=\"hidden\" name=\"$ACTION_KEY\" value=\"k2543977464\"><fieldset class=\"Form_fullWidth__8_h_i\"><legend>I am interested in :</legend><label><input type=\"checkbox\" name=\"interestedIn\" value=\"1.1\"><span class=\"Form_button__WKdUX\">A new website</span></label><label><input type=\"checkbox\" name=\"interestedIn\" value=\"1.2\"><span class=\"Form_button__WKdUX\">Branding</span></label><label><input type=\"checkbox\" name=\"interestedIn\" value=\"1.3\"><span class=\"Form_button__WKdUX\">Motion graphics</span></label><label><input type=\"checkbox\" name=\"interestedIn\" value=\"1.4\"><span class=\"Form_button__",
+        "action": "http://127.0.0.1:3101/start-your-project",
+        "inputs": [
+          {
+            "name": "$ACTION_REF_1",
+            "type": "hidden",
+            "required": false
+          },
+          {
+            "name": "$ACTION_1:0",
+            "type": "hidden",
+            "required": false
+          },
+          {
+            "name": "$ACTION_1:1",
+            "type": "hidden",
+            "required": false
+          },
+          {
+            "name": "$ACTION_KEY",
+            "type": "hidden",
+            "required": false
+          },
+          {
+            "name": "",
+            "type": "fieldset"
+          },
+          {
+            "name": "interestedIn",
+            "type": "checkbox",
+            "required": false
+          },
+          {
+            "name": "interestedIn",
+            "type": "checkbox",
+            "required": false
+          },
+          {
+            "name": "interestedIn",
+            "type": "checkbox",
+            "required": false
+          },
+          {
+            "name": "interestedIn",
+            "type": "checkbox",
+            "required": false
+          },
+          {
+            "name": "interestedIn",
+            "type": "checkbox",
+            "required": false
+          },
+          {
+            "name": "interestedIn",
+            "type": "checkbox",
+            "required": false
+          },
+          {
+            "name": "interestedIn",
+            "type": "checkbox",
+            "required": false
+          },
+          {
+            "name": "firstName",
+            "type": "text",
+            "required": true
+          },
+          {
+            "name": "lastName",
+            "type": "text",
+            "required": true
+          },
+          {
+            "name": "email",
+            "type": "email",
+            "required": true
+          },
+          {
+            "name": "budget",
+            "type": "text",
+            "required": false
+          },
+          {
+            "name": "attachments",
+            "type": "file",
+            "required": false
+          },
+          {
+            "name": "message",
+            "type": "text",
+            "required": false
+          },
+          {
+            "name": "referrer",
+            "type": "text",
+            "required": false
+          },
+          {
+            "name": "pageTitle",
+            "type": "text",
+            "required": false
+          },
+          {
+            "name": "pageUrl",
+            "type": "text",
+            "required": false
+          },
+          {
+            "name": "phone",
+            "type": "text",
+            "required": false
+          },
+          {
+            "name": "newsletter",
+            "type": "checkbox",
+            "required": false
+          },
+          {
+            "name": "privacy",
+            "type": "checkbox",
+            "required": true
+          },
+          {
+            "name": "",
+            "type": "submit"
+          }
+        ]
+      }
+    ]
+  },
+  "/contact": {
+    "buttons": [
+      {
+        "tag": "BUTTON",
+        "text": "Accept",
+        "class": "CookieBanner_button__eD4su",
+        "type": "submit"
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Reject",
+        "class": "CookieBanner_button__eD4su",
+        "type": "submit"
+      },
+      {
+        "tag": "BUTTON",
+        "text": "",
+        "class": "PrimaryNavigation_icon__qAQCe",
+        "type": "submit"
+      },
+      {
+        "tag": "INPUT",
+        "text": "interestedIn",
+        "class": "",
+        "type": "checkbox"
+      },
+      {
+        "tag": "INPUT",
+        "text": "interestedIn",
+        "class": "",
+        "type": "checkbox"
+      },
+      {
+        "tag": "INPUT",
+        "text": "interestedIn",
+        "class": "",
+        "type": "checkbox"
+      },
+      {
+        "tag": "INPUT",
+        "text": "interestedIn",
+        "class": "",
+        "type": "checkbox"
+      },
+      {
+        "tag": "INPUT",
+        "text": "interestedIn",
+        "class": "",
+        "type": "checkbox"
+      },
+      {
+        "tag": "INPUT",
+        "text": "interestedIn",
+        "class": "",
+        "type": "checkbox"
+      },
+      {
+        "tag": "INPUT",
+        "text": "interestedIn",
+        "class": "",
+        "type": "checkbox"
+      },
+      {
+        "tag": "INPUT",
+        "text": "First name*",
+        "class": "Form_quarterWidth__sYVWE",
+        "type": "text"
+      },
+      {
+        "tag": "INPUT",
+        "text": "Last name*",
+        "class": "Form_quarterWidth__sYVWE",
+        "type": "text"
+      },
+      {
+        "tag": "INPUT",
+        "text": "Email*",
+        "class": "Form_halfWidth__mwquS Form_email__utu1q",
+        "type": "email"
+      },
+      {
+        "tag": "INPUT",
+        "text": "Budget (£)",
+        "class": "Form_inputBudget__lcmBw",
+        "type": "text"
+      },
+      {
+        "tag": "INPUT",
+        "text": "attachments",
+        "class": "Form_inputfile__ZF6M3",
+        "type": "file"
+      },
+      {
+        "tag": "INPUT",
+        "text": "Message",
+        "class": "Form_fullWidth__8_h_i",
+        "type": "text"
+      },
+      {
+        "tag": "INPUT",
+        "text": "Referrer",
+        "class": "Form_fullWidth__8_h_i",
+        "type": "text"
+      },
+      {
+        "tag": "INPUT",
+        "text": "pageTitle",
+        "class": "Form_fullWidth__8_h_i",
+        "type": "text"
+      },
+      {
+        "tag": "INPUT",
+        "text": "pageUrl",
+        "class": "Form_fullWidth__8_h_i",
+        "type": "text"
+      },
+      {
+        "tag": "INPUT",
+        "text": "phone",
+        "class": "Form_honeypot__2s3Fd",
+        "type": "text"
+      },
+      {
+        "tag": "INPUT",
+        "text": "newsletter",
+        "class": "",
+        "type": "checkbox"
+      },
+      {
+        "tag": "INPUT",
+        "text": "privacy",
+        "class": "",
+        "type": "checkbox"
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Submit",
+        "class": "Form_submit__Dnq6N ",
+        "type": "submit"
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Watch Now",
+        "class": "Button_button__JJiqJ Button_white__MQaf2",
+        "type": "submit"
+      }
+    ],
+    "queryLinks": [],
+    "forms": [
+      {
+        "html": "<form class=\"Form_form___noC4 \" action=\"\" enctype=\"multipart/form-data\" method=\"POST\"><input type=\"hidden\" name=\"$ACTION_REF_1\"><input type=\"hidden\" name=\"$ACTION_1:0\" value=\"{&quot;id&quot;:&quot;ed9936b7e6c93f4df39adc7b63f53de659104e89&quot;,&quot;bound&quot;:&quot;$@1&quot;}\"><input type=\"hidden\" name=\"$ACTION_1:1\" value=\"[{&quot;message&quot;:null,&quot;buttonText&quot;:null,&quot;status&quot;:null}]\"><input type=\"hidden\" name=\"$ACTION_KEY\" value=\"k1969622917\"><fieldset class=\"Form_fullWidth__8_h_i\"><legend>I am interested in :</legend><label><input type=\"checkbox\" name=\"interestedIn\" value=\"1.1\"><span class=\"Form_button__WKdUX\">A new website</span></label><label><input type=\"checkbox\" name=\"interestedIn\" value=\"1.2\"><span class=\"Form_button__WKdUX\">Branding</span></label><label><input type=\"checkbox\" name=\"interestedIn\" value=\"1.3\"><span class=\"Form_button__WKdUX\">Motion graphics</span></label><label><input type=\"checkbox\" name=\"interestedIn\" value=\"1.4\"><span class=\"Form_button__",
+        "action": "http://127.0.0.1:3101/contact",
+        "inputs": [
+          {
+            "name": "$ACTION_REF_1",
+            "type": "hidden",
+            "required": false
+          },
+          {
+            "name": "$ACTION_1:0",
+            "type": "hidden",
+            "required": false
+          },
+          {
+            "name": "$ACTION_1:1",
+            "type": "hidden",
+            "required": false
+          },
+          {
+            "name": "$ACTION_KEY",
+            "type": "hidden",
+            "required": false
+          },
+          {
+            "name": "",
+            "type": "fieldset"
+          },
+          {
+            "name": "interestedIn",
+            "type": "checkbox",
+            "required": false
+          },
+          {
+            "name": "interestedIn",
+            "type": "checkbox",
+            "required": false
+          },
+          {
+            "name": "interestedIn",
+            "type": "checkbox",
+            "required": false
+          },
+          {
+            "name": "interestedIn",
+            "type": "checkbox",
+            "required": false
+          },
+          {
+            "name": "interestedIn",
+            "type": "checkbox",
+            "required": false
+          },
+          {
+            "name": "interestedIn",
+            "type": "checkbox",
+            "required": false
+          },
+          {
+            "name": "interestedIn",
+            "type": "checkbox",
+            "required": false
+          },
+          {
+            "name": "firstName",
+            "type": "text",
+            "required": true
+          },
+          {
+            "name": "lastName",
+            "type": "text",
+            "required": true
+          },
+          {
+            "name": "email",
+            "type": "email",
+            "required": true
+          },
+          {
+            "name": "budget",
+            "type": "text",
+            "required": false
+          },
+          {
+            "name": "attachments",
+            "type": "file",
+            "required": false
+          },
+          {
+            "name": "message",
+            "type": "text",
+            "required": false
+          },
+          {
+            "name": "referrer",
+            "type": "text",
+            "required": false
+          },
+          {
+            "name": "pageTitle",
+            "type": "text",
+            "required": false
+          },
+          {
+            "name": "pageUrl",
+            "type": "text",
+            "required": false
+          },
+          {
+            "name": "phone",
+            "type": "text",
+            "required": false
+          },
+          {
+            "name": "newsletter",
+            "type": "checkbox",
+            "required": false
+          },
+          {
+            "name": "privacy",
+            "type": "checkbox",
+            "required": true
+          },
+          {
+            "name": "",
+            "type": "submit"
+          }
+        ]
+      }
+    ]
+  },
+  "/brand-pulse": {
+    "buttons": [
+      {
+        "tag": "BUTTON",
+        "text": "Accept",
+        "class": "CookieBanner_button__eD4su",
+        "type": "submit"
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Reject",
+        "class": "CookieBanner_button__eD4su",
+        "type": "submit"
+      },
+      {
+        "tag": "BUTTON",
+        "text": "",
+        "class": "PrimaryNavigation_icon__qAQCe",
+        "type": "submit"
+      },
+      {
+        "tag": "INPUT",
+        "text": "Enter your brand's name*",
+        "class": "BrandPulse_input__yoWrZ",
+        "type": "text"
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Let's get started",
+        "class": "BrandPulse_inputButton__6X_em",
+        "type": "submit"
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Start",
+        "class": "BrandPulse_paginationPage__Lugax BrandPulse_paginationPageActive___ADSv",
+        "type": "submit"
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Brand Positioning",
+        "class": "BrandPulse_paginationPage__Lugax ",
+        "type": "submit"
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Tone of voice",
+        "class": "BrandPulse_paginationPage__Lugax ",
+        "type": "submit"
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Logo mark",
+        "class": "BrandPulse_paginationPage__Lugax ",
+        "type": "submit"
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Fonts & colours",
+        "class": "BrandPulse_paginationPage__Lugax ",
+        "type": "submit"
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Brand visuals",
+        "class": "BrandPulse_paginationPage__Lugax ",
+        "type": "submit"
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Guidelines",
+        "class": "BrandPulse_paginationPage__Lugax ",
+        "type": "submit"
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Website copy",
+        "class": "BrandPulse_paginationPage__Lugax ",
+        "type": "submit"
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Results",
+        "class": "BrandPulse_paginationPage__Lugax ",
+        "type": "submit"
+      }
+    ],
+    "queryLinks": [],
+    "forms": []
+  }
+}

@@ -1,0 +1,112 @@
+{
+  "https://kota.co.uk": {
+    "snapshots": [
+      {
+        "label": "closed",
+        "html": "<div class=\"FaqsList_answer__XAnT2 prose\"><div><p>The majority of our projects sit between £30k and £150k, but project costs will depend on the final scope of work and vary from project to project. We generally prefer to agree a fixed cost with agreed milestone payments.</p>\n</div></div>",
+        "height": 0,
+        "opacity": "0",
+        "display": "grid",
+        "transition": "grid-template-rows 0.6s cubic-bezier(0.75, 0, 0.25, 1), opacity 0.3s",
+        "overflow": "visible"
+      },
+      {
+        "label": "clicked",
+        "html": "<div class=\"FaqsList_answer__XAnT2 prose\"><div><p>The majority of our projects sit between £30k and £150k, but project costs will depend on the final scope of work and vary from project to project. We generally prefer to agree a fixed cost with agreed milestone payments.</p>\n</div></div>",
+        "height": 0,
+        "opacity": "0",
+        "display": "grid",
+        "transition": "grid-template-rows 0.6s cubic-bezier(0.75, 0, 0.25, 1), opacity 0.3s 0.4s",
+        "overflow": "visible"
+      },
+      {
+        "label": "150ms",
+        "html": "<div class=\"FaqsList_answer__XAnT2 prose\"><div><p>The majority of our projects sit between £30k and £150k, but project costs will depend on the final scope of work and vary from project to project. We generally prefer to agree a fixed cost with agreed milestone payments.</p>\n</div></div>",
+        "height": 12.9375,
+        "opacity": "0",
+        "display": "grid",
+        "transition": "grid-template-rows 0.6s cubic-bezier(0.75, 0, 0.25, 1), opacity 0.3s 0.4s",
+        "overflow": "visible"
+      },
+      {
+        "label": "600ms",
+        "html": "<div class=\"FaqsList_answer__XAnT2 prose\"><div><p>The majority of our projects sit between £30k and £150k, but project costs will depend on the final scope of work and vary from project to project. We generally prefer to agree a fixed cost with agreed milestone payments.</p>\n</div></div>",
+        "height": 110.71875,
+        "opacity": "0.983436",
+        "display": "grid",
+        "transition": "grid-template-rows 0.6s cubic-bezier(0.75, 0, 0.25, 1), opacity 0.3s 0.4s",
+        "overflow": "visible"
+      },
+      {
+        "label": "closing150ms",
+        "html": "<div class=\"FaqsList_answer__XAnT2 prose\"><div><p>The majority of our projects sit between £30k and £150k, but project costs will depend on the final scope of work and vary from project to project. We generally prefer to agree a fixed cost with agreed milestone payments.</p>\n</div></div>",
+        "height": 104.71875,
+        "opacity": "0.197686",
+        "display": "grid",
+        "transition": "grid-template-rows 0.6s cubic-bezier(0.75, 0, 0.25, 1), opacity 0.3s",
+        "overflow": "visible"
+      }
+    ],
+    "question": {
+      "html": "<label class=\"FaqsList_question__6fKon\"><span class=\"FaqsList_icon__54ODy\"><svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 40 40\"><path fill=\"#fff\" d=\"M17.5 40V22.5H0v-5h17.5V0h5v17.5H40v5H22.5V40h-5z\"></path></svg></span>How much does web design and development typically cost?<input type=\"checkbox\"></label>",
+      "props": [
+        "undefined"
+      ]
+    }
+  },
+  "http://127.0.0.1:3101": {
+    "snapshots": [
+      {
+        "label": "closed",
+        "html": "<div class=\"FaqsList_answer__XAnT2 prose\"><div><p>The majority of our projects sit between £30k and £150k, but project costs will depend on the final scope of work and vary from project to project. We generally prefer to agree a fixed cost with agreed milestone payments.</p>\n</div></div>",
+        "height": 0,
+        "opacity": "0",
+        "display": "grid",
+        "transition": "grid-template-rows 0.6s cubic-bezier(0.75, 0, 0.25, 1), opacity 0.3s",
+        "overflow": "visible"
+      },
+      {
+        "label": "clicked",
+        "html": "<div class=\"FaqsList_answer__XAnT2 prose\"><div><p>The majority of our projects sit between £30k and £150k, but project costs will depend on the final scope of work and vary from project to project. We generally prefer to agree a fixed cost with agreed milestone payments.</p>\n</div></div>",
+        "height": 0.046875,
+        "opacity": "0",
+        "display": "grid",
+        "transition": "grid-template-rows 0.6s cubic-bezier(0.75, 0, 0.25, 1), opacity 0.3s 0.4s",
+        "overflow": "visible"
+      },
+      {
+        "label": "150ms",
+        "html": "<div class=\"FaqsList_answer__XAnT2 prose\"><div><p>The majority of our projects sit between £30k and £150k, but project costs will depend on the final scope of work and vary from project to project. We generally prefer to agree a fixed cost with agreed milestone payments.</p>\n</div></div>",
+        "height": 16.40625,
+        "opacity": "0",
+        "display": "grid",
+        "transition": "grid-template-rows 0.6s cubic-bezier(0.75, 0, 0.25, 1), opacity 0.3s 0.4s",
+        "overflow": "visible"
+      },
+      {
+        "label": "600ms",
+        "html": "<div class=\"FaqsList_answer__XAnT2 prose\"><div><p>The majority of our projects sit between £30k and £150k, but project costs will depend on the final scope of work and vary from project to project. We generally prefer to agree a fixed cost with agreed milestone payments.</p>\n</div></div>",
+        "height": 110.71875,
+        "opacity": "0.992954",
+        "display": "grid",
+        "transition": "grid-template-rows 0.6s cubic-bezier(0.75, 0, 0.25, 1), opacity 0.3s 0.4s",
+        "overflow": "visible"
+      },
+      {
+        "label": "closing150ms",
+        "html": "<div class=\"FaqsList_answer__XAnT2 prose\"><div><p>The majority of our projects sit between £30k and £150k, but project costs will depend on the final scope of work and vary from project to project. We generally prefer to agree a fixed cost with agreed milestone payments.</p>\n</div></div>",
+        "height": 104.71875,
+        "opacity": "0.197713",
+        "display": "grid",
+        "transition": "grid-template-rows 0.6s cubic-bezier(0.75, 0, 0.25, 1), opacity 0.3s",
+        "overflow": "visible"
+      }
+    ],
+    "question": {
+      "html": "<label class=\"FaqsList_question__6fKon\"><span class=\"FaqsList_icon__54ODy\"><svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 40 40\"><path fill=\"#fff\" d=\"M17.5 40V22.5H0v-5h17.5V0h5v17.5H40v5H22.5V40h-5z\"></path></svg></span>How much does web design and development typically cost?<input type=\"checkbox\"></label>",
+      "props": [
+        "undefined"
+      ]
+    }
+  }
+}

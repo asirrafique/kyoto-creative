@@ -1,0 +1,9 @@
+{
+  "answered": 7,
+  "url": "http://127.0.0.1:3101/brand-pulse-results?brand=Replica+Demo&average=5&responses=%7B%22brand-positioning%22%3A%226%22%2C%22tone-of-voice%22%3A%226%22%2C%22logo-mark%22%3A%226%22%2C%22fonts-colours%22%3A%226%22%2C%22brand-visuals%22%3A%226%22%2C%22guidelines%22%3A%226%22%2C%22website-copy%22%3A%226%22%7D",
+  "headings": [
+    "Your current brand level"
+  ],
+  "errors": [],
+  "failed": []
+}

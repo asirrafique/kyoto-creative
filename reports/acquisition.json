@@ -1,0 +1,10 @@
+{
+  "routes": 277,
+  "assets": 588,
+  "failures": {
+    "https://kota.co.uk/app/uploads/2024/11/Logo-Profile.png": "HTTP Error 404: Not Found",
+    "https://kota.co.uk/_assets/_videos/catThumb.png": "HTTP Error 404: Not Found",
+    "https://kota.co.uk/_libraries/navmesh.wasm": "HTTP Error 404: Not Found",
+    "https://kota.co.uk/_next/static/vercel.live/_next-live/feedback/feedback.js": "HTTP Error 404: Not Found"
+  }
+}

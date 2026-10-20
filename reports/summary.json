@@ -1,0 +1,55 @@
+{
+  "verification": {
+    "passed": 13,
+    "total": 13,
+    "errors": 0,
+    "failedResources": 0
+  },
+  "production-verification": {
+    "passed": 8,
+    "total": 8,
+    "errors": 0,
+    "failedResources": 0
+  },
+  "routes-verification": {
+    "passed": 7,
+    "total": 7,
+    "errors": 0,
+    "failedResources": 0
+  },
+  "motion-verification": {
+    "passed": 3,
+    "total": 3,
+    "errors": 0,
+    "failedResources": 0
+  },
+  "interconnected-verification": {
+    "passed": 18,
+    "total": 18,
+    "errors": 0,
+    "failedResources": 0
+  },
+  "routeCoverage": {
+    "canonicalPages": 335,
+    "redirects": 61,
+    "sitemapEntries": 329,
+    "uncovered": []
+  },
+  "hydration": {
+    "checked": 335,
+    "failures": 0,
+    "upstreamWarningPages": [
+      "/service/creative-web-design",
+      "/service/web-design-development/creative-web-design"
+    ]
+  },
+  "brandPulse": {
+    "answered": 7,
+    "headings": [
+      "Your current brand level"
+    ],
+    "errors": [],
+    "failed": []
+  },
+  "productionBuild": "passed"
+}

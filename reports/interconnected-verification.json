@@ -1,0 +1,100 @@
+{
+  "checks": [
+    {
+      "name": "FAQ expands over 0.6 seconds with the original easing",
+      "pass": true,
+      "detail": {
+        "initial": {
+          "height": 0,
+          "transition": "grid-template-rows 0.6s cubic-bezier(0.75, 0, 0.25, 1), opacity 0.3s"
+        },
+        "early": {
+          "height": 13.046875,
+          "opacity": 0
+        },
+        "opened": {
+          "height": 142.625,
+          "opacity": 1
+        }
+      }
+    },
+    {
+      "name": "FAQ text fades after the opening delay",
+      "pass": true
+    },
+    {
+      "name": "FAQ answers remain independently open",
+      "pass": true
+    },
+    {
+      "name": "FAQ plus rotates into a cross",
+      "pass": true
+    },
+    {
+      "name": "FAQ closes smoothly before the next row settles",
+      "pass": true
+    },
+    {
+      "name": "FAQ keyboard controls expose expanded state",
+      "pass": true
+    },
+    {
+      "name": "Work sector filter changes visible projects and URL",
+      "pass": true,
+      "detail": {
+        "allProjects": 24,
+        "agencyProjects": 10
+      }
+    },
+    {
+      "name": "Work supports combined sector and service filters",
+      "pass": true
+    },
+    {
+      "name": "Back restores the previous filter",
+      "pass": true
+    },
+    {
+      "name": "Blog categories combine and update the URL",
+      "pass": true
+    },
+    {
+      "name": "All articles resets filtering and restores more posts",
+      "pass": true,
+      "detail": {
+        "culturePosts": 43,
+        "allPosts": 256
+      }
+    },
+    {
+      "name": "Main menu navigates to a hydrated Agency page",
+      "pass": true
+    },
+    {
+      "name": "Nested service menu reaches its own working page",
+      "pass": true
+    },
+    {
+      "name": "Contact submission saves and renders an honest local receipt",
+      "pass": true
+    },
+    {
+      "name": "Newsletter form saves locally and renders its success view",
+      "pass": true
+    },
+    {
+      "name": "Briefing form unlocks a real downloadable ZIP",
+      "pass": true
+    },
+    {
+      "name": "Download button starts a native file download without leaving the page",
+      "pass": true
+    },
+    {
+      "name": "Form submissions persist as local records",
+      "pass": true
+    }
+  ],
+  "errors": [],
+  "failed": []
+}

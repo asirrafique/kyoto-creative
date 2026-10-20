@@ -1,0 +1,26 @@
+{
+  "routes": 277,
+  "errors": {
+    "/api": "HTTP Error 404: Not Found",
+    "/landing-page/agencies": "HTTP Error 404: Not Found",
+    "/landing-page/b2b-tech-software-saas": "HTTP Error 404: Not Found",
+    "/landing-page/healthcare": "HTTP Error 404: Not Found",
+    "/landing-page/b2b-transformation": "HTTP Error 404: Not Found",
+    "/landing-page/media-entertainment": "HTTP Error 404: Not Found",
+    "/k": "HTTP Error 404: Not Found",
+    "/landing-page/retail": "HTTP Error 404: Not Found",
+    "/service/brand-strategy-and-identity/brand-identity-design": "HTTP Error 404: Not Found",
+    "/service/brand-strategy-and-identity/tone-of-voice": "HTTP Error 404: Not Found",
+    "/service/branding/tone-of-voice": "HTTP Error 404: Not Found",
+    "/service/brand-strategy-and-identity/brand-strategy": "HTTP Error 404: Not Found",
+    "/service/branding/brand-strategy": "HTTP Error 404: Not Found",
+    "/service/growth-marketing/copywriting": "HTTP Error 404: Not Found",
+    "/service/branding/visual-identity": "HTTP Error 404: Not Found",
+    "/service/growth-marketing/seo-geo": "HTTP Error 404: Not Found",
+    "/service/web-design-development/web-development": "HTTP Error 404: Not Found",
+    "/service/growth-marketing/sitecare": "HTTP Error 404: Not Found",
+    "/service/web-design-development/wordpress-cms": "HTTP Error 404: Not Found",
+    "/_next/data": "HTTP Error 404: Not Found",
+    "/_next": "HTTP Error 404: Not Found"
+  }
+}
