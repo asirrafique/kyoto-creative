@@ -1,4 +1,4 @@
-# KOTA local replica
+# Kyoto Creative
 
 Run from `D:\intern`:
 
