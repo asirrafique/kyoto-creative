@@ -35,6 +35,8 @@ export function localize(text) {
   text = text.replaceAll('Launch day is just the beginning. We help ambitious brands stay visible, useful and competitive after websites go live, with ongoing support across AI search, SEO, content and website performance.', 'We help ambitious companies eliminate manual bottlenecks, deploy autonomous agents, and scale operational capacity without bloating headcount—connecting your tech stack with reliable, intelligent workflows.');
   text = text.replaceAll('We bring brand, UX, SEO, content and development together from day one, combining creative ambition with strategic thinking and technical excellence. The result is a digital experience that feels distinctive, works intuitively and delivers measurable impact long after launch.', 'We bring strategy, design, and development together from day one. The result is a website or app that feels distinctive, works effortlessly, and keeps delivering long after launch.');
   text = text.replaceAll('Websites that do more.', 'Digital experiences that do more.');
+  text = text.replaceAll('Making brands a damn site better.', 'From bold marketing campaigns to powerful tech solutions.');
+  text = text.replaceAll('Dive into our projects and the decisions that shaped them.', 'Explore the work we build to help businesses grow.');
   text = text.replaceAll('Creative web design and development, combining brand clarity, craft and commercial momentum to create distinctive digital experiences that help ambitious brands grow.', 'We design and build world class websites and apps that look sharp, feel intuitive, and drive real business results — not just digital decoration.');
   text = text.replaceAll('Creative web design.', 'Web Design & Development');
   text = text.replaceAll('Web development.', 'App Design & Development');
@@ -69,6 +71,7 @@ export function localize(text) {
   text = text.replaceAll('We\u2019ll push you creatively, but we\u2019ll always ground our ideas in strategy. From brand identity design to website interactions and immersion, every detail earns its place.', 'We find the repetitive work slowing you down and replace it with smart AI systems. Lead follow-ups, onboarding, reporting, internal processes — handled so your team can focus on growth.');
   text = text.replaceAll('Brand strategy &amp; identity', 'Marketing & Branding');
   text = text.replaceAll('Brand strategy & identity', 'Marketing & Branding');
+  text = text.replace(/Enabling (?:<em>|\\u003cem\\u003e)brand(?:<\/em>|\\u003c\/em\\u003e)\s*(?:<br \/>|\\u003cbr \/>|\\u003cbr \/\\u003e)(?:\\\\r\\\\n|\\r\\n|\r?\n)\s*(?:<span>|\\u003cspan\\u003e)(?:<em>|\\u003cem\\u003e)mavericks(?:<\/em>|\\u003c\/em\\u003e)(?:<\/span>|\\u003c\/span\\u003e)?\s*(?:<br \/>|\\u003cbr \/>|\\u003cbr \/\\u003e)(?:\\\\r\\\\n|\\r\\n|\r?\n)\s*(?:<span>|\\u003cspan\\u003e)since 2013\.(?:<\/span>|\\u003c\/span\\u003e)?/g, 'Building brands that stand out and sell.');
   text = text.replaceAll('Web design &amp; development', 'Website & App Development');
   text = text.replaceAll('Web design & development', 'Website & App Development');
   text = text.replaceAll('Growth marketing', 'AI Automations');
@@ -76,10 +79,14 @@ export function localize(text) {
   text = text.replaceAll('SEO & AI search, content creation, copywriting, and ongoing support. Whatever you need, get seen and make it count with work that moves, connects and performs.', 'We implement practical AI systems that reduce manual work — lead follow-ups, client onboarding, reporting, internal workflows, and more. Real automation that actually saves time.');
   text = text.replaceAll('It all starts with clear thinking. Through stakeholder interviews and workshops, we immerse ourselves in your world to sharpen your positioning, messaging and direction before anyone touches the visuals.', 'Pretty isn’t enough. We design and build websites and apps that actually perform — guiding users, removing friction, and turning attention into real business results.');
   text = text.replaceAll('Crafting digital experiences where beauty meets ROI, turning heads and unlocking revenue potential with every click.', 'We design and build websites and apps that don’t just look good — they perform. Fast, user-friendly, and focused on converting visitors into customers.');
-  text = text.replaceAll('A global branding agency and creative web design studio based in London, <strong>where strategic-thinkers give bold brands their edge.</strong>', 'We help businesses grow with sharp marketing &amp; branding, <strong>high-converting websites &amp; apps, and practical AI automations that save time and drive results.</strong>');
+  text = text.replaceAll('A global branding agency and creative web design studio based in London, <strong>where strategic-thinkers give bold brands their edge.</strong>', 'We help businesses grow with sharp marketing<br />&amp; branding, high-converting websites &amp; apps, and practical AI automations that save time and drive results.');
   text = text.replace(/Shaping how global(?:\\r?\\n|\s)+brands are seen, trusted,(?:\\r?\\n|\s)+and remembered\./g, 'Shaping how businesses get seen, trusted, and scaled.');
   text = text.replaceAll('There are moments of change for every brand, whether it’s rapid growth, new goals, or new expectations. That’s where our work begins.', 'Most agencies overcomplicate things. We focus on clarity, strong systems, and measurable outcomes — whether we’re building your brand, launching a website, or automating key parts of your business.');
   text = text.replaceAll('When growth pulls at it, new audiences dilute it, and good intentions blur it, we’ll strengthen your brand with clear decisions that feel inevitable.', 'We help you define how your brand shows up in the market. From strategy and positioning to messaging and visual identity — everything is built to be clear, consistent, and commercially effective.');
+  // Approach item 01 heading: Marketing on line 1, and & Branding together on line 2
+  text = text.replaceAll('>Brand Clarity<', '>Marketing &amp;&nbsp;Branding<');
+  text = text.replaceAll('\\"children\\\":\\\"Brand Clarity\\\"', '\\"children\\\":\\\"Marketing &\\u00A0Branding\\\"');
+  text = text.replaceAll('"children":"Brand Clarity"', '"children":"Marketing &\u00A0Branding"');
   text = text.replaceAll('Brand Clarity', 'Marketing & Branding');
   text = text.replaceAll('Decisions that help brands re-position and commit.', 'Positioning, messaging, and brand systems that cut through the noise and convert.');
   text = text.replace(/Build for(?:\\+r\\+n|\s)+scale\.?/gi, 'Brand Clarity');
@@ -90,5 +97,103 @@ export function localize(text) {
   text = text.replaceAll('Someone from the KOTA team will be contacting you shortly. In the meantime, how about checking out some of our latest projects :', 'Your enquiry has been saved locally. Email delivery is not connected in this replica. In the meantime, explore some of our latest projects :');
   text = text.replaceAll('Keep an eye out for your first KOTA newsletter.', 'Your subscription has been saved locally. Newsletter delivery is not connected.');
   text = text.replaceAll("Follow the link below. We've also emailed it for future reference..", 'Follow the link below to view your results. Your responses have been saved locally.');
+  // Remove showreel / play video section from the Agency page
+  text = text.replace(/<section class="Video_video__ODG2u"><div class="ImageEnter_image__FSEP_" data-fill="false"><div class="Video_videoContainer__SQ5UJ">[\s\S]*?<\/video><\/span><\/div><\/div><\/div><\/section>/g, '');
+  text = text.replace(/,\[\\?"\$[^\\]*\\?",\\?"\$L\w+\\?",null,\{\\?"data\\"?:\{\\?"fullVideo\\"?:[^\]]*?Short-Preview-Agency\.mp4[^\]]*?\}\}\]/g, '');
+  text = text.replace(/,\["\$","\$L\w+",null,\{"data":\{"fullVideo":[^\]]*?Short-Preview-Agency\.mp4[^\]]*?\}\}\]/g, '');
+
+  // Remove homepage hero floating showreel video button & popup player
+  text = text.replace(/,\[\\?"\$[^\\]*\\?",\\?"\$L\w+\\?",null,\{\\?"loopVideoSrc\\"?:\\?"[^"]*?Short-Preview-homepage\.mp4[^"]*?\\",\\?"fullVideoSrc\\"?:\\?"[^"]*?00-Kota-Showreel-2025-Final\.mp4[^"]*?\\"\}\]/g, '');
+  text = text.replace(/,\["\$","\$L\w+",null,\{"loopVideoSrc":"[^"]*?Short-Preview-homepage\.mp4[^"]*?","fullVideoSrc":"[^"]*?00-Kota-Showreel-2025-Final\.mp4"\}\]/g, '');
+
+  // Remove SHOWREEL / Watch Now motion section above the footer across all pages
+  text = text.replace(/<section class="KotaverseCta_kotaverseCta__bBpWa" id="kotaverceCta">[\s\S]*?<\/section>/g, '');
+  text = text.replace(/,(?:\\?"\$L(?:46|1c|57|2c)\\?"|"\$L(?:46|1c|57|2c)")/g, '');
+  text = text.replace(/<script[^>]*>\s*self\.__next_f\.push\(\[1,"(?:57|2c):\[\\?"\$\\?",\\?"section\\"?,null,\{\\?"className\\"?:\\?"KotaverseCta_kotaverseCta__bBpWa\\"?[\s\S]*?"\]\)\s*<\/script>/g, '');
+
+  // Remove awards and agency network badges (DAN, Clutch, Awwwards, CSSDA) from the footer
+  text = text.replace(/<div class="Footer_logos__jFNys">[\s\S]*?<\/div>/g, '');
+  text = text.replace(/,\[\\?"\$[^\\]*\\?",\\?"div\\?",null,\{\\?"className\\"?:\\?"Footer_logos__jFNys\\"?,\s*\\?"children\\"?:\[[\s\S]*?\]\}\]/g, '');
+  text = text.replace(/,\["\$","div",null,\{"className":"Footer_logos__jFNys",\s*"children":\[[\s\S]*?\]\}\]/g, '');
+  text = text.replace(/<link rel="preload" as="image" href="(?:https:\/\/kota-content\.b-cdn\.net|\/__assets\/kota-content\.b-cdn\.net)\/app\/uploads\/(?:2024\/06\/DAN-1-500x167\.png|2023\/10\/(?:clutch|awwwards|cssda)\.svg)"\/>/g, '');
+
+  // Remove awards and agency network badges (DAN, Clutch, Awwwards, CSSDA) from Hero (homepage & services)
+  text = text.replace(/<div class="Hero_logos__jC9k_" data-modal-hide="true">[\s\S]*?<\/div><\/span><\/div>/g, '');
+  text = text.replace(/,\[\\?"\$[^\\]*\\?",\\?"div\\?",null,\{\\?"className\\"?:\\?"Hero_logos__jC9k_\\"?,\s*\\?"data-modal-hide\\"?:true[\s\S]*?cssda\.svg[\s\S]*?\}\]\}\]\}\]/g, '');
+  text = text.replace(/,\["\$","div",null,\{"className":"Hero_logos__jC9k_","data-modal-hide":true[\s\S]*?cssda\.svg[\s\S]*?\}\]\}\]\}\]/g, '');
+  text = text.replace(/<link rel="preload" as="image" href="(?:https:\/\/kota-content\.b-cdn\.net|\/__assets\/kota-content\.b-cdn\.net)\/app\/uploads\/2024\/03\/Digital-Agency-Network\.svg"\/>/g, '');
+
+  // Replace KOTA brand logo with Kyoto Creative logo
+  const kotaLogoPath = 'M5 5h80v80H5V5zM0 90h90V0H0v90zm64.66-15.67l-5.15-16.61h-.1l-5.35 16.61H47.6l9.49-24.09h4.74l9.39 24.09h-6.56zm-39.77 0V55.67h-6.66v-5.43H37.6v5.43h-6.66v18.66h-6.06zm34.52-59.16c-3.94-.1-7.67 1.74-9.99 4.92-.64.81-1.15 1.7-1.52 2.67-.6 1.64-.9 3.38-.9 5.13v.05c.07 6.78 5.62 12.22 12.4 12.15h.56c6.88-.29 12.22-6.1 11.93-12.97-.28-6.69-5.79-11.96-12.48-11.94m.1 19.48c-3.94 0-6.56-3.38-6.56-7.18s2.62-6.97 6.46-6.97 6.46 3.38 6.46 7.07-2.52 7.08-6.36 7.08m-28.87 5.02l-6.46-10.35h-.1v10.35h-6.06v-24.1h6.06v10.87h.1l6.66-10.87h6.36l-7.87 12 8.38 12.1h-7.06z';
+  
+  // Footer logo: Kyoto Creative logo styled to match the exact size of the KOTA logo on all pages
+  const kyotoFooterSvgHtml = '<image href="/images/kyoto-creative-footer-white.png" width="954" height="368" preserveAspectRatio="xMidYMid meet"></image>';
+  const kyotoFooterSvgRsc = '["$","image",null,{"href":"/images/kyoto-creative-footer-white.png","width":954,"height":368,"preserveAspectRatio":"xMidYMid meet"}]';
+
+  // Header logo
+  const kyotoHeaderSvgHtml = '<image href="/images/kyoto-creative-logo.png" width="1024" height="576" preserveAspectRatio="xMidYMid meet"></image>';
+  const kyotoHeaderSvgRsc = '["$","image",null,{"href":"/images/kyoto-creative-logo.png","width":1024,"height":576,"preserveAspectRatio":"xMidYMid meet"}]';
+
+  // 1. HTML markup replacements
+  text = text.replaceAll(
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 90 90"><path fill="currentColor" d="' + kotaLogoPath + '"></path></svg>',
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 576">' + kyotoHeaderSvgHtml + '</svg>'
+  );
+  text = text.replaceAll(
+    '<svg class="Footer_logo__fUEOF" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 90 90"><path fill="#fff" stroke-width="0" d="' + kotaLogoPath + '"></path></svg>',
+    '<svg class="Footer_logo__fUEOF" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 954 368" style="height:3.25rem;width:auto;max-width:100%;object-fit:contain">' + kyotoFooterSvgHtml + '</svg>'
+  );
+
+  // 2. Unescaped RSC Flight payloads
+  const oldHeaderRsc = '["$","svg",null,{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 90 90","children":["$","path",null,{"fill":"currentColor","d":"' + kotaLogoPath + '"}]}]';
+  const newHeaderRsc = '["$","svg",null,{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 576","children":' + kyotoHeaderSvgRsc + '}]';
+  text = text.replaceAll(oldHeaderRsc, newHeaderRsc);
+
+  const oldFooterRsc = '["$","svg",null,{"className":"Footer_logo__fUEOF","xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 90 90","children":["$","path",null,{"fill":"#fff","strokeWidth":"0","d":"' + kotaLogoPath + '"}]}]';
+  const newFooterRsc = '["$","svg",null,{"className":"Footer_logo__fUEOF","xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 954 368","style":{"height":"3.25rem","width":"auto","maxWidth":"100%","objectFit":"contain"},"children":' + kyotoFooterSvgRsc + '}]';
+  text = text.replaceAll(oldFooterRsc, newFooterRsc);
+
+  // 3. Escaped RSC Flight payloads (inlined script tags in HTML)
+  const escOldHeaderRsc = oldHeaderRsc.replaceAll('"', '\\"');
+  const escNewHeaderRsc = newHeaderRsc.replaceAll('"', '\\"');
+  text = text.replaceAll(escOldHeaderRsc, escNewHeaderRsc);
+
+  const escOldFooterRsc = oldFooterRsc.replaceAll('"', '\\"');
+  const escNewFooterRsc = newFooterRsc.replaceAll('"', '\\"');
+  text = text.replaceAll(escOldFooterRsc, escNewFooterRsc);
+
+  // Replace homepage hero headline "Rebel against boring" with "Marketing that works. Websites that convert. AI that delivers."
+  const targetHeroSplitHtml = '<div class="Hero_splitText__diMTw">';
+  const replacementHeroSplitHtml = '<div class="Hero_splitText__diMTw">' +
+    '<h1 class="kyoto-hero-title">' +
+      '<span class="kyoto-hero-line">Marketing that works.</span>' +
+      '<span class="kyoto-hero-line">Websites that convert.</span>' +
+      '<span class="kyoto-hero-line">AI that delivers.</span>' +
+    '</h1>';
+  text = text.replace(targetHeroSplitHtml, replacementHeroSplitHtml);
+
+  const targetHeroSplitRsc = '["$","div",null,{"className":"Hero_splitText__diMTw","children":[';
+  const headlineRscObj = '["$","h1",null,{"className":"kyoto-hero-title","children":[["$","span",null,{"className":"kyoto-hero-line","children":"Marketing that works."}],["$","span",null,{"className":"kyoto-hero-line","children":"Websites that convert."}],["$","span",null,{"className":"kyoto-hero-line","children":"AI that delivers."}]]}],';
+
+  const escTargetHeroSplitRsc = targetHeroSplitRsc.replaceAll('"', '\\"');
+  const escHeadlineRscObj = headlineRscObj.replaceAll('"', '\\"');
+
+  text = text.replaceAll(targetHeroSplitRsc, targetHeroSplitRsc + headlineRscObj);
+  text = text.replaceAll(escTargetHeroSplitRsc, escTargetHeroSplitRsc + escHeadlineRscObj);
+
+  // Ensure responsive sizing matches design cleanly and prevent undesirable 3-line heading breaks
+  if (text.includes('</head>')) {
+    const customStyle = '<style>' +
+      '.Footer_logo__fUEOF{height:3.25rem!important;width:auto!important;max-width:14.5rem;display:block;}' +
+      '@media(min-width:769px){.Footer_logo__fUEOF{height:5.625rem!important;max-width:22rem;}}' +
+      '.Approach_item__5N2E6 h3{width:min-content!important;max-width:100%!important;}' +
+      '.HeroSplitTextDesktop_desktop__Bey7n, .Hero_mobile__VkWXK, .HeroVideo_video__OoWDY { display: none !important; }' +
+      '.kyoto-hero-title { display: flex; flex-direction: column; font-family: var(--montreal), sans-serif; font-size: clamp(2.75rem, 5.25vw, 5.5rem); font-weight: 400; line-height: 1; letter-spacing: -0.02em; color: #000; text-transform: none; margin: 0 0 2.5rem; pointer-events: auto; }' +
+      '.kyoto-hero-line { display: block; }' +
+      '@media (max-width: 768px) { .kyoto-hero-title { font-size: clamp(2.25rem, 9vw, 3.5rem); line-height: 1.05; margin-bottom: 1.5rem; } }' +
+      '</style></head>';
+    text = text.replace('</head>', customStyle);
+  }
+
   return text;
 }
