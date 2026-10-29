@@ -16,6 +16,7 @@ export function localize(text) {
   text = text.replaceAll('https://www.googletagmanager.com', '/__analytics');
   text = text.replaceAll('https://static.hotjar.com', '/__analytics');
   text = text.replaceAll('https://kota.co.uk/', '/');
+  text = text.replaceAll('© KOTA', '© Kyoto Creative');
   text = text.replaceAll("I'm happy to receive a monthly newsletter from KOTA", "I'm happy to receive a monthly newsletter from Kyoto Creative");
   text = text.replaceAll('I understand that KOTA will securely hold my data in accordance with their privacy policy.', 'I understand that Kyoto Creative will securely hold my data in accordance with their privacy policy.');
   text = text.replaceAll('On-going support', 'AI Automations');
@@ -79,7 +80,7 @@ export function localize(text) {
   text = text.replaceAll('SEO & AI search, content creation, copywriting, and ongoing support. Whatever you need, get seen and make it count with work that moves, connects and performs.', 'We implement practical AI systems that reduce manual work — lead follow-ups, client onboarding, reporting, internal workflows, and more. Real automation that actually saves time.');
   text = text.replaceAll('It all starts with clear thinking. Through stakeholder interviews and workshops, we immerse ourselves in your world to sharpen your positioning, messaging and direction before anyone touches the visuals.', 'Pretty isn’t enough. We design and build websites and apps that actually perform — guiding users, removing friction, and turning attention into real business results.');
   text = text.replaceAll('Crafting digital experiences where beauty meets ROI, turning heads and unlocking revenue potential with every click.', 'We design and build websites and apps that don’t just look good — they perform. Fast, user-friendly, and focused on converting visitors into customers.');
-  text = text.replaceAll('A global branding agency and creative web design studio based in London, <strong>where strategic-thinkers give bold brands their edge.</strong>', 'We help businesses grow with sharp marketing<br />&amp; branding, high-converting websites &amp; apps, and practical AI automations that save time and drive results.');
+  text = text.replaceAll('A global branding agency and creative web design studio based in London, <strong>where strategic-thinkers give bold brands their edge.</strong>', 'We help businesses grow with sharp<br />marketing &amp; branding,high-converting<br />websites &amp; apps, and practical AI automations<br />that save time and drive results.');
   text = text.replace(/Shaping how global(?:\\r?\\n|\s)+brands are seen, trusted,(?:\\r?\\n|\s)+and remembered\./g, 'Shaping how businesses get seen, trusted, and scaled.');
   text = text.replaceAll('There are moments of change for every brand, whether it’s rapid growth, new goals, or new expectations. That’s where our work begins.', 'Most agencies overcomplicate things. We focus on clarity, strong systems, and measurable outcomes — whether we’re building your brand, launching a website, or automating key parts of your business.');
   text = text.replaceAll('When growth pulls at it, new audiences dilute it, and good intentions blur it, we’ll strengthen your brand with clear decisions that feel inevitable.', 'We help you define how your brand shows up in the market. From strategy and positioning to messaging and visual identity — everything is built to be clear, consistent, and commercially effective.');
@@ -106,12 +107,47 @@ export function localize(text) {
   text = text.replace(/,\[\\?"\$[^\\]*\\?",\\?"\$L\w+\\?",null,\{\\?"loopVideoSrc\\"?:\\?"[^"]*?Short-Preview-homepage\.mp4[^"]*?\\",\\?"fullVideoSrc\\"?:\\?"[^"]*?00-Kota-Showreel-2025-Final\.mp4[^"]*?\\"\}\]/g, '');
   text = text.replace(/,\["\$","\$L\w+",null,\{"loopVideoSrc":"[^"]*?Short-Preview-homepage\.mp4[^"]*?","fullVideoSrc":"[^"]*?00-Kota-Showreel-2025-Final\.mp4"\}\]/g, '');
 
-  // Remove SHOWREEL / Watch Now motion section above the footer across all pages
-  text = text.replace(/<section class="KotaverseCta_kotaverseCta__bBpWa" id="kotaverceCta">[\s\S]*?<\/section>/g, '');
-  text = text.replace(/,(?:\\?"\$L(?:46|1c|57|2c)\\?"|"\$L(?:46|1c|57|2c)")/g, '');
-  text = text.replace(/<script[^>]*>\s*self\.__next_f\.push\(\[1,"(?:57|2c):\[\\?"\$\\?",\\?"section\\"?,null,\{\\?"className\\"?:\\?"KotaverseCta_kotaverseCta__bBpWa\\"?[\s\S]*?"\]\)\s*<\/script>/g, '');
+  // Fix GSAP ScrollTrigger crash in FloatingStartButton across all pages:
+  // kota's bundled JS had a minified bug: `...r&&{endTrigger:r},endTrigger:"#kotaverceCta"` (also using `n` or `i`).
+  // When #kotaverceCta is not in the DOM, GSAP throws an unhandled exception during mount.
+  // We match any variable name (r, n, i, etc.) and remove the hardcoded endTrigger:"#kotaverceCta".
+  text = text.replace(/,endTrigger:"#kotaverceCta"/g, '');
 
-  // Remove awards and agency network badges (DAN, Clutch, Awwwards, CSSDA) from the footer
+  // Retain an invisible #kotaverceCta anchor element before the footer across all pages so that
+  // any querySelector("#kotaverceCta") or existing CSS/JS finds it cleanly without rendering any UI.
+  if (text.includes('<footer') && !text.includes('id="kotaverceCta"')) {
+    text = text.replace('<footer', '<div id="kotaverceCta" style="height:0;overflow:hidden;pointer-events:none"></div><footer');
+  }
+
+  // Remove SHOWREEL / Watch Now motion section above the footer on pages where it exists
+  if (text.includes('KotaverseCta_kotaverseCta__bBpWa')) {
+    text = text.replace(/<section class="KotaverseCta_kotaverseCta__bBpWa" id="kotaverceCta">[\s\S]*?<\/section>/g, '');
+    text = text.replace(/,(?:\\?"\$L(?:57|2c|46|1c)\\?"|"\$L(?:57|2c|46|1c)")/g, '');
+    text = text.replace(/<script[^>]*>\s*self\.__next_f\.push\(\[1,"(?:57|2c):\[\\?"\$\\?",\\?"section\\?",null,\{\\?"className\\?":\\?"KotaverseCta_kotaverseCta__bBpWa\\?"[\s\S]*?"\]\)\s*<\/script>/g, '');
+    text = text.replace(/(?:^|[\r\nZ])(?:46|1c):\["\$","section",null,\{"className":"KotaverseCta_kotaverseCta__bBpWa"[\s\S]*?(?=[\r\n]+\w+:|$)/g, match => match.startsWith('Z') ? 'Z' : '');
+  }
+
+  // Remove "Celebrating 13 years : 2013 - 2026" banner from the homepage and all pages
+  text = text.replace(/<p class="Celebrating_celebrating[^"]*"[^>]*>[\s\S]*?<\/p>/g, '');
+  text = text.replace(
+    'function s(){let e=(0,i.usePathname)();return e.includes("/service/")||e.includes("/b2b-transformation")||e.includes("/b2b-tech-software-saas")||e.includes("/agencies")||e.includes("/healthcare")||e.includes("/media-entertainment")||e.includes("/retail")?null:(0,r.jsx)("p",{className:o().celebrating,"data-modal-hide":!0,children:(0,r.jsxs)("a",{href:"https://10-years.kota.co.uk/",target:"_blank",children:["Celebrating 13 years : 2013 - ",new Date().getFullYear()]})})}',
+    'function s(){return null}'
+  );
+
+  // Remove Bluesky link from the footer across all pages (HTML, unescaped RSC, and escaped inlined RSC)
+  const footerBlueskyHtml = '<a href="https://bsky.app/profile/kotacreative.bsky.social" target="_blank" rel="noopener noreferrer">Bluesky<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12.69 12.69"><path fill="#fff" stroke-width="0" d="M12.65.31a.504.504 0 00-.46-.31H.5C.22 0 0 .22 0 .5s.22.5.5.5h10.49L.55 11.43c-.2.2-.2.51 0 .71a.485.485 0 00.7 0L11.69 1.71v10.47c0 .28.22.5.5.5s.5-.22.5-.5V.52c0-.07 0-.14-.04-.21z"></path></svg></a>';
+  const footerBlueskyRsc = ',["$","a","3",{"href":"https://bsky.app/profile/kotacreative.bsky.social","target":"_blank","rel":"noopener noreferrer","children":["Bluesky",["$","svg",null,{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 12.69 12.69","children":["$","path",null,{"fill":"#fff","strokeWidth":"0","d":"M12.65.31a.504.504 0 00-.46-.31H.5C.22 0 0 .22 0 .5s.22.5.5.5h10.49L.55 11.43c-.2.2-.2.51 0 .71a.485.485 0 00.7 0L11.69 1.71v10.47c0 .28.22.5.5.5s.5-.22.5-.5V.52c0-.07 0-.14-.04-.21z"}]}]]}]';
+  const escFooterBlueskyRsc = footerBlueskyRsc.replaceAll('"', '\\\"');
+
+  text = text.replaceAll(footerBlueskyHtml, '');
+  text = text.replaceAll(footerBlueskyRsc, '');
+  text = text.replaceAll(escFooterBlueskyRsc, '');
+
+    // Fix page transition preloader curtain covering the screen on navigation
+  text = text.replaceAll('<div style="position:fixed;z-index:50;width:100vw;height:100vh;background:#efefef"></div>', '');
+  text = text.replace("let l=()=>{let{loading:e,setLoading:t}=_(),n=(0,s.useRef)(null),r=()=>{i.ZP.set(n.current,{clipPath:\"polygon(0 100%, 100% 100%, 100% 100%, 0 100%)\"})},l=()=>{i.ZP.to(n.current,{clipPath:\"polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)\",duration:1,ease:\"power4.inOut\"})},u=()=>{i.ZP.to(n.current,{opacity:0,duration:.6,ease:\"none\",onComplete:()=>{i.ZP.set(n.current,{clipPath:\"polygon(0 100%, 100% 100%, 100% 100%, 0 100%)\",opacity:1})}})};return(0,s.useEffect)(()=>{r()},[]),(0,s.useEffect)(()=>{switch(e){case a.LOADING:l();break;case a.LOADED:u()}},[e]),(0,o.jsx)(\"div\",{ref:n,style:{position:\"fixed\",zIndex:50,width:\"100vw\",height:\"100vh\",background:\"#efefef\"}})}", "let l=()=>{let{loading:e,setLoading:t}=_(),n=(0,s.useRef)(null),r=()=>{i.ZP.set(n.current,{clipPath:\"polygon(0 100%, 100% 100%, 100% 100%, 0 100%)\",pointerEvents:\"none\"})},l=()=>{i.ZP.to(n.current,{clipPath:\"polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)\",duration:.8,ease:\"power4.inOut\"})},u=()=>{i.ZP.to(n.current,{opacity:0,duration:.4,ease:\"none\",onComplete:()=>{i.ZP.set(n.current,{clipPath:\"polygon(0 100%, 100% 100%, 100% 100%, 0 100%)\",opacity:1})}})};return(0,s.useEffect)(()=>{r();let timer=setTimeout(()=>u(),300);return()=>clearTimeout(timer)},[]),(0,s.useEffect)(()=>{switch(e){case a.LOADING:l();break;case a.LOADED:u()}},[e]),(0,o.jsx)(\"div\",{ref:n,style:{position:\"fixed\",zIndex:50,width:\"100vw\",height:\"100vh\",background:\"#efefef\",pointerEvents:\"none\"}})}");
+
+    // Remove awards and agency network badges (DAN, Clutch, Awwwards, CSSDA) from the footer
   text = text.replace(/<div class="Footer_logos__jFNys">[\s\S]*?<\/div>/g, '');
   text = text.replace(/,\[\\?"\$[^\\]*\\?",\\?"div\\?",null,\{\\?"className\\"?:\\?"Footer_logos__jFNys\\"?,\s*\\?"children\\"?:\[[\s\S]*?\]\}\]/g, '');
   text = text.replace(/,\["\$","div",null,\{"className":"Footer_logos__jFNys",\s*"children":\[[\s\S]*?\]\}\]/g, '');
@@ -127,30 +163,30 @@ export function localize(text) {
   const kotaLogoPath = 'M5 5h80v80H5V5zM0 90h90V0H0v90zm64.66-15.67l-5.15-16.61h-.1l-5.35 16.61H47.6l9.49-24.09h4.74l9.39 24.09h-6.56zm-39.77 0V55.67h-6.66v-5.43H37.6v5.43h-6.66v18.66h-6.06zm34.52-59.16c-3.94-.1-7.67 1.74-9.99 4.92-.64.81-1.15 1.7-1.52 2.67-.6 1.64-.9 3.38-.9 5.13v.05c.07 6.78 5.62 12.22 12.4 12.15h.56c6.88-.29 12.22-6.1 11.93-12.97-.28-6.69-5.79-11.96-12.48-11.94m.1 19.48c-3.94 0-6.56-3.38-6.56-7.18s2.62-6.97 6.46-6.97 6.46 3.38 6.46 7.07-2.52 7.08-6.36 7.08m-28.87 5.02l-6.46-10.35h-.1v10.35h-6.06v-24.1h6.06v10.87h.1l6.66-10.87h6.36l-7.87 12 8.38 12.1h-7.06z';
   
   // Footer logo: Kyoto Creative logo styled to match the exact size of the KOTA logo on all pages
-  const kyotoFooterSvgHtml = '<image href="/images/kyoto-creative-footer-white.png" width="954" height="368" preserveAspectRatio="xMidYMid meet"></image>';
-  const kyotoFooterSvgRsc = '["$","image",null,{"href":"/images/kyoto-creative-footer-white.png","width":954,"height":368,"preserveAspectRatio":"xMidYMid meet"}]';
+  const kyotoFooterSvgHtml = '<image href="/images/kyoto-creative-logo.png" width="618" height="237" preserveAspectRatio="xMidYMid meet"></image>';
+  const kyotoFooterSvgRsc = '["$","image",null,{"href":"/images/kyoto-creative-logo.png","width":618,"height":237,"preserveAspectRatio":"xMidYMid meet"}]';
 
   // Header logo
-  const kyotoHeaderSvgHtml = '<image href="/images/kyoto-creative-logo.png" width="1024" height="576" preserveAspectRatio="xMidYMid meet"></image>';
-  const kyotoHeaderSvgRsc = '["$","image",null,{"href":"/images/kyoto-creative-logo.png","width":1024,"height":576,"preserveAspectRatio":"xMidYMid meet"}]';
+  const kyotoHeaderSvgHtml = '<image href="/images/kyoto-creative-logo.png" width="618" height="237" preserveAspectRatio="xMidYMid meet"></image>';
+  const kyotoHeaderSvgRsc = '["$","image",null,{"href":"/images/kyoto-creative-logo.png","width":618,"height":237,"preserveAspectRatio":"xMidYMid meet"}]';
 
   // 1. HTML markup replacements
   text = text.replaceAll(
     '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 90 90"><path fill="currentColor" d="' + kotaLogoPath + '"></path></svg>',
-    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 576">' + kyotoHeaderSvgHtml + '</svg>'
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 618 237">' + kyotoHeaderSvgHtml + '</svg>'
   );
   text = text.replaceAll(
     '<svg class="Footer_logo__fUEOF" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 90 90"><path fill="#fff" stroke-width="0" d="' + kotaLogoPath + '"></path></svg>',
-    '<svg class="Footer_logo__fUEOF" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 954 368" style="height:3.25rem;width:auto;max-width:100%;object-fit:contain">' + kyotoFooterSvgHtml + '</svg>'
+    '<svg class="Footer_logo__fUEOF" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 618 237" >' + kyotoFooterSvgHtml + '</svg>'
   );
 
   // 2. Unescaped RSC Flight payloads
   const oldHeaderRsc = '["$","svg",null,{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 90 90","children":["$","path",null,{"fill":"currentColor","d":"' + kotaLogoPath + '"}]}]';
-  const newHeaderRsc = '["$","svg",null,{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 576","children":' + kyotoHeaderSvgRsc + '}]';
+  const newHeaderRsc = '["$","svg",null,{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 618 237","children":' + kyotoHeaderSvgRsc + '}]';
   text = text.replaceAll(oldHeaderRsc, newHeaderRsc);
 
   const oldFooterRsc = '["$","svg",null,{"className":"Footer_logo__fUEOF","xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 90 90","children":["$","path",null,{"fill":"#fff","strokeWidth":"0","d":"' + kotaLogoPath + '"}]}]';
-  const newFooterRsc = '["$","svg",null,{"className":"Footer_logo__fUEOF","xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 954 368","style":{"height":"3.25rem","width":"auto","maxWidth":"100%","objectFit":"contain"},"children":' + kyotoFooterSvgRsc + '}]';
+  const newFooterRsc = '["$","svg",null,{"className":"Footer_logo__fUEOF","xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 618 237","children":' + kyotoFooterSvgRsc + '}]';
   text = text.replaceAll(oldFooterRsc, newFooterRsc);
 
   // 3. Escaped RSC Flight payloads (inlined script tags in HTML)
@@ -184,9 +220,11 @@ export function localize(text) {
   // Ensure responsive sizing matches design cleanly and prevent undesirable 3-line heading breaks
   if (text.includes('</head>')) {
     const customStyle = '<style>' +
-      '.Footer_logo__fUEOF{height:3.25rem!important;width:auto!important;max-width:14.5rem;display:block;}' +
-      '@media(min-width:769px){.Footer_logo__fUEOF{height:5.625rem!important;max-width:22rem;}}' +
+      '.Header_logo____uDV{width:clamp(120px, 12vw, 170px)!important;height:auto!important;display:inline-block!important;}.Header_logo____uDV svg{width:100%!important;height:auto!important;max-height:55px!important;display:block!important;}.Footer_top__YBhK_{display:flex!important;flex-direction:column!important;align-items:flex-start!important;gap:2rem!important;margin-bottom:3.5rem!important;}.Footer_logo__fUEOF{height:clamp(3.5rem, 6vw, 4.75rem)!important;width:auto!important;max-width:260px!important;display:block!important;}.Footer_email__nLajh{font-size:clamp(2.25rem, 5.5vw, 5rem)!important;line-height:1.1!important;}' +
+      '.Footer_footer__pQtti, .Footer_footer__pQtti a, .Footer_footer__pQtti p, .Footer_footer__pQtti span, .Footer_footer__pQtti li { color: #000 !important; }.Footer_email__nLajh { color: #000 !important; -webkit-text-fill-color: #000 !important; background: none !important; animation: none !important; }.Footer_email__nLajh:hover { color: #222 !important; -webkit-text-fill-color: #222 !important; }.Footer_socialLinks__tA7gt a { color: #000 !important; }.Footer_socialLinks__tA7gt svg path { fill: #000 !important; }.Footer_lastNav__at6Kh a { color: #000 !important; }.Footer_lastNav__at6Kh svg path { fill: #000 !important; }.Footer_newsletterButton__wp2hz { color: #000 !important; border-color: #000 !important; }.Footer_newsletterButton__wp2hz:hover { background-color: #000 !important; color: #fff !important; border-color: #000 !important; }.Footer_sectorTitle__yEZhb { color: #000 !important; }.Footer_sectorItem__0Cx14 { color: #000 !important; border-color: rgba(0,0,0,0.3) !important; }.Footer_sectorItem__0Cx14:hover { border-color: #000 !important; background-color: rgba(0,0,0,0.05) !important; }.Footer_copyright__j4atB, .Footer_copyrightText__f_Lte { color: #000 !important; }.Footer_top__YBhK_ { border-top-color: rgba(0,0,0,0.2) !important; }.CopyText_tooltip__HuxWa { background-color: #000 !important; color: #fff !important; }' +
+      '.Hero_introText__wboFn{max-width:520px!important;width:max-content!important;}' +
       '.Approach_item__5N2E6 h3{width:min-content!important;max-width:100%!important;}' +
+      '.KotaverseCta_kotaverseCta__bBpWa { display: none !important; }' +
       '.HeroSplitTextDesktop_desktop__Bey7n, .Hero_mobile__VkWXK, .HeroVideo_video__OoWDY { display: none !important; }' +
       '.kyoto-hero-title { display: flex; flex-direction: column; font-family: var(--montreal), sans-serif; font-size: clamp(2.75rem, 5.25vw, 5.5rem); font-weight: 400; line-height: 1; letter-spacing: -0.02em; color: #000; text-transform: none; margin: 0 0 2.5rem; pointer-events: auto; }' +
       '.kyoto-hero-line { display: block; }' +
