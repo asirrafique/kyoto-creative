@@ -120,12 +120,14 @@ export function localize(text) {
   }
 
   // Remove SHOWREEL / Watch Now motion section above the footer on pages where it exists
-  if (text.includes('KotaverseCta_kotaverseCta__bBpWa')) {
-    text = text.replace(/<section class="KotaverseCta_kotaverseCta__bBpWa" id="kotaverceCta">[\s\S]*?<\/section>/g, '');
-    text = text.replace(/,(?:\\?"\$L(?:57|2c|46|1c)\\?"|"\$L(?:57|2c|46|1c)")/g, '');
-    text = text.replace(/<script[^>]*>\s*self\.__next_f\.push\(\[1,"(?:57|2c):\[\\?"\$\\?",\\?"section\\?",null,\{\\?"className\\?":\\?"KotaverseCta_kotaverseCta__bBpWa\\?"[\s\S]*?"\]\)\s*<\/script>/g, '');
-    text = text.replace(/(?:^|[\r\nZ])(?:46|1c):\["\$","section",null,\{"className":"KotaverseCta_kotaverseCta__bBpWa"[\s\S]*?(?=[\r\n]+\w+:|$)/g, match => match.startsWith('Z') ? 'Z' : '');
-  }
+  text = text.replace(/<section class="KotaverseCta_kotaverseCta__bBpWa" id="kotaverceCta">[\s\S]*?<\/section>/g, '');
+  // On pages with full layouts, KotaverseCta is referenced in children array as ,"$L57" (HTML) or ,"$L46" (RSC);
+  // on pages without subheader/intro layout (like /contact, /culture), it is ,"$L2c" (HTML) or ,"$L1c" (RSC).
+  // Note: in RSC stream, it is unescaped ,"$L1c" or ,"$L46"; in raw HTML pushes, it can be escaped ,\\"$L2c\\".
+  // NEVER strip footer references (which are "footer":"$L1c" or "footer":"$Le") - only array item references ,"$L..."!
+  text = text.replace(/,(?:\\{1,3}"\$L(?:57|46|2c|1c)\\{1,3}"|"\$L(?:57|46|2c|1c)")/g, '');
+  text = text.replace(/<script[^>]*>\s*self\.__next_f\.push\(\[1,"(?:57|46|2c|1c):\[\\?"\$\\?",\\?"section\\?",null,\{\\?"className\\?":\\?"KotaverseCta_kotaverseCta__bBpWa\\?"[\s\S]*?"\]\)\s*<\/script>/g, '');
+  text = text.replace(/(?:^|[\r\nZ])(?:46|1c|2c|57):\["\$","section",null,\{"className":"KotaverseCta_kotaverseCta__bBpWa"[\s\S]*?(?=[\r\n]+\w+:|$)/g, match => match.startsWith('Z') ? 'Z' : '');
 
   // Remove "Celebrating 13 years : 2013 - 2026" banner from the homepage and all pages
   text = text.replace(/<p class="Celebrating_celebrating[^"]*"[^>]*>[\s\S]*?<\/p>/g, '');

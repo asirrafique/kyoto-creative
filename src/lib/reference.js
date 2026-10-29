@@ -2,11 +2,11 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import os from 'node:os';
-import { installHeroVideoControls } from './hero-video';
-import { installFaqControls } from './faq-controls';
-import { installLinkControls } from './link-controls';
-import { installMediaScheduling } from './media-scheduling';
-import { capturePage, pageKey, readIndex } from './page-cache';
+import { installHeroVideoControls } from './hero-video.js';
+import { installFaqControls } from './faq-controls.js';
+import { installLinkControls } from './link-controls.js';
+import { installMediaScheduling } from './media-scheduling.js';
+import { capturePage, pageKey, readIndex } from './page-cache.js';
 
 import { localize } from './localize.mjs';
 export { localize } from './localize.mjs';
