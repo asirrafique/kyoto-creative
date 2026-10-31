@@ -40,8 +40,8 @@ export function installNavigationControls() {
       const toggleSign = parentItem.querySelector('.PrimaryNavigation_toggleSign__XESvT');
       const submenu = parentItem.nextElementSibling;
       if (submenu && submenu.classList.contains('PrimaryNavigation_submenu__ryGWu')) {
-        submenu.classList.toggle('PrimaryNavigation_open__yQ8oN');
-        if (toggleSign) toggleSign.classList.toggle('PrimaryNavigation_open__yQ8oN');
+        submenu.classList.toggle('PrimaryNavigation_submenuOpen__uJhU7');
+        if (toggleSign) toggleSign.classList.toggle('PrimaryNavigation_toggleOpen__b_ys6');
       }
       return;
     }

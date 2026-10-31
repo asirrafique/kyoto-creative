@@ -6,6 +6,7 @@ import { installHeroVideoControls } from './hero-video.js';
 import { installFaqControls } from './faq-controls.js';
 import { installLinkControls } from './link-controls.js';
 import { installNavigationControls } from './navigation-controls.js';
+import { installWorkArchiveMount } from './work-archive-mount.js';
 import { installMediaScheduling } from './media-scheduling.js';
 import { capturePage, pageKey, readIndex } from './page-cache.js';
 
@@ -558,34 +559,56 @@ function replaceContactEmailsFlightNode(node) {
   }
 }
 
-function replaceLondonAddressFlightNode(node) {
+function removeContactAddressesFlightNode(node) {
   if (Array.isArray(node)) {
-    for (const child of node) {
-      if (Array.isArray(child)
-        && child[0] === '$'
-        && child[3]?.className?.startsWith('ContactDetails_address__')
-        && JSON.stringify(child).includes('1-5 Clerkenwell Rd')) {
-        const updateAddress = node => {
-          if (Array.isArray(node)) {
-            for (const nested of node) updateAddress(nested);
-          } else if (node && typeof node === 'object') {
-            if (node.className?.startsWith('ContactDetails_heading__') && node.children === 'London') {
-              node.children = 'Bangalore';
-            }
-            if (node.dangerouslySetInnerHTML?.__html?.includes('1-5 Clerkenwell Rd')) {
-              node.dangerouslySetInnerHTML.__html = 'Bangalore';
-            }
-            for (const nested of Object.values(node)) updateAddress(nested);
-          }
-        };
-        updateAddress(child);
-      } else {
-        replaceLondonAddressFlightNode(child);
+    for (let i = 0; i < node.length; i++) {
+      const child = node[i];
+      if (Array.isArray(child) && child[0] === '$' && child[3]?.className?.startsWith('ContactDetails_addresses__')) {
+        node.splice(i, 1);
+        return true;
       }
+      if (removeContactAddressesFlightNode(child)) return true;
     }
   } else if (node && typeof node === 'object') {
-    for (const child of Object.values(node)) replaceLondonAddressFlightNode(child);
+    for (const key of Object.keys(node)) {
+      if (removeContactAddressesFlightNode(node[key])) return true;
+    }
   }
+  return false;
+}
+
+function updateContactFollowsFlightNode(node) {
+  if (Array.isArray(node)) {
+    for (let i = 0; i < node.length; i++) {
+      const child = node[i];
+      if (Array.isArray(child) && child[0] === '$' && child[3]?.className?.startsWith('ContactDetails_follows__')) {
+        const linksArray = child[3].children && child[3].children[1];
+        if (Array.isArray(linksArray)) {
+          for (const linkWrapper of linksArray) {
+            const aTag = linkWrapper && linkWrapper[3] && linkWrapper[3].children;
+            if (aTag && aTag[3] && aTag[3].children === 'awwwards') {
+              aTag[3].children = 'Instagram';
+              aTag[3].href = 'https://www.instagram.com/kotalondon/';
+            }
+          }
+          const clutchIdx = linksArray.findIndex(linkWrapper => {
+            const aTag = linkWrapper && linkWrapper[3] && linkWrapper[3].children;
+            return aTag && aTag[3] && aTag[3].children === 'Clutch';
+          });
+          if (clutchIdx !== -1) {
+            linksArray.splice(clutchIdx, 1);
+          }
+        }
+        return true;
+      }
+      if (updateContactFollowsFlightNode(child)) return true;
+    }
+  } else if (node && typeof node === 'object') {
+    for (const key of Object.keys(node)) {
+      if (updateContactFollowsFlightNode(node[key])) return true;
+    }
+  }
+  return false;
 }
 
 function replaceContactBrandFlightNode(node) {
@@ -627,8 +650,9 @@ function replaceContactEmailsFlightRow(line) {
     }
   };
   replacePhone(document);
-  replaceLondonAddressFlightNode(document);
+  removeContactAddressesFlightNode(document);
   replaceContactBrandFlightNode(document);
+  updateContactFollowsFlightNode(document);
   return prefix + JSON.stringify(document) + newline;
 }
 
@@ -878,21 +902,7 @@ function replaceContactEmailsHtml(html) {
   return html.replace(sectionPattern, section => {
     section = section.replaceAll('KOTA', 'Kyoto Creative');
     section = section.replaceAll('+44(0)20 3951 0562', '+91 7031853012');
-    const addressPattern = /<div class="ContactDetails_address__[^"]*"[^>]*>/g;
-    const addressBlocks = [];
-    let addressMatch;
-    while ((addressMatch = addressPattern.exec(section))) {
-      const end = findDivEnd(section, addressMatch.index);
-      addressBlocks.push({ start: addressMatch.index, end, markup: section.slice(addressMatch.index, end) });
-      addressPattern.lastIndex = end;
-    }
-    for (const block of addressBlocks.reverse()) {
-      if (!block.markup.includes('1-5 Clerkenwell Rd')) continue;
-      const updated = block.markup
-        .replace(/(<h3 class="ContactDetails_heading__[^"]*">)[\s\S]*?(<\/h3>)/, '$1Bangalore$2')
-        .replace(/(<p>)[\s\S]*?(<\/p>)/, '$1Bangalore$2');
-      section = section.slice(0, block.start) + updated + section.slice(block.end);
-    }
+    section = section.replace(/<div class="ContactDetails_addresses__[^\"]*\"[\s\S]*?<\/div>\s*<\/div>/, '');
     const emailPattern = /<div class="ContactDetails_email__[^"]*"[^>]*>/g;
     const blocks = [];
     let match;
@@ -924,6 +934,8 @@ function replaceContactEmailsHtml(html) {
     for (let index = blocks.length - 1; index >= 0; index--) {
       section = section.slice(0, blocks[index].start) + updates[index] + section.slice(blocks[index].end);
     }
+    section = section.replace(/href="https:\/\/www\.awwwards\.com\/kota\/" target="_blank">awwwards<\/a>/, 'href="https://www.instagram.com/kotalondon/" target="_blank">Instagram</a>');
+    section = section.replace(/<span class="FadeIn_container__bjQVL" data-fill="false"><a class="ContactDetails_follow__WB_uR" href="https:\/\/clutch\.co\/profile\/kota#highlights" target="_blank">Clutch<\/a><\/span>/, '');
     return section;
   });
 }
@@ -976,9 +988,11 @@ export function localizeFlight(text, route) {
       row = replaceContactEmailsFlightRow(row);
       row = removeCareersEmailFlightRow(row);
       const prefix = row.match(/^(\d+:)/)?.[1];
-      if (prefix && row.includes('ContactDetails_contactDetails__')) {
+      if (prefix && (row.includes('ContactDetails_contactDetails__') || row.includes('ContactDetails_addresses__'))) {
         const document = JSON.parse(row.slice(prefix.length));
         replaceContactBrandFlightNode(document);
+        removeContactAddressesFlightNode(document);
+        updateContactFollowsFlightNode(document);
         row = prefix + JSON.stringify(document) + (row.endsWith('\n') ? '\n' : '');
       }
     }
@@ -1051,6 +1065,7 @@ const boot = `<script data-replica-runtime>
 (${installFaqControls.toString()})();
 (${installLinkControls.toString()})();
 (${installNavigationControls.toString()})();
+(${installWorkArchiveMount.toString()})();
 (() => {
   // Scroll-triggered videos may leave the viewport while play() is pending.
   // A browser AbortError in that case is expected and must not become an
