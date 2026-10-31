@@ -12,7 +12,7 @@ export function installMediaScheduling() {
         video.pause();
       }
     }
-  }, { rootMargin: '600px 0px' });
+  }, { rootMargin: '100px 0px' });
   function discover() {
     for (const video of document.querySelectorAll('video[preload="none"][loop]')) {
       if (observed.has(video) || video.autoplay || (!video.muted && !video.defaultMuted)) continue;

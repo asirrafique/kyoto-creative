@@ -1,0 +1,12 @@
+[
+  {
+    "name": "run_command",
+    "args": {
+      "BypassSandbox": true,
+      "CommandLine": "node -e \"\nconst fs = require('fs');\nconst readline = require('readline');\n\nconst fileStream = fs.createReadStream('C:\\\\\\\\Users\\\\\\\\ASUS\\\\\\\\.gemini\\\\\\\\antigravity\\\\\\\\brain\\\\\\\\373d9efa-c576-44ee-bed0-7c9f5081681a\\\\\\\\.system_generated\\\\\\\\logs\\\\\\\\transcript.jsonl');\nconst rl = readline.createInterface({ input: fileStream, crlfDelay: Infinity });\n\nlet found = [];\nrl.on('line', (line) => {\n  if (line.includes('Seven Gate') && line.includes('edit_file') && line.includes('localize.mjs')) {\n    found.push(line.slice(0, 200));\n  }\n});\nrl.on('close', () => {\n  console.log('Matches:', found.length);\n  found.forEach(f => console.log(f));\n});\n\"",
+      "IsDaemon": false,
+      "WaitMsBeforeAsync": 10000,
+      "toolSummary": "Search transcript for localize.mjs edits"
+    }
+  }
+]

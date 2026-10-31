@@ -5,6 +5,7 @@ import os from 'node:os';
 import { installHeroVideoControls } from './hero-video.js';
 import { installFaqControls } from './faq-controls.js';
 import { installLinkControls } from './link-controls.js';
+import { installNavigationControls } from './navigation-controls.js';
 import { installMediaScheduling } from './media-scheduling.js';
 import { capturePage, pageKey, readIndex } from './page-cache.js';
 
@@ -1016,7 +1017,13 @@ function localizeDocument(html, route) {
   }
   if (route === '/') html = replaceHomepageFaqHtml(html);
   if (parts.length) {
-    const data = JSON.stringify([1, localizeFlight(parts.join(''), route)]).replaceAll('<', '\\u003c');
+    let flightText;
+    if (route === '/work' || route.startsWith('/work/')) {
+      flightText = localize(parts.join(''));
+    } else {
+      flightText = localizeFlight(parts.join(''), route);
+    }
+    const data = JSON.stringify([1, flightText]).replaceAll('<', '\\u003c');
     html = html.replace(placeholder, '<script>self.__next_f.push(' + data + ')</script>');
   }
   return html;
@@ -1029,7 +1036,8 @@ async function readPage(file, temporary) {
 }
 async function memoize(key, render) {
   if (!key) return render();
-  if (rendered.has(key)) return rendered.get(key);
+  // cache disabled for live dev updates
+  // if (rendered.has(key)) return rendered.get(key);
   const pending = render();
   rendered.set(key, pending);
   // Bound warm-instance memory; do not retain all 335 documents and streams.
@@ -1042,6 +1050,7 @@ const boot = `<script data-replica-runtime>
 (${installHeroVideoControls.toString()})();
 (${installFaqControls.toString()})();
 (${installLinkControls.toString()})();
+(${installNavigationControls.toString()})();
 (() => {
   // Scroll-triggered videos may leave the viewport while play() is pending.
   // A browser AbortError in that case is expected and must not become an
@@ -1054,7 +1063,7 @@ const boot = `<script data-replica-runtime>
   // Keep marketing analytics from sending replica visitors to the original account.
   const append = Node.prototype.appendChild;
   Node.prototype.appendChild = function(node) {
-    if (node.tagName === 'SCRIPT' && /googletagmanager|google-analytics|vercel.live/.test(node.src)) return node;
+    if (node.tagName === 'SCRIPT' && /googletagmanager|google-analytics|vercel.live|hotjar/.test(node.src)) return node;
     return append.call(this, node);
   };
 })();
@@ -1079,7 +1088,13 @@ export async function documentResponse(request, route) {
   }
   if (request.headers.get('rsc') === '1') {
     try {
-      const flight = await memoize(cacheable && file + ':rsc', async () => localizeFlight(await readPage(file.replace('.html', '.rsc'), temporary), route));
+      const flight = await memoize(cacheable && file + ':rsc', async () => {
+        let text = await readPage(file.replace('.html', '.rsc'), temporary);
+        if (route === '/work' || route.startsWith('/work/')) {
+          return localize(text);
+        }
+        return localizeFlight(text, route);
+      });
       return new Response(flight, { headers: { 'Content-Type': 'text/x-component', 'Cache-Control': 'no-cache', Vary: 'RSC, Next-Router-State-Tree, Next-Router-Prefetch' } });
     } catch { /* Next's client falls back to document navigation if uncaptured. */ }
   }

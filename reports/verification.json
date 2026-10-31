@@ -2,7 +2,7 @@
   "checks": [],
   "errors": [
     {
-      "error": "page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3100/\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:3100/\", waiting until \"domcontentloaded\"\u001b[22m\n\n    at C:\\Users\\ASUS\\Desktop\\kota-clone\\scripts\\verify.mjs:41:16"
+      "error": "page.goto: net::ERR_NETWORK_ACCESS_DENIED at http://127.0.0.1:3100/\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:3100/\", waiting until \"domcontentloaded\"\u001b[22m\n\n    at C:\\Users\\ASUS\\Desktop\\kyoto-creative\\scripts\\verify.mjs:41:16"
     }
   ],
   "failedResources": [],
