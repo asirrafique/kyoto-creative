@@ -121,7 +121,70 @@ export function installWorkArchiveMount() {
             }
           };
         }
-        return p;
+        if (p.node.slug === 'bankrate') {
+          return {
+            ...p,
+            node: {
+              ...p.node,
+              title: 'Leadcourt',
+              slug: 'leadcourt',
+              singleProject: {
+                ...p.node.singleProject,
+                hero: {
+                  ...p.node.singleProject?.hero,
+                  heading: 'From Early Traction to 10,000 Users in Six Months'
+                },
+                projectDetails: {
+                  ...p.node.singleProject?.projectDetails,
+                  previewText: 'A high-performance digital presence and marketing system'
+                }
+              }
+            }
+          };
+        }
+                if (p.node.slug === 'bipsync') {
+          return {
+            ...p,
+            node: {
+              ...p.node,
+              title: 'Interact Financial',
+              slug: 'interactfinancial.ca',
+              singleProject: {
+                ...p.node.singleProject,
+                hero: {
+                  ...p.node.singleProject?.hero,
+                  heading: '43,000 Website Visits in 3 Months'
+                },
+                projectDetails: {
+                  ...p.node.singleProject?.projectDetails,
+                  previewText: '43,000 Website Visits in 3 Months'
+                }
+              }
+            }
+          };
+        }
+        if (p.node.slug === 'copper') {
+          return {
+            ...p,
+            node: {
+              ...p.node,
+              title: 'John Ruggieri',
+              slug: 'johnruggieri',
+              singleProject: {
+                ...p.node.singleProject,
+                hero: {
+                  ...p.node.singleProject?.hero,
+                  heading: 'Turning Artistic Talent into a Stronger Digital Presence'
+                },
+                projectDetails: {
+                  ...p.node.singleProject?.projectDetails,
+                  previewText: 'Turning Artistic Talent into a Stronger Digital Presence'
+                }
+              }
+            }
+          };
+        }
+return p;
       });
 
       let filtersProps = null;

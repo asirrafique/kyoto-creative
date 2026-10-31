@@ -62,6 +62,19 @@ export function localize(text) {
   text = text.replaceAll('Brand foundations for businesses ready to grow.', 'Four ways we help you show up and grow.');
   text = text.replaceAll('Strategic branding, brand identity design and tone of voice for businesses ready to define what makes them different and show up with confidence. Based in London, operating globally.', 'Strategic marketing and branding for businesses ready to define what makes them different — and turn that clarity into campaigns, content, and growth that actually perform.');
   text = text.replaceAll('hello@kota.co.uk', 'business@kyotocreative.com');
+  text = text.replaceAll("https://www.linkedin.com/company/kota-creative/mycompany/", "https://in.linkedin.com/company/kyoto-creative");
+  text = text.replaceAll("https://www.linkedin.com/company/kota-creative/", "https://in.linkedin.com/company/kyoto-creative");
+  text = text.replaceAll("https://www.linkedin.com/company/kota-creative", "https://in.linkedin.com/company/kyoto-creative");
+  text = text.replaceAll("https://linkedin.com/company/kota-creative/", "https://in.linkedin.com/company/kyoto-creative");
+  text = text.replaceAll("https://linkedin.com/company/kota-creative", "https://in.linkedin.com/company/kyoto-creative");
+  text = text.replaceAll("https://www.facebook.com/kotacreative/", "https://www.facebook.com/kyotocreativeco?mibextid=wwXIfr&rdid=YxsJji4pz710I1HQ&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1DwJnbkNXL%2F%3Fmibextid%3DwwXIfr#");
+  text = text.replaceAll("https://www.facebook.com/kotacreative", "https://www.facebook.com/kyotocreativeco?mibextid=wwXIfr&rdid=YxsJji4pz710I1HQ&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1DwJnbkNXL%2F%3Fmibextid%3DwwXIfr#");
+  text = text.replaceAll("https://facebook.com/kotacreative/", "https://www.facebook.com/kyotocreativeco?mibextid=wwXIfr&rdid=YxsJji4pz710I1HQ&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1DwJnbkNXL%2F%3Fmibextid%3DwwXIfr#");
+  text = text.replaceAll("https://facebook.com/kotacreative", "https://www.facebook.com/kyotocreativeco?mibextid=wwXIfr&rdid=YxsJji4pz710I1HQ&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1DwJnbkNXL%2F%3Fmibextid%3DwwXIfr#");
+  text = text.replaceAll("https://www.instagram.com/kotalondon/", "https://www.instagram.com/kyotocreativeco?mdxt=MWhhemd6MGJiZHhxOQ%3D%3D");
+  text = text.replaceAll("https://www.instagram.com/kotalondon", "https://www.instagram.com/kyotocreativeco?mdxt=MWhhemd6MGJiZHhxOQ%3D%3D");
+  text = text.replaceAll("https://instagram.com/kotalondon/", "https://www.instagram.com/kyotocreativeco?mdxt=MWhhemd6MGJiZHhxOQ%3D%3D");
+  text = text.replaceAll("https://instagram.com/kotalondon", "https://www.instagram.com/kyotocreativeco?mdxt=MWhhemd6MGJiZHhxOQ%3D%3D");
   text = text.replace(/Strategy first\.(?:\\r?\\n|\s)+Always\.?/g, 'Convert & Build');
   text = text.replace(/Find the(?:\\r?\\n|\s)+bold idea\.?/g, 'Automate & Scale');
   text = text.replace(/Nail the(?:\\r?\\n|\s)+process\.?/g, 'Launch & Grow');
@@ -220,7 +233,7 @@ export function localize(text) {
   // Ensure responsive sizing matches design cleanly and prevent undesirable 3-line heading breaks
   if (text.includes('</head>')) {
     const customStyle = '<style>' +
-      '.Header_logo____uDV{width:clamp(120px, 12vw, 170px)!important;height:auto!important;display:inline-block!important;}.Header_logo____uDV svg{width:100%!important;height:auto!important;max-height:55px!important;display:block!important;}.Footer_top__YBhK_{display:flex!important;flex-direction:column!important;align-items:flex-start!important;gap:2rem!important;margin-bottom:3.5rem!important;}.Footer_logo__fUEOF{height:clamp(3.5rem, 6vw, 4.75rem)!important;width:auto!important;max-width:260px!important;display:block!important;}.Footer_email__nLajh{font-size:clamp(2.25rem, 5.5vw, 5rem)!important;line-height:1.1!important;}' +
+      'header.Header_header__KwdYD{position:absolute!important;top:0!important;left:0!important;}.Header_logo____uDV{width:clamp(120px, 12vw, 170px)!important;height:auto!important;display:inline-block!important;}.Header_logo____uDV svg{width:100%!important;height:auto!important;max-height:55px!important;display:block!important;}.Footer_top__YBhK_{display:flex!important;flex-direction:column!important;align-items:flex-start!important;gap:2rem!important;margin-bottom:3.5rem!important;}.Footer_logo__fUEOF{height:clamp(3.5rem, 6vw, 4.75rem)!important;width:auto!important;max-width:260px!important;display:block!important;}.Footer_email__nLajh{font-size:clamp(2.25rem, 5.5vw, 5rem)!important;line-height:1.1!important;}' +
       '.Hero_introText__wboFn{max-width:520px!important;width:max-content!important;}' +
       '.Approach_item__5N2E6 h3{width:min-content!important;max-width:100%!important;}' +
       '.KotaverseCta_kotaverseCta__bBpWa { display: none !important; }' +

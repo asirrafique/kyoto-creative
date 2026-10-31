@@ -61,5 +61,11 @@
   "/service/web-design-development/web-development": "/service/web-development",
   "/service/branding/visual-identity": "/service/brand-identity-design",
   "/work/seas-geosciences": "/work/88pilot",
-  "/work/upp": "/work/green-square-infra"
+  "/work/upp": "/work/green-square-infra",
+  "/work/bankrate": "/work/leadcourt",
+  "/work/bankrate/": "/work/leadcourt",
+  "/work/bipsync": "/work/interactfinancial.ca/",
+  "/work/bipsync/": "/work/interactfinancial.ca/",
+  "/work/copper": "/work/johnruggieri/",
+  "/work/copper/": "/work/johnruggieri/"
 }

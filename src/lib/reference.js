@@ -588,7 +588,7 @@ function updateContactFollowsFlightNode(node) {
             const aTag = linkWrapper && linkWrapper[3] && linkWrapper[3].children;
             if (aTag && aTag[3] && aTag[3].children === 'awwwards') {
               aTag[3].children = 'Instagram';
-              aTag[3].href = 'https://www.instagram.com/kotalondon/';
+              aTag[3].href = 'https://www.instagram.com/kyotocreativeco?mdxt=MWhhemd6MGJiZHhxOQ%3D%3D';
             }
           }
           const clutchIdx = linksArray.findIndex(linkWrapper => {
@@ -934,7 +934,7 @@ function replaceContactEmailsHtml(html) {
     for (let index = blocks.length - 1; index >= 0; index--) {
       section = section.slice(0, blocks[index].start) + updates[index] + section.slice(blocks[index].end);
     }
-    section = section.replace(/href="https:\/\/www\.awwwards\.com\/kota\/" target="_blank">awwwards<\/a>/, 'href="https://www.instagram.com/kotalondon/" target="_blank">Instagram</a>');
+    section = section.replace(/href="https:\/\/www\.awwwards\.com\/kota\/" target="_blank">awwwards<\/a>/, 'href="https://www.instagram.com/kyotocreativeco?mdxt=MWhhemd6MGJiZHhxOQ%3D%3D" target="_blank">Instagram</a>');
     section = section.replace(/<span class="FadeIn_container__bjQVL" data-fill="false"><a class="ContactDetails_follow__WB_uR" href="https:\/\/clutch\.co\/profile\/kota#highlights" target="_blank">Clutch<\/a><\/span>/, '');
     return section;
   });

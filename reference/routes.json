@@ -197,7 +197,7 @@
   "/work/bounce": "54c6ae9c21a23388136f6c0214bc64144ab06cdce2d0ce672f4711987f0d5491.html",
   "/work/bipsync": "23651078c67f50c548941c668e372f0a971e58690b9dcdf4260e7e325201a4da.html",
   "/work/bellsant": "b57ba37e3901bb845f64b9e3b57571c0ef314002b078e2dd6e95cfe526fae053.html",
-  "/work/bankrate": "ad47a82c492b147e5550f52559e4904b16ac3a248d0b05658f697cd246f0efcb.html",
+  "/work/bankrate": "bankrate_project_page.html",
   "/work/british-red-cross": "c33e8dcd00ca87ba97461623c013c641e17359a6e36c7641b98f4f21ca1aa439.html",
   "/work/bucher-suter": "00233791275663c6132600d66c4d480955bcc4ce5fb255c3b28df4e4b1f1e686.html",
   "/work/box-to-box": "49b08ffb02063dcef916b019f81e3e3a499c8e191de93c84ee1f77979094c732.html",
@@ -205,7 +205,6 @@
   "/work/design4retail": "fb1a5e31d0dba140968b9e2c14adac2c7b23f648289bb4115e37a79fda6bea60.html",
   "/work/contractpodai": "18c1cf87865dc051076d183c49e84ba6e47b040665a33bebe0929d5a73b138b2.html",
   "/work/finura": "210f4eb43a7326b58997cd6902425fa291d78669691e6b9281268a62c4bb8158.html",
-  "/work/copper": "9eea07ec11272a46bbea0e2d725f77b57d8205040058906cf4a41a3df5905f4b.html",
   "/work/cynozure": "5780be3a917b17e2454eafc895442253ac55460691eabd8dd9f711241b89ac1a.html",
   "/work/florence": "a4b5b49e8dad4c1eac8d2fee9c8c2c301b1863babf9da023609cbb24d9f1da59.html",
   "/work/dka": "68c14663ed260071ada73f341c895d08eb3873c2b975809da2e0f0e2771b6c60.html",
@@ -337,5 +336,10 @@
   "/work/seas-geosciences": "0ef3d4e5dda32481020981cefd2000c47a2aeb243e38b7efd3d6d03c60178b84.html",
   "/work/88pilot": "88pilot_project_page.html",
   "/work/green-square-infra": "green_square_infra_project_page.html",
-  "/work/seven-gate-holdings": "00233791275663c6132600d66c4d480955bcc4ce5fb255c3b28df4e4b1f1e686.html"
+  "/work/seven-gate-holdings": "00233791275663c6132600d66c4d480955bcc4ce5fb255c3b28df4e4b1f1e686.html",
+  "/work/leadcourt": "leadcourt_project_page.html",
+  "/work/interactfinancial.ca": "interactfinancial_project_page.html",
+  "/work/interactfinancial.ca/": "interactfinancial_project_page.html",
+  "/work/johnruggieri": "johnruggieri_project_page.html",
+  "/work/johnruggieri/": "johnruggieri_project_page.html"
 }

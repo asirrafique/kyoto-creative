@@ -1,0 +1,321 @@
+{
+  "results": [
+    "$",
+    "section",
+    null,
+    {
+      "className": "Results_results__xMS5p",
+      "data-margin": "default",
+      "children": [
+        "$",
+        "div",
+        null,
+        {
+          "className": "container",
+          "children": [
+            [
+              "$",
+              "h3",
+              null,
+              {
+                "className": "Results_heading__f0DwF",
+                "children": [
+                  "$",
+                  "$L2a",
+                  null,
+                  {
+                    "children": [
+                      "$",
+                      "span",
+                      null,
+                      {
+                        "children": "Results 30 days post-launch"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            [
+              "$",
+              "div",
+              null,
+              {
+                "className": "Results_resultsContent__fDMiF",
+                "children": [
+                  "$",
+                  "$L2c",
+                  null,
+                  {
+                    "children": [
+                      "$",
+                      "div",
+                      null,
+                      {
+                        "className": "Results_resultsContentInner__gRwSH",
+                        "children": [
+                          [
+                            "$",
+                            "div",
+                            "0",
+                            {
+                              "className": "Results_result__7T6EL",
+                              "style": {
+                                "backgroundColor": "#000000",
+                                "color": "#fff"
+                              },
+                              "data-animation": "grid-item",
+                              "children": [
+                                [
+                                  "$",
+                                  "span",
+                                  null,
+                                  {
+                                    "className": "Results_figure__t8hvp",
+                                    "children": "+40%"
+                                  }
+                                ],
+                                [
+                                  "$",
+                                  "span",
+                                  null,
+                                  {
+                                    "className": "Results_description__KhIC1",
+                                    "children": "Increase in website engagement"
+                                  }
+                                ]
+                              ]
+                            }
+                          ],
+                          [
+                            "$",
+                            "div",
+                            "1",
+                            {
+                              "className": "Results_result__7T6EL",
+                              "style": {
+                                "backgroundColor": "#000000",
+                                "color": "#fff"
+                              },
+                              "data-animation": "grid-item",
+                              "children": [
+                                [
+                                  "$",
+                                  "span",
+                                  null,
+                                  {
+                                    "className": "Results_figure__t8hvp",
+                                    "children": "+30%"
+                                  }
+                                ],
+                                [
+                                  "$",
+                                  "span",
+                                  null,
+                                  {
+                                    "className": "Results_description__KhIC1",
+                                    "children": "Increase in enquiry conversions"
+                                  }
+                                ]
+                              ]
+                            }
+                          ],
+                          [
+                            "$",
+                            "div",
+                            "2",
+                            {
+                              "className": "Results_result__7T6EL",
+                              "style": {
+                                "backgroundColor": "#000000",
+                                "color": "#fff"
+                              },
+                              "data-animation": "grid-item",
+                              "children": [
+                                [
+                                  "$",
+                                  "span",
+                                  null,
+                                  {
+                                    "className": "Results_figure__t8hvp",
+                                    "children": "92+"
+                                  }
+                                ],
+                                [
+                                  "$",
+                                  "span",
+                                  null,
+                                  {
+                                    "className": "Results_description__KhIC1",
+                                    "children": "Google PageSpeed score"
+                                  }
+                                ]
+                              ]
+                            }
+                          ]
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          ]
+        }
+      ]
+    }
+  ],
+  "impact": [
+    "$",
+    "section",
+    null,
+    {
+      "className": "TextLeftListRight_textLeftListRight__i5dfy",
+      "data-margin": "default",
+      "data-right-empty": "true",
+      "style": {
+        "--brand-color": "red"
+      },
+      "children": [
+        "$",
+        "div",
+        null,
+        {
+          "className": "container",
+          "children": [
+            [
+              "$",
+              "div",
+              null,
+              {
+                "className": "TextLeftListRight_left__fjEbB",
+                "children": [
+                  "$",
+                  "$L2a",
+                  null,
+                  {
+                    "children": [
+                      "$",
+                      "div",
+                      null,
+                      {
+                        "className": "prose",
+                        "dangerouslySetInnerHTML": {
+                          "__html": "<h2>The Impact</h2>\n<p>The result was a bespoke digital experience that brought Seven Gate Holdings' vision to life through premium design, thoughtful storytelling, and a polished user journey. Built to reflect the founder's ambitions, the website gives the brand a stronger digital presence and a professional platform to showcase its business. For Kyoto Creative, this project demonstrates how the right combination of design, strategy, and development can transform a vision into a compelling online experience.</p>\n<p><!-- notionvc: d14cb454-488e-4264-a40d-56c17c124610 --></p>\n"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            null
+          ]
+        }
+      ]
+    }
+  ],
+  "quote": [
+    "$",
+    "section",
+    null,
+    {
+      "className": "Quote_quote__8BTRS",
+      "data-margin": "default",
+      "children": [
+        "$",
+        "div",
+        null,
+        {
+          "className": "container",
+          "children": [
+            "$",
+            "div",
+            null,
+            {
+              "className": "Quote_quoteContent__SngAv",
+              "children": [
+                [
+                  "$",
+                  "$L2a",
+                  null,
+                  {
+                    "children": [
+                      "$",
+                      "svg",
+                      null,
+                      {
+                        "xmlns": "http://www.w3.org/2000/svg",
+                        "viewBox": "0 0 38.48 36.59",
+                        "children": [
+                          "$",
+                          "path",
+                          null,
+                          {
+                            "fill": "#000000",
+                            "d": "M0 0l1.71 36.59h10.26L13.68 0H0zm24.8 0l1.71 36.59h10.26L38.48 0H24.8z"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                [
+                  "$",
+                  "$L2a",
+                  null,
+                  {
+                    "children": [
+                      "$",
+                      "p",
+                      null,
+                      {
+                        "className": "Quote_quoteText__isGTS",
+                        "children": "“Kyoto Creative really understood the vision I had for our website and translated it into something beyond what I had imagined. The design feels premium, the experience is polished, and the overall presentation reflects the standard we wanted for Seven Gate Holdings. I was particularly impressed by their ability to understand what we wanted as a brand and bring it to life digitally. The team made the entire process straightforward, and we're proud of the final result.”"
+                      }
+                    ]
+                  }
+                ],
+                [
+                  "$",
+                  "$L2a",
+                  null,
+                  {
+                    "children": [
+                      "$",
+                      "div",
+                      null,
+                      {
+                        "className": "Quote_attribution__LU91Y",
+                        "children": [
+                          [
+                            "$",
+                            "p",
+                            null,
+                            {
+                              "className": "Quote_attributionName__ABzkp",
+                              "children": "Ankur Sharma"
+                            }
+                          ],
+                          [
+                            "$",
+                            "p",
+                            null,
+                            {
+                              "className": "Quote_attributionByline__d9bMk",
+                              "children": "CEO, Seven Gate Holdings"
+                            }
+                          ]
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
