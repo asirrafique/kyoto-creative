@@ -185,6 +185,25 @@ export function installWorkArchiveMount() {
           };
         }
 return p;
+      }).filter(p => {
+        if (!p || !p.node) return false;
+        const excludedSlugs = new Set([
+          'ziipline',
+          'isi-global',
+          'incentive-games',
+          'florence',
+          'okopod',
+          'tangerine',
+          'bellsant',
+          'wogan-coffee',
+          'bms-performance',
+          'anacap',
+          'super-yachts-monaco',
+          'hassan-allam',
+          'patchwork-health',
+          'martin-building'
+        ]);
+        return !excludedSlugs.has(p.node.slug);
       });
 
       let filtersProps = null;

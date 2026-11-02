@@ -1029,7 +1029,15 @@ function localizeDocument(html, route) {
     html = replaceContactEmailsHtml(html);
     html = removeCareersEmailHtml(html);
   }
-  if (route === '/') html = replaceHomepageFaqHtml(html);
+  if (route === '/') {
+    html = replaceHomepageFaqHtml(html);
+    html = html
+      .replace(
+        '<svg class="Footer_logo__fUEOF" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 618 237" ><image href="/images/kyoto-creative-footer-white.png" width="618" height="237" preserveAspectRatio="xMidYMid meet"></image></svg>',
+        '<svg class="Footer_logo__fUEOF" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 666 375"><image href="/images/kyoto-creative-home-footer.png" width="666" height="375" preserveAspectRatio="xMidYMid meet"></image></svg>'
+      )
+      .replaceAll('/images/kyoto-creative-footer-white.png', '/images/kyoto-creative-home-footer.png');
+  }
   if (parts.length) {
     let flightText;
     if (route === '/work' || route.startsWith('/work/')) {
@@ -1113,7 +1121,7 @@ export async function documentResponse(request, route) {
       return new Response(flight, { headers: { 'Content-Type': 'text/x-component', 'Cache-Control': 'no-cache', Vary: 'RSC, Next-Router-State-Tree, Next-Router-Prefetch' } });
     } catch { /* Next's client falls back to document navigation if uncaptured. */ }
   }
-  const html = await memoize(cacheable && route + ':' + file, async () => {
+  let html = await memoize(cacheable && route + ':' + file, async () => {
   const { version } = await readIndex('static-assets.json');
   let html = await readPage(file, temporary);
   html = localizeDocument(html, route);
@@ -1122,16 +1130,79 @@ export async function documentResponse(request, route) {
   // have rewritten relative URLs; a base restores their original directory.
   const base = route === '/' ? '/' : route.slice(0, route.lastIndexOf('/') + 1);
   const partnersStyle = route === '/' ? '<style>.Partners_partners__jBo8y{display:none!important}</style>' : '';
+  const homepageFooterStyle = route === '/'
+    ? '<style>' +
+      '.Footer_footer__pQtti, .Footer_footer__pQtti a:not(.CopyText_tooltip__HuxWa), .Footer_footer__pQtti p, .Footer_footer__pQtti span, .Footer_footer__pQtti li { color: #000 !important; }' +
+      '.Footer_email__nLajh { color: #000 !important; -webkit-text-fill-color: #000 !important; background: none !important; animation: none !important; background-clip: border-box !important; -webkit-background-clip: border-box !important; }' +
+      '.Footer_email__nLajh:hover { color: #222 !important; -webkit-text-fill-color: #222 !important; }' +
+      '.Footer_socialLinks__tA7gt a { color: #000 !important; }' +
+      '.Footer_socialLinks__tA7gt svg path { fill: #000 !important; }' +
+      '.Footer_lastNav__at6Kh a { color: #000 !important; }' +
+      '.Footer_lastNav__at6Kh svg path { fill: #000 !important; }' +
+      '.Footer_newsletterButton__wp2hz { color: #000 !important; border-color: #000 !important; }' +
+      '.Footer_newsletterButton__wp2hz:hover { background-color: rgba(0,0,0,0.06) !important; color: #000 !important; border-color: #000 !important; }' +
+      '.Footer_sectorTitle__yEZhb { color: #000 !important; }' +
+      '.Footer_sectorItem__0Cx14 { color: #000 !important; border-color: rgba(0,0,0,0.3) !important; }' +
+      '.Footer_sectorItem__0Cx14:hover { border-color: #000 !important; background-color: rgba(0,0,0,0.05) !important; }' +
+      '.Footer_copyright__j4atB, .Footer_copyrightText__f_Lte { color: #000 !important; }' +
+      '.Footer_top__YBhK_ { border-top-color: rgba(0,0,0,0.2) !important; }' +
+      '.CopyText_tooltip__HuxWa, .Footer_footer__pQtti .CopyText_tooltip__HuxWa, .Footer_footer__pQtti a .CopyText_tooltip__HuxWa { background-color: #000 !important; color: #fff !important; -webkit-text-fill-color: #fff !important; }' +
+      '.CopyText_tooltip__HuxWa:after, .Footer_footer__pQtti .CopyText_tooltip__HuxWa:after { border-bottom-color: #000 !important; }' +
+      'body section.FaqsList_faqsList__3yyiS { padding-bottom: 2rem !important; }' +
+      'body footer.Footer_footer__pQtti { padding-top: 0 !important; }' +
+      'body footer.Footer_footer__pQtti .Footer_top__YBhK_ { gap: 0.5rem !important; padding-top: 0 !important; }' +
+      'body footer.Footer_footer__pQtti svg.Footer_logo__fUEOF { height: clamp(8rem, 13vw, 12rem) !important; max-width: 600px !important; width: auto !important; aspect-ratio: 666 / 375 !important; display: block !important; margin-left: -4rem !important; margin-top: -1.5rem !important; margin-bottom: -1rem !important; }' +
+      '@media (max-width: 768px) {' +
+      '  header.Header_header__KwdYD .header-logo-desktop { display: none !important; }' +
+      '  header.Header_header__KwdYD .header-logo-mobile { display: block !important; width: auto !important; height: 38px !important; max-height: 42px !important; }' +
+      '  header.Header_header__KwdYD .Header_logo____uDV { width: auto !important; height: auto !important; display: inline-flex !important; align-items: center !important; background: transparent !important; }' +
+      '}' +
+      '@media (min-width: 769px) {' +
+      '  header.Header_header__KwdYD .header-logo-mobile { display: none !important; }' +
+      '  header.Header_header__KwdYD .header-logo-desktop { display: block !important; }' +
+      '}' +
+      '</style>'
+    : '';
   const processStyle = route === '/service/growth-marketing' || route === '/service/web-design-development'
     ? '<style>.growth-marketing-process-timeline [class^="Timeline_workInvolved__"],.growth-marketing-process-timeline [class*=" Timeline_workInvolved__"],.growth-marketing-process-timeline [class^="Timeline_duration__"],.growth-marketing-process-timeline [class*=" Timeline_duration__"],.growth-marketing-process-timeline [class^="Timeline_bottomTimeline__"],.growth-marketing-process-timeline [class*=" Timeline_bottomTimeline__"],.web-design-process-timeline [class^="Timeline_workInvolved__"],.web-design-process-timeline [class*=" Timeline_workInvolved__"],.web-design-process-timeline [class^="Timeline_duration__"],.web-design-process-timeline [class*=" Timeline_duration__"],.web-design-process-timeline [class^="Timeline_bottomTimeline__"],.web-design-process-timeline [class*=" Timeline_bottomTimeline__"]{display:none!important}</style>'
     : '';
   const contactEmailStyle = route === '/contact'
     ? '<style>.ContactDetails_contactDetails__KiaCK .ContactDetails_right__D3SFA>div:first-child>.ContactDetails_email__X5toE:nth-child(-n+2) .CopyText_copyText__OtWNq{font-size:.8em}</style>'
     : '';
-  html = html.replace('<head>', '<head>' + partnersStyle + processStyle + contactEmailStyle + '<base href="' + base + '">' + boot);
+    const leadcourtQuoteStyle = (route === '/work/leadcourt' || route === '/work/interactfinancial.ca' || route === '/work/interactfinancial.ca/' || route === '/work/green-square-infra' || route === '/work/green-square-infra/' || route === '/work/seven-gate-holdings' || route === '/work/seven-gate-holdings/')
+    ? '<style>' +
+      '.Quote_quote__8BTRS .Quote_quoteText__isGTS { font-size: clamp(1.25rem, 2.2vw, 2.1rem) !important; line-height: 1.35 !important; max-width: 58ch !important; margin: 0 auto !important; }' +
+      '.Quote_quote__8BTRS .Quote_attributionName__ABzkp { font-size: clamp(1rem, 1.4vw, 1.25rem) !important; }' +
+      '.Quote_quote__8BTRS .Quote_attributionByline__d9bMk { font-size: clamp(0.9rem, 1.2vw, 1.1rem) !important; }' +
+      '.Quote_quote__8BTRS svg { width: clamp(1.5rem, 2.5vw, 2rem) !important; margin-bottom: 1rem !important; }' +
+      '</style>'
+    : '';
+  html = html.replace('<head>', '<head>' + partnersStyle + homepageFooterStyle + processStyle + contactEmailStyle + leadcourtQuoteStyle + '<base href="' + base + '">' + boot);
   html = html.replace(/<script[^>]*src="https:\/\/(?:www\.)?(?:googletagmanager\.com|vercel\.live)[^>]*><\/script>/g, '');
   return html;
   });
+  if (route === '/') {
+    html = html
+      .replaceAll('/images/kyoto-creative-footer-white.png', '/images/kyoto-creative-home-footer.png')
+      .replaceAll('viewBox="0 0 618 237" ><image href="/images/kyoto-creative-home-footer.png" width="618" height="237"', 'viewBox="0 0 666 375"><image href="/images/kyoto-creative-home-footer.png" width="666" height="375"')
+      .replaceAll('viewBox\\":\\"0 0 618 237\\",\\"children\\":[\\"$\",\\"image\\",null,{\\"href\\":\\"/images/kyoto-creative-home-footer.png\\",\\"width\\":618,\\"height\\":237', 'viewBox\\":\\"0 0 666 375\\",\\"children\\":[\\"$\",\\"image\\",null,{\\"href\\":\\"/images/kyoto-creative-home-footer.png\\",\\"width\\":666,\\"height\\":375');
+
+    // Homepage header: responsive logo (desktop keeps original, mobile uses green-arrow logo)
+    const desktopHeaderSvg = '<svg class="header-logo-desktop" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 618 237"><image href="/images/kyoto-creative-logo.png" width="618" height="237" preserveAspectRatio="xMidYMid meet"></image></svg>';
+    const mobileHeaderSvg = '<svg class="header-logo-mobile" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 610 229"><image href="/images/kyoto-creative-mobile-header.png" width="610" height="229" preserveAspectRatio="xMidYMid meet"></image></svg>';
+    const standardHeaderAnchor = '<a class="Header_logo____uDV" href="/"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 618 237"><image href="/images/kyoto-creative-logo.png" width="618" height="237" preserveAspectRatio="xMidYMid meet"></image></svg></a>';
+    const responsiveHeaderAnchor = `<a class="Header_logo____uDV" href="/">${desktopHeaderSvg}${mobileHeaderSvg}</a>`;
+
+    html = html.replace(standardHeaderAnchor, responsiveHeaderAnchor);
+
+    // Sync serialized Flight data in HTML to avoid hydration mismatch
+    const desktopFlightSvg = '[\\"$\\",\\"svg\\",null,{\\"className\\":\\"header-logo-desktop\\",\\"xmlns\\":\\"http://www.w3.org/2000/svg\\",\\"viewBox\\":\\"0 0 618 237\\",\\"children\\":[\\"$\\",\\"image\\",null,{\\"href\\":\\"/images/kyoto-creative-logo.png\\",\\"width\\":618,\\"height\\":237,\\"preserveAspectRatio\\":\\"xMidYMid meet\\"}]}]';
+    const mobileFlightSvg = '[\\"$\\",\\"svg\\",null,{\\"className\\":\\"header-logo-mobile\\",\\"xmlns\\":\\"http://www.w3.org/2000/svg\\",\\"viewBox\\":\\"0 0 610 229\\",\\"children\\":[\\"$\\",\\"image\\",null,{\\"href\\":\\"/images/kyoto-creative-mobile-header.png\\",\\"width\\":610,\\"height\\":229,\\"preserveAspectRatio\\":\\"xMidYMid meet\\"}]}]';
+    const targetFlight = '\\"className\\":\\"Header_logo____uDV\\",\\"href\\":\\"/\\",\\"children\\":[\\"$\\",\\"svg\\",null,{\\"xmlns\\":\\"http://www.w3.org/2000/svg\\",\\"viewBox\\":\\"0 0 618 237\\",\\"children\\":[\\"$\\",\\"image\\",null,{\\"href\\":\\"/images/kyoto-creative-logo.png\\",\\"width\\":618,\\"height\\":237,\\"preserveAspectRatio\\":\\"xMidYMid meet\\"}]}]';
+    const replacementFlight = `\\"className\\":\\"Header_logo____uDV\\",\\"href\\":\\"/\\",\\"children\\":[${desktopFlightSvg},${mobileFlightSvg}]`;
+
+    html = html.replace(targetFlight, replacementFlight);
+  }
   return new Response(html, { headers: { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'no-cache', Vary: 'RSC, Next-Router-State-Tree, Next-Router-Prefetch' } });
 }
 
