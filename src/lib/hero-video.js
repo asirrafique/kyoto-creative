@@ -13,7 +13,7 @@ export function installHeroVideoControls() {
         const expanded = preview.dataset.fullscreen === 'true';
         preview.tabIndex = 0;
         preview.setAttribute('role', 'button');
-        preview.setAttribute('aria-label', expanded ? 'Close showreel' : 'Play KOTA showreel');
+        preview.setAttribute('aria-label', expanded ? 'Close showreel' : 'Play Kyoto Creative showreel');
         preview.setAttribute('aria-expanded', String(expanded));
         if (close) {
           close.setAttribute('aria-label', 'Close showreel');

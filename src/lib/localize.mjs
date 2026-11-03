@@ -17,6 +17,17 @@ export function localize(text) {
   text = text.replaceAll('https://static.hotjar.com', '/__analytics');
   text = text.replaceAll('https://kota.co.uk/', '/');
   text = text.replaceAll('© KOTA', '© Kyoto Creative');
+  text = text.replaceAll('KOTA’s', "Kyoto Creative's");
+  text = text.replaceAll("KOTA's", "Kyoto Creative's");
+  text = text.replaceAll('About KOTA', 'About Kyoto Creative');
+  text = text.replaceAll('KOTA Agency', 'Kyoto Creative Agency');
+  text = text.replaceAll('KOTA creative', 'Kyoto Creative');
+  text = text.replaceAll('KOTA Creative', 'Kyoto Creative');
+  text = text.replaceAll('KOTAverse', 'Kyotoverse');
+  text = text.replaceAll('\\u003eKOTA', '\\u003eKyoto Creative');
+  text = text.replaceAll('&gt;KOTA', '&gt;Kyoto Creative');
+  text = text.replaceAll('>KOTA', '>Kyoto Creative');
+  text = text.replace(/(?<![a-zA-Z0-9_/@\.\-])KOTA(?![a-zA-Z0-9_\-])(?!\.(?:png|jpe?g|webp|svg|gif|mp4|webm|co\.uk))/g, 'Kyoto Creative');
   text = text.replaceAll("I'm happy to receive a monthly newsletter from KOTA", "I'm happy to receive a monthly newsletter from Kyoto Creative");
   text = text.replaceAll('I understand that KOTA will securely hold my data in accordance with their privacy policy.', 'I understand that Kyoto Creative will securely hold my data in accordance with their privacy policy.');
   text = text.replaceAll('On-going support', 'AI Automations');
@@ -233,10 +244,10 @@ export function localize(text) {
   // Ensure responsive sizing matches design cleanly and prevent undesirable 3-line heading breaks
   if (text.includes('</head>')) {
     const customStyle = '<style>' +
-      'header.Header_header__KwdYD{position:absolute!important;top:0!important;left:0!important;}.Header_logo____uDV{width:clamp(120px, 12vw, 170px)!important;height:auto!important;display:inline-block!important;background:transparent!important;}.Header_logo____uDV svg{width:100%!important;height:auto!important;max-height:55px!important;display:block!important;}.Footer_top__YBhK_{display:flex!important;flex-direction:column!important;align-items:flex-start!important;gap:2rem!important;margin-bottom:3.5rem!important;}.Footer_logo__fUEOF{height:clamp(3.5rem, 6vw, 4.75rem)!important;width:auto!important;max-width:260px!important;display:block!important;}.Footer_email__nLajh{font-size:clamp(2.25rem, 5.5vw, 5rem)!important;line-height:1.1!important;}' +
+      'header.Header_header__KwdYD{position:absolute!important;top:0!important;left:0!important;}.Header_logo____uDV{width:clamp(120px, 12vw, 170px)!important;height:auto!important;display:inline-block!important;background:transparent!important;}.Header_logo____uDV svg{width:100%!important;height:auto!important;max-height:55px!important;display:block!important;}.Footer_top__YBhK_{display:flex!important;flex-direction:column!important;align-items:flex-start!important;gap:2rem!important;margin-bottom:3.5rem!important;}.Footer_logo__fUEOF{height:clamp(3.5rem, 6vw, 4.75rem)!important;width:auto!important;max-width:260px!important;display:block!important;}.Footer_email__nLajh{font-size:clamp(2.25rem, 5.5vw, 5rem)!important;line-height:1.1!important;}.CopyText_tooltip__HuxWa, .Footer_footer__pQtti .CopyText_tooltip__HuxWa, .Footer_footer__pQtti a .CopyText_tooltip__HuxWa { background-color: #fff !important; color: #000 !important; -webkit-text-fill-color: #000 !important; background-image: none !important; }.CopyText_tooltip__HuxWa:after, .Footer_footer__pQtti .CopyText_tooltip__HuxWa:after { border-bottom-color: #fff !important; }' +
       '.Hero_introText__wboFn{max-width:520px!important;width:max-content!important;}.Heading_heading__fhmAd{max-width:20ch!important;white-space:normal!important;}' +
       '.Approach_item__5N2E6 h3{width:min-content!important;max-width:100%!important;}' +
-      '.KotaverseCta_kotaverseCta__bBpWa { display: none !important; }' +
+      '.KotaverseCta_kotaverseCta__bBpWa, .Footer_newsletterButton__wp2hz, .Footer_cyberEssestials__2qh89 { display: none !important; }' +
       '.HeroSplitTextDesktop_desktop__Bey7n, .Hero_mobile__VkWXK, .HeroVideo_video__OoWDY { display: none !important; }' +
       '.kyoto-hero-title { display: flex; flex-direction: column; font-family: var(--montreal), sans-serif; font-size: clamp(2.75rem, 5.25vw, 5.5rem); font-weight: 400; line-height: 1; letter-spacing: -0.02em; color: #000; text-transform: none; margin: 0 0 2.5rem; pointer-events: auto; }' +
       '.kyoto-hero-line { display: block; }' +
