@@ -204,7 +204,7 @@
   "https://kota-content.b-cdn.net/app/uploads/2024/02/sustainble-header.jpg": "reference/assets/be45070c99e87ddc43be1dc9efe03421895d0261dce5703f0798d93fd26b093b.jpg",
   "https://kota-content.b-cdn.net/app/uploads/2024/06/Accessibility-in-web-design.png": "reference/assets/592cb331287ee222b3d084ab7b260aec5a38ab40b77c3c32ec6c1c6b68da3117.png",
   "https://kota-content.b-cdn.net/app/uploads/2026/07/Rachel-portrait.jpg": "reference/assets/f1fb286658eb24bedde2fbf34259f2bf01caaea472cea120d65692b4be8308c6.jpg",
-  "https://kota-content.b-cdn.net/app/uploads/2024/02/The-KOTA-Way-Unconventional-Layout-Blog-Header-\u2013-op2.jpg": "reference/assets/cce11f0ef49885404cb53c503cc81b595fc2d7af6b86d4c635b6709b6fe80441.jpg",
+  "https://kota-content.b-cdn.net/app/uploads/2024/02/The-KOTA-Way-Unconventional-Layout-Blog-Header-–-op2.jpg": "reference/assets/cce11f0ef49885404cb53c503cc81b595fc2d7af6b86d4c635b6709b6fe80441.jpg",
   "https://kota-content.b-cdn.net/app/uploads/2023/11/DKA-Image-1.png": "reference/assets/18791d9eff113d1281640622e8199205d5ed1d35b3b5270fa73bbef59b01f631.png",
   "https://kota-content.b-cdn.net/app/uploads/2024/02/agency-header-hover-2.jpg": "reference/assets/95fc82e13e273d769bc98fda12b6e680d3a91042511a0c6250e8497068a74352.jpg",
   "https://kota-content.b-cdn.net/app/uploads/2023/10/bounce.svg": "reference/assets/e55aba09e7f76a2873a847c77fe86fcef1bd5c27e4aa01a8f7f3506c7ef80f24.svg",
@@ -326,7 +326,7 @@
   "https://kota-content.b-cdn.net/app/uploads/2024/02/working-from-home.webp": "reference/assets/d5ed75dc5c1e17d8d549224952dff69c0b18f1afb97af8906b0b1824defb25db.webp",
   "https://kota-content.b-cdn.net/app/uploads/2024/10/team-kota.png": "reference/assets/3d80eb66b8926414c6d95c4c3de157d1019375d7aeb2a930e1db5213236a95ef.png",
   "https://kota-content.b-cdn.net/app/uploads/2026/07/Copper-Feature-V3.mp4": "reference/assets/a6c8cd48f22e863acbcca3da856c0c5dfd8e261df2018f92c80d582737efd9fc.mp4",
-  "https://kota-content.b-cdn.net/app/uploads/2023/10/T01-Homepage-B-\u2013-1-1.jpg": "reference/assets/62db9a5ed6a4579ed5b213b466640a592240ee54e5038a693669d203aa1df68c.jpg",
+  "https://kota-content.b-cdn.net/app/uploads/2023/10/T01-Homepage-B-–-1-1.jpg": "reference/assets/62db9a5ed6a4579ed5b213b466640a592240ee54e5038a693669d203aa1df68c.jpg",
   "https://kota-content.b-cdn.net/app/uploads/2024/02/header-image.jpg": "reference/assets/ea248c8774604183f144ccc1ac480f65e1e1768b6ae3d06a8dd592478d65bb72.jpg",
   "https://kota-content.b-cdn.net/app/uploads/2024/02/title-tags-and-meta-descriptions.png": "reference/assets/eae49743383c9bebad969f35993664a7fdec35be70872b0c70eec2bff8db0a73.png",
   "https://kota-content.b-cdn.net/app/uploads/2023/11/PixelArtworks-Image.png": "reference/assets/ac257ca1794a6c037ec97d8624511fa1691291759a63c261b52542af023c8276.png",
@@ -594,5 +594,7 @@
   "https://kota.co.uk/_next/static/css/c1a5097fb159934f.css": "reference/assets/f7023ed2addb443904b5a26085e506f7a448f3505f6a9d4da0d13272bd424f75.css",
   "https://kota.co.uk/_next/static/chunks/app/brand-pulse-results/page-972a6097a8c41eae.js": "reference/assets/b26c1adb0268b9b7c8f3551893f8874c94ebad63d0ca85429641c1e476490770.js",
   "https://kota.co.uk/_next/static/css/041edfa5c6e03a5c.css": "reference/assets/ad584abdf15c6de68c2ad8c25ce6e055abc3882241111178973fa53a50009a98.css",
-  "https://kota.co.uk/_next/static/css/0bf58a29029666a6.css": "reference/assets/da892cc3944289b22e6f1ee22f0f7ca540f0031b89d51af77c7c355db3f864ec.css"
+  "https://kota.co.uk/_next/static/css/0bf58a29029666a6.css": "reference/assets/da892cc3944289b22e6f1ee22f0f7ca540f0031b89d51af77c7c355db3f864ec.css",
+  "https://kota.co.uk/icon.png": "reference/assets/e688da97b9f8b6681bb659cebf074421fd0689973d25c368aea5d0724e7d96e2.png",
+  "https://kota.co.uk/favicon.ico": "reference/assets/e688da97b9f8b6681bb659cebf074421fd0689973d25c368aea5d0724e7d96e2.png"
 }
