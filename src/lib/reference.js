@@ -78,6 +78,26 @@ function findFlightElement(node, className) {
   return null;
 }
 
+function removeFlightElements(node, className) {
+  let removed = 0;
+  if (Array.isArray(node)) {
+    for (let index = node.length - 1; index >= 0; index--) {
+      const child = node[index];
+      if (Array.isArray(child) && child[0] === '$' && child[3]?.className?.split(/\s+/).includes(className)) {
+        node.splice(index, 1);
+        removed++;
+      } else {
+        removed += removeFlightElements(child, className);
+      }
+    }
+  } else if (node && typeof node === 'object') {
+    for (const child of Object.values(node)) {
+      removed += removeFlightElements(child, className);
+    }
+  }
+  return removed;
+}
+
 function homepageFaqFlightItems(originalItems) {
   const template = originalItems[0];
   if (!template) throw new Error('Homepage FAQ template was not found in Flight data');
@@ -968,6 +988,25 @@ function replaceHomepageFaqHtml(html) {
   return html.replace(section, homepageFaqMarkup());
 }
 
+function removeTestimonialsHtml(html) {
+  const marker = 'class="Testimonials_testimonials__l4UZd"';
+  const markerIndex = html.indexOf(marker);
+  if (markerIndex < 0) throw new Error('Testimonial section was not found in HTML');
+  const start = html.lastIndexOf('<section', markerIndex);
+  if (start < 0) throw new Error('Testimonial section opening tag was not found in HTML');
+  const tags = /<\/?section\b[^>]*>/gi;
+  tags.lastIndex = start;
+  let depth = 0;
+  let match;
+  while ((match = tags.exec(html))) {
+    depth += match[0].startsWith('</') ? -1 : 1;
+    if (depth === 0) {
+      return html.slice(0, start) + html.slice(tags.lastIndex);
+    }
+  }
+  throw new Error('Testimonial section closing tag was not found in HTML');
+}
+
 /** Flight text rows carry UTF-8 byte lengths, not newline-delimited JSON. */
 export function localizeFlight(text, route) {
   const source = Buffer.from(text);
@@ -982,6 +1021,15 @@ export function localizeFlight(text, route) {
       if (/^[a-f\d]+$/i.test(id) && /^[a-f\d]+$/i.test(hex)) {
         const end = comma + 1 + parseInt(hex, 16);
         let value = localize(source.subarray(comma + 1, end).toString());
+        if (route === '/service/brand-strategy') value = replaceBrandStrategyCopy(value);
+        if (route === '/service/brand-identity-design') value = replaceBrandIdentityDesignCopy(value);
+        if (route === '/service/tone-of-voice') value = replaceToneOfVoiceCopy(value);
+        if (route === '/service/creative-web-design') value = replaceCreativeWebDesignCopy(value);
+        if (route === '/service/web-development') value = replaceWebDevelopmentCopy(value);
+        if (route === '/service/wordpress-cms') value = replaceWordPressCmsCopy(value);
+        if (route === '/service/seo-geo') value = replaceSeoGeoCopy(value);
+        if (route === '/service/copywriting') value = replaceCopywritingCopy(value);
+        if (route === '/service/sitecare') value = replaceSitecareCopy(value);
         rows.push(id + ':T' + Buffer.byteLength(value).toString(16) + ',' + value);
         cursor = end;
         continue;
@@ -990,6 +1038,15 @@ export function localizeFlight(text, route) {
     const newline = source.indexOf(10, cursor);
     const end = newline === -1 ? source.length : newline + 1;
     let row = source.subarray(cursor, end).toString();
+    if (route === '/service/brand-strategy') row = replaceBrandStrategyCopy(row);
+    if (route === '/service/brand-identity-design') row = replaceBrandIdentityDesignCopy(row);
+    if (route === '/service/tone-of-voice') row = replaceToneOfVoiceCopy(row);
+    if (route === '/service/creative-web-design') row = replaceCreativeWebDesignCopy(row);
+    if (route === '/service/web-development') row = replaceWebDevelopmentCopy(row);
+    if (route === '/service/wordpress-cms') row = replaceWordPressCmsCopy(row);
+    if (route === '/service/seo-geo') row = replaceSeoGeoCopy(row);
+    if (route === '/service/copywriting') row = replaceCopywritingCopy(row);
+    if (route === '/service/sitecare') row = replaceSitecareCopy(row);
     if (route === '/') row = replaceHomepageFaqFlightRow(row);
     row = replaceWebDesignProcessFlightRow(row);
     row = replaceGrowthMarketingProcessFlightRow(row);
@@ -1006,13 +1063,457 @@ export function localizeFlight(text, route) {
         row = prefix + JSON.stringify(document) + (row.endsWith('\n') ? '\n' : '');
       }
     }
+    if ((route === '/b2b-tech-software-saas' || route === '/healthcare' || route === '/retail') && row.includes('Testimonials_testimonials__l4UZd')) {
+      const prefix = row.match(/^(\d+:)/)?.[1];
+      if (!prefix) throw new Error('Testimonial Flight row has an unexpected format');
+      const document = JSON.parse(row.slice(prefix.length));
+      if (removeFlightElements(document, 'Testimonials_testimonials__l4UZd') !== 1) {
+        throw new Error('Testimonial section was not found in Flight data');
+      }
+      row = prefix + JSON.stringify(document) + (row.endsWith('\n') ? '\n' : '');
+    }
     row = replaceWebDesignFaqFlightRow(row);
     row = replaceBrandFaqFlightRow(row);
     row = localize(row);
+    if (route === '/service/brand-strategy') row = replaceBrandStrategyCopy(row);
+    if (route === '/service/brand-identity-design') row = replaceBrandIdentityDesignCopy(row);
+    if (route === '/service/tone-of-voice') row = replaceToneOfVoiceCopy(row);
+    if (route === '/service/creative-web-design') row = replaceCreativeWebDesignCopy(row);
+    if (route === '/service/web-development') row = replaceWebDevelopmentCopy(row);
+    if (route === '/service/wordpress-cms') row = replaceWordPressCmsCopy(row);
+    if (route === '/service/seo-geo') row = replaceSeoGeoCopy(row);
+    if (route === '/service/copywriting') row = replaceCopywritingCopy(row);
+    if (route === '/service/sitecare') row = replaceSitecareCopy(row);
     rows.push(row);
     cursor = end;
   }
   return rows.join('');
+}
+
+function replaceToneOfVoiceCopy(text) {
+  return text.replace(
+    'Make every word feel like yours.',
+    'Turn marketing spend into measurable growth.',
+  ).replace(
+    'Distinctive brands take more than an AI prompt. We create tone of voice systems that give brands more character, more confidence and fewer reasons to sound like everyone else.',
+    'We help businesses reach the right audiences, generate qualified leads and drive conversions through strategic paid advertising. By combining compelling creatives, precise targeting and continuous optimisation, we make every campaign work harder towards your business goals.',
+  ).replace(
+    'Find your verbal edge.',
+    "Stop spending on clicks that don't convert.",
+  ).replace(
+    'Where AI has filled every channel with polished, forgettable copy, we build voices that people can recognise, teams can use and competitors can’t easily imitate. From the big brand statement to the tiny button label, every word pulling in the same direction.',
+    "High advertising costs, inconsistent leads and campaigns that fail to deliver measurable returns can hold your business back. At Kyoto Creative, we identify what's holding your campaigns back, optimise your advertising strategy and build performance-driven campaigns that turn your budget into meaningful business results.",
+  ).replace(
+    'Tone of voice strategy.',
+    'Google Ads Management',
+  ).replace(
+    'Before we choose the words, we decide what the voice needs to do. We connect your tone to your positioning, USPs, audience and ambitions, then define the character behind it. Sharp or understated. Warm or straight-talking. Playful where it counts. Serious when it matters.',
+    'We plan, launch and optimise Google Search, Display and Shopping campaigns to connect your business with high-intent customers and generate qualified leads.',
+  ).replace(
+    'Brand language development.',
+    'Meta Ads Management',
+  ).replace(
+    'This is where your voice starts to sound like a real person rather than a brand workshop. We develop the vocabulary, phrasing, sentence styles and verbal quirks that make your writing recognisable. We also identify the tired category language you can happily leave to everyone else.',
+    'We manage Facebook and Instagram advertising campaigns through audience targeting, creative testing and continuous optimisation to drive engagement, leads and conversions.',
+  ).replace(
+    'Messaging principles.',
+    'LinkedIn Advertising',
+  ).replace(
+    'Strong writing needs something solid underneath it. We create clear principles for how you explain what you do, what you believe and why anyone should care. Enough structure to keep the message consistent, without forcing everyone to repeat the same approved paragraph forever.',
+    'We develop targeted LinkedIn campaigns that put your business in front of decision-makers, generate B2B leads and create meaningful business opportunities.',
+  ).replace(
+    'Audience and brand voice workshops.',
+    'YouTube & Video Advertising',
+  ).replace(
+    'Everyone has an opinion on copy. Workshops stop those opinions becoming the strategy. We get the right people talking about your audience, your culture and the kind of brand you want to become. Then we turn that conversation into decisions your team can actually use.',
+    'We create and manage video advertising campaigns that capture attention, increase brand awareness and move viewers towards meaningful action.',
+  ).replace(
+    'Real-world applications.',
+    'Paid Media Strategy & Planning',
+  ).replace(
+    'A few adjectives on a slide won’t change how your brand sounds. We show the voice working across real touchpoints, including website copy, campaigns, social posts, decks, emails and calls to action. Your team sees exactly how the principles translate into everyday writing.',
+    'We develop data-backed advertising strategies, identify the right platforms and allocate budgets effectively to maximise campaign performance and return on investment.',
+  ).replace(
+    'Do’s and don’ts documentation.',
+    'Conversion Rate Optimisation',
+  ).replace(
+    'Know what sounds right. Spot what doesn’t. We create straightforward guidance with side-by-side examples, preferred language and phrases to avoid. No cryptic brand theory. No ‘bold yet approachable’. Just practical direction that helps people write better.',
+    'We analyse landing pages, website experiences and customer journeys to identify conversion barriers and turn more visitors into leads and customers.',
+  ).replace(
+    'Paid Media & Performance',
+    'Performance Tracking & Analytics',
+  ).replace(
+    'We plan and run paid advertising that stays rooted in your brand strategy. Creative, messaging, and targeting work together — so your spend actually drives results instead of noise.',
+    'We implement conversion tracking, monitor campaign metrics and translate performance data into actionable insights that help improve advertising results.',
+  );
+}
+
+function replaceCreativeWebDesignCopy(text) {
+  return text.replace(
+    'Designed for <em>attention.</em>',
+    'Digital experiences built to move businesses forward.',
+  ).replace(
+    'Some websites give you the information and get out of the way. Others yank you in by the collar. We design the latter.',
+    'Your website is more than just an online presence. It\'s where your brand makes its first impression, communicates its value and turns visitors into customers. At Kyoto Creative, we design and develop high-performing websites that combine thoughtful design, seamless functionality and scalable technology to support your business goals.',
+  ).replace(
+    'Creative that carries the business.',
+    'Turn underperforming websites into your strongest business asset.',
+  ).replace(
+    'Your website should create atmosphere, build momentum and give people a reason to keep going. We bring brand thinking, UX and visual design together to create digital experiences with a clear point of view, a commercial purpose, and enough confidence to stand out.',
+    'An outdated design, slow loading speeds or a confusing user experience can cost you potential customers. At Kyoto Creative, we help businesses overcome these challenges with modern website experiences, intuitive navigation and reliable development that improve usability, build trust and drive conversions.',
+  ).replace(
+    'Brand-to-build web design.',
+    'Website Strategy & Architecture',
+  ).replace(
+    'We take the thinking behind your brand and turn it into a digital experience with purpose, personality and momentum. Every page connected to the strategy, not decorated after the fact.',
+    'We plan your website around your business objectives, audience needs and customer journeys. From information architecture to page structure, we create a clear foundation that makes your website easy to navigate and built for growth.',
+  ).replace(
+    ' Conversion-led UX.',
+    'UI/UX Design & Prototyping',
+  ).replace(
+    'We shape the interface people actually use, from page layouts and component systems to buttons, navigation, forms and micro-interactions. Every detail has a job: make the experience clearer, sharper and more recognisably yours.',
+    'We design intuitive, visually engaging website experiences that make it easier for visitors to find information and take action. Through wireframes, interactive prototypes and user-focused design, we bring your website experience to life before development begins.',
+  ).replace(
+    'Front-end design and UI.',
+    'Custom Website Development',
+  ).replace(
+    'We shape the visual world of your website through layout, typography, imagery, motion and interaction. The goal is simple: make the experience feel clear, considered, and unmistakably yours from the first second.',
+    'We build tailored websites using modern technologies and scalable development frameworks. Whether you need a business website, a complex platform or a custom web experience, we develop solutions around your specific requirements.',
+  ).replace(
+    'Figma prototyping.',
+    'E-commerce Development',
+  ).replace(
+    'We use Figma to explore, test and refine key interactions before development begins. Prototypes help everyone understand how the website will move, flow and behave, so the experience feels considered before it’s built.',
+    'We build e-commerce experiences that make online shopping simple and intuitive. From product catalogues and shopping carts to payment integrations and checkout optimisation, we create online stores designed to support sales and growth.',
+  ).replace(
+    'Immersive website animation.',
+    'CMS & Website Management Systems',
+  ).replace(
+    'We love designing animation, transitions and interactive moments that make your website feel alive. Motion adds pace, depth and atmosphere to the experience, helping your brand land emotionally as well as functionally.',
+    'We develop flexible content management systems that give your team control over website content without depending on developers for every update. From custom CMS solutions to platform integrations, we make website management easier.',
+  ).replace(
+    'WebGL.',
+    'Website Optimisation & Maintenance',
+  ).replace(
+    'For brands that want to break away from the expected, we create WebGL experiences that feel impossible to ignore. Rich 3D environments, cinematic motion and interactive storytelling combine to create digital experiences that pull people in.',
+    'We improve website speed, responsiveness, technical performance and reliability. Through ongoing maintenance, security updates and performance optimisation, we keep your website running smoothly as your business evolves.',
+  );
+}
+
+function replaceWebDevelopmentCopy(text) {
+  return text.replace(
+    /Clean code[\s\S]{0,300}?heart\./,
+    'Great products begin with experiences designed around people.',
+  ).replace(
+    'Fast, flexible websites with clean code, sharp interactions and technical foundations that keep the experience feeling as good as it looks.',
+    'We help businesses turn complex ideas into intuitive digital products that people understand, enjoy and keep coming back to. Through user research, product thinking and experience design, we create thoughtful digital experiences that connect user needs with business objectives.',
+  ).replace(
+    'Built to behave beautifully.',
+    'Bridge the gap between what your product does and what users actually need.',
+  ).replace(
+    'Ambitious designs often lose something in development. Movement becomes clunky, systems become restrictive, and the experience starts to feel compromised. We create websites with thoughtful engineering, refined interactions and flexible foundations that make every experience feel effortless.',
+    'Even the most powerful product can struggle when users find it confusing, difficult to navigate or frustrating to use. At Kyoto Creative, we identify experience gaps, simplify complex workflows and redesign product interactions to make your digital products more intuitive, accessible and engaging.',
+  ).replace(
+    'Front-end development.',
+    'Product Discovery & UX Research',
+  ).replace(
+    'We turn creative designs into responsive, polished digital experiences that feel smooth across devices. From layouts and components to transitions, hover states and micro-interactions, every detail is built to support the idea, not flatten it.',
+    'We help you understand your users, validate product ideas and identify opportunities before investing heavily in development. Through user research, competitor analysis, journey mapping and product discovery, we establish a clear direction for your product.',
+  ).replace(
+    'Back-end development.',
+    'UX Strategy & Experience Design',
+  ).replace(
+    'We build robust back-end systems that make websites easy to manage, scale and evolve. From CMS architecture to APIs and custom functionality, we create foundations that stay powerful without becoming complicated.',
+    'We design user journeys, information architecture and interaction flows that make complex products easier to understand and use. Our approach focuses on reducing friction, improving usability and creating experiences that support your product objectives.',
+  ).replace(
+    'Animations & interaction.',
+    'UI Design & Design Systems',
+  ).replace(
+    'Motion brings pace, personality and focus to a website when it’s done properly. We build animations and interactive moments that guide attention, add depth and make the experience feel more memorable without getting in the way.',
+    'We create visually engaging interfaces and scalable design systems that bring consistency to your digital product. From interface components and typography to interactive prototypes, we build cohesive experiences that are ready for development.',
+  );
+}
+
+function replaceWordPressCmsCopy(text) {
+  return text.replace(
+    'Create, update, repeat.',
+    'From ambitious ideas to applications people love to use.',
+  ).replace(
+    'From WordPress to Sanity and headless CMS architecture, we give teams the freedom to update content, launch campaigns and build new pages without calling a developer.',
+    'We turn business ideas into powerful mobile applications that solve real problems and create meaningful user experiences. From initial app design to development, integrations and deployment, we build scalable iOS and Android applications that bring your vision to life.',
+  ).replace(
+    'Give your team the keys.',
+    'Don\'t let technical complexity hold your idea back.',
+  ).replace(
+    'Your website should grow with the business, not become a beautiful thing nobody wants to touch. We create CMS platforms that make content easy to manage, pages easy to build and updates easy to make.',
+    'Building an app involves more than writing code. Poor usability, disconnected systems, technical limitations and scalability challenges can prevent even great ideas from succeeding. At Kyoto Creative, we help you navigate the entire development journey, transforming complex requirements into reliable, intuitive applications built around your users and business goals.',
+  ).replace(
+    'CMS strategy.',
+    'Mobile App Design & Prototyping',
+  ).replace(
+    'The right CMS depends on how your team works. We help define the content structure, editing experience, permissions, page types and integrations your website needs, then build a system that supports the real people managing it.',
+    'We design intuitive mobile experiences that balance usability, functionality and visual appeal. From user flows and wireframes to interactive prototypes, we help you visualise and validate your app before development.',
+  ).replace(
+    'WordPress development.',
+    'iOS App Development',
+  ).replace(
+    'Custom WordPress websites with flexible editing systems, clean component libraries and enough control for your team to move quickly. No bloated templates. No page builder chaos. Just a CMS that feels practical, scalable and properly built.',
+    'We build high-quality iOS applications designed for Apple\'s ecosystem. From feature-rich applications to custom mobile solutions, we focus on performance, reliability and experiences that feel natural to Apple users.',
+  ).replace(
+    'Sanity CMS.',
+    'Android App Development',
+  ).replace(
+    'For projects that need more flexibility, we build with Sanity CMS to create structured content systems that are fast, scalable and easy to manage. Ideal for brands with complex content, multiple channels or more advanced publishing needs.',
+    'We develop Android applications that deliver seamless experiences across a wide range of devices. Our development approach focuses on performance, compatibility, functionality and scalability.',
+  ).replace(
+    'Headless CMS.',
+    'Cross-Platform App Development',
+  ).replace(
+    'Headless CMS gives you more freedom in how content is created, managed and delivered. We design and develop headless websites where the content system and front-end work together beautifully, without tying your brand to a single rigid platform.',
+    'We build applications for multiple platforms using shared codebases and modern cross-platform technologies. This helps businesses reduce development complexity while delivering consistent experiences across iOS and Android.',
+  ).replace(
+    'Page builders.',
+    'Backend Development & API Integrations',
+  ).replace(
+    'We create controlled, modular page-building systems that let your team create new pages confidently, while keeping your layouts, components and brand standards intact.',
+    'We build the underlying infrastructure that powers your application, including databases, authentication, APIs and third-party integrations. We ensure your app\'s systems communicate reliably and can support future growth.',
+  );
+}
+
+function replaceSeoGeoCopy(text) {
+  return text.replace(
+    'Keep up with <em> search.</em>',
+    'Build AI that doesn\'t just respond. It gets things done.',
+  ).replace(
+    'Search is changing. We help brands with authority-led SEO and GEO through sharper content, stronger structure and ongoing optimisation built around how people discover businesses now.',
+    'We design and develop intelligent AI agents and copilots that can understand instructions, reason through tasks and take actions across your business systems. From autonomous workflows to specialised AI assistants, we build solutions that extend your team\'s capabilities and help businesses work more intelligently.',
+  ).replace(
+    'Visibility is changing. Your strategy should too.',
+    'Move beyond basic chatbots to AI that actually works for your business.',
+  ).replace(
+    'People are asking AI tools for recommendations, summaries, comparisons and expert answers before they ever reach your website. We help brands build the foundations to show up in those moments, with improvements that make your expertise easier to find, easier to trust, and easier to cite.',
+    'Traditional automation follows fixed instructions, while basic chatbots often stop at answering questions. At Kyoto Creative, we build intelligent agents that can interpret context, use connected tools, retrieve information and execute multi-step tasks within defined permissions. This helps businesses reduce manual workloads and unlock new levels of productivity.',
+  ).replace(
+    'SEO strategy.',
+    'Custom AI Agent Development',
+  ).replace(
+    'We define the search opportunities that matter most for your brand, audience and commercial goals. That means looking beyond vanity rankings to understand intent, competition, content gaps and the pages most likely to drive useful traffic.',
+    'We build custom AI agents designed around your business requirements and workflows. From handling specific operational tasks to coordinating complex processes, our agents use AI models and connected tools to perform meaningful work.',
+  ).replace(
+    'GEO strategy.',
+    'AI Copilots & Virtual Assistants',
+  ).replace(
+    'Generative engine optimisation helps your brand become easier for AI search tools and LLMs to understand, reference and recommend. We improve content clarity, entity signals, topical authority and structured information so your brand has a better chance of appearing in AI-led discovery.',
+    'We develop intelligent assistants that help your employees access information, complete tasks and make better-informed decisions. Whether integrated into internal systems or business applications, our copilots act as practical AI support for your team.',
+  ).replace(
+    'Content optimisation.',
+    'Multi-Agent Systems & Orchestration',
+  ).replace(
+    'Good content needs to answer the right questions with enough depth, clarity and credibility to earn attention. We optimise pages, blogs and service content around search intent, audience needs, internal linking, metadata and AI search visibility.',
+    'We design interconnected AI agents that collaborate to complete complex tasks. By assigning specialised responsibilities and coordinating their actions, we build systems capable of handling multi-stage business processes.',
+  ).replace(
+    'Technical SEO.',
+    'Knowledge-Based AI & RAG Systems',
+  ).replace(
+    'A strong visibility engine needs solid technical foundations. We review site structure, performance, crawlability, indexation, redirects, metadata, schema, accessibility and Core Web Vitals to help your website work harder behind the scenes.',
+    'We build AI systems that retrieve information from your internal documents, databases and knowledge sources to provide relevant, context-aware responses. This makes organisational knowledge easier to access while keeping AI outputs grounded in your business information.',
+  ).replace(
+    'Ongoing SEO support.',
+    'AI Agent Integration & Deployment',
+  ).replace(
+    'Our ongoing support keeps you up to date with the latest changes and gives you regular recommendations, content opportunities, performance reviews and practical improvements that keep your visibility moving in the right direction.',
+    'We integrate AI agents into your existing applications, platforms and business workflows. From tool connections and access controls to deployment and monitoring, we help bring AI capabilities into your everyday operations.',
+  );
+}
+
+function replaceCopywritingCopy(text) {
+  return text.replace(
+    'Words that feel <em>alive.</em>',
+    'Make your business operations work smarter, not harder.',
+  ).replace(
+    'Good copy still has a pulse. We write strategic, brand-led copy that gives your website a voice, your message more weight and your audience a reason to keep reading.',
+    'We help businesses eliminate repetitive tasks, connect disconnected systems and streamline complex operations through intelligent automation. By combining workflow orchestration, AI capabilities and seamless API integrations, we build connected business processes that save time, reduce manual effort and improve operational efficiency.',
+  ).replace(
+    'Captivating motion graphics that turn heads.',
+    'Stop letting disconnected systems and repetitive tasks slow you down.',
+  ).replace(
+    'Wow your audience with seamless motion graphics that bring your brand to life. From subtle flickers of movement to advanced 3D rendering, our expert team can integrate a variety of animated effects into your website without compromising on functionality.',
+    'Managing multiple tools, transferring information manually and relying on repetitive processes can drain your team\'s time and create unnecessary errors. At Kyoto Creative, we connect your existing systems, automate everyday workflows and build intelligent processes that allow your business to operate faster, with less manual intervention.',
+  ).replace(
+    'Strategic messaging.',
+    'Business Process Automation',
+  ).replace(
+    'Copywriting starts long before the fingers hit the keyboard. First, we get clear on what your brand stands for, who it needs to reach and what people need to take away. Then we turn that thinking into language with a clear role.',
+    'We identify repetitive business processes and turn them into automated workflows. From routine administrative tasks to complex operational processes, we help your team spend less time on manual work and more time on what matters.',
+  ).replace(
+    'Website copywriting.',
+    'Workflow Orchestration & Automation',
+  ).replace(
+    'Too many websites are designed first and written later, leaving copy to squeeze into whatever space is left. We do it differently. The words develop alongside the strategy, UX and design, so the whole experience pulls in the same direction.',
+    'We design and connect multi-step workflows across your business operations. By coordinating tasks, triggers, conditions and actions across different platforms, we ensure processes run smoothly from start to finish.',
+  ).replace(
+    'Brand-led messaging.',
+    'API Development & Integrations',
+  ).replace(
+    'Your copy should sound like it belongs to your brand, not a competitor with the logo swapped out. We use your positioning, tone of voice and audience insight to create language that feels distinctive, credible and easy to trust.',
+    'We connect your business applications, databases and third-party platforms through custom API integrations. This allows different systems to communicate, exchange information and work together without disconnected processes.',
+  ).replace(
+    'SEO copywriting.',
+    'CRM & Business Systems Automation',
+  ).replace(
+    'Search visibility comes from being the best answer, not just the most optimised page. We create authoritative, audience-focused content built around genuine expertise, helping brands earn visibility across search engines, AI platforms, and whatever comes next.',
+    'We automate everyday activities across CRM, sales, marketing and business management systems. From lead routing and customer updates to data synchronisation and task assignments, we make your business tools work together more efficiently.',
+  ).replace(
+    'Thought leadership and editorial content.',
+    'AI-Powered Workflow Automation',
+  ).replace(
+    'Lead the conversation rather than adding to the noise. As part of our ongoing SEO support, we plan and write content that builds topical authority over time: useful, well-argued and grounded in real expertise.',
+    'We integrate AI into business workflows to handle tasks that require more than simple rules. From intelligent categorisation and information extraction to content generation and decision support, we make workflows more adaptive and capable.',
+  ).replace(
+    'Content audits and strategy.',
+    'Automation Monitoring & Optimisation',
+  ).replace(
+    'Sometimes the words are nearly there, but the page still isn’t doing enough. We audit what exists, find the gaps, cut what is dragging the experience down and build a practical content plan around your brand, audience and growth goals.',
+    'We monitor automated workflows, identify bottlenecks and improve process reliability. Through ongoing optimisation, error handling and performance monitoring, we ensure your automation continues to deliver value as your business grows.',
+  );
+}
+
+function replaceSitecareCopy(text) {
+  return text.replace(
+    'Keep your website <em>sharp.</em>',
+    'Turn complex information into actionable intelligence.',
+  ).replace(
+    'Launch isn’t the finish line.',
+    'Stop spending hours searching, sorting and processing information manually.',
+  ).replace(
+    'SiteCare keeps your website in good shape after launch, giving you the technical support, monitoring and development time to keep improving it over time.',
+    'We help businesses extract, organise and understand information trapped in documents, files and unstructured data. Using AI-powered extraction, classification and processing systems, we transform scattered information into structured, accessible data that supports faster and smarter business decisions.',
+  ).replace(
+    'A good website needs proper care. KOTA’s SiteCare package keeps your site secure, stable, supported and moving forward, with ongoing maintenance, hosting, performance checks and development hours built around your needs.',
+    'Manual document handling, scattered data and repetitive information processing can create bottlenecks across your business. At Kyoto Creative, we build intelligent systems that read documents, extract relevant information, classify data and automate information-heavy processes, helping your team work faster with greater accuracy.',
+  ).replace(
+    "A good website needs proper care. Kyoto Creative's SiteCare package keeps your site secure, stable, supported and moving forward, with ongoing maintenance, hosting, performance checks and development hours built around your needs.",
+    'Manual document handling, scattered data and repetitive information processing can create bottlenecks across your business. At Kyoto Creative, we build intelligent systems that read documents, extract relevant information, classify data and automate information-heavy processes, helping your team work faster with greater accuracy.',
+  ).replace(
+    'Website maintenance.',
+    'Intelligent Document Processing',
+  ).replace(
+    'Our SiteCare team keeps the essential technical upkeep proactive and under control, including CMS and plugin updates, bug fixes, and general website checks, so your site stays healthier behind the scenes.',
+    'We build AI-powered systems that read and process documents such as invoices, contracts, forms and reports. Using document understanding and extraction technologies, we convert unstructured content into organised, usable information.',
+  ).replace(
+    'Hosting and security.',
+    'Data Extraction & Structuring',
+  ).replace(
+    'Reliable hosting makes a big difference to how your website performs. SiteCare can include secure hosting setup, monitoring, uptime alerts and security support, helping your site stay stable, protected and ready for traffic.',
+    'We extract relevant information from PDFs, spreadsheets, scanned files, emails and other data sources. We transform scattered information into structured datasets that can be searched, analysed and integrated into your business systems.',
+  ).replace(
+    ' Performance monitoring.',
+    'AI-Powered Classification & Validation',
+  ).replace(
+    'A slow website hurts user experience, search visibility and conversion. We monitor performance and carry out regular checks in the background, keeping an eye on speed, stability and how the site behaves across devices.',
+    'We automate the classification, categorisation and validation of incoming information. Our systems identify document types, detect inconsistencies, flag missing details and help ensure data is organised and reliable.',
+  ).replace(
+    'Priority support.',
+    'Intelligent Data Pipelines & Processing',
+  ).replace(
+    'Get direct access to the team behind your website for fixes, updates, or changes. We’ll log requests, prioritise urgent issues, and keep things moving without your team having to chase multiple suppliers.',
+    'We build automated pipelines that collect, process, transform and transfer information between different systems. From data ingestion to downstream integrations, we make information flow efficiently across your business operations.',
+  );
+}
+
+function toneOfVoiceHeadlineStyle(route) {
+  return route === '/service/tone-of-voice'
+    ? '<style>@media (min-width:769px){.Hero_hero__18Xqo h2{font-size:clamp(2.25rem,5vw,4.5rem)!important;width:65%!important}.Hero_hero__18Xqo .Hero_video__IHL3y{width:30%!important;clip-path:ellipse(50% 50% at 50% 50%)}.Hero_hero__18Xqo .Hero_video__IHL3y>span{border-radius:50%;overflow:hidden}.Hero_hero__18Xqo .Hero_video__IHL3y video,.Hero_hero__18Xqo .Hero_video__IHL3y img{border-radius:50%}}</style>'
+    : '';
+}
+
+function replaceBrandIdentityDesignCopy(text) {
+  return text.replace(
+    'Look like you <em>mean it.</em>',
+    'Make your brand part of the conversation.',
+  ).replace(
+    'Most industries are filled with visual sameness. The same palettes. The same layouts. The same safe decisions. We help brands break out of that cycle.',
+    'We create content and communication strategies that help businesses build visibility, establish credibility and connect with the audiences that matter. From SEO-driven content to media outreach and strategic partnerships, we turn your brand story into meaningful reach.',
+  ).replace(
+    'Design systems with sharper edges.',
+    "Don't just publish content. Build a brand people recognise and trust.",
+  ).replace(
+    'Your brand identity should feel recognisable wherever it shows up, from your website and social content, to decks, campaigns and product experiences. We create visual systems designed to scale with your business, not fall apart the moment they leave your brand guidelines.',
+    'Inconsistent publishing, limited reach and a lack of industry visibility can make it difficult to build authority. At Kyoto Creative, we help you create purposeful content, earn relevant media exposure and build strategic relationships that put your brand in front of the right people.',
+  ).replace(
+    'Brand identity systems.',
+    'Content Strategy & Planning',
+  ).replace(
+    'We create cohesive identity systems that define how your brand looks, feels and behaves across every touchpoint.',
+    'We develop strategic content plans and editorial calendars aligned with your brand objectives, audience interests and business goals. Every piece of content has a purpose and a clear direction.',
+  ).replace(
+    'Typography, colour and art direction.',
+    'SEO Content & Thought Leadership',
+  ).replace(
+    'We shape flexible visual languages through typography, colour, imagery, motion design and creative direction, giving your brand a recognisable look that can stretch without losing itself.',
+    'We create search-optimised blogs, articles and industry insights that improve organic visibility, attract relevant audiences and establish your business as an authority in its space.',
+  ).replace(
+    'Online brand guidelines.',
+    'Social Media Campaigns',
+  ).replace(
+    'We’ve built our own online brand guidelines platform, so your brand can live in your browser rather than inside another forgotten PDF. Easily access, share and download everything from one always-up-to-date system.',
+    "We plan and execute creative social media campaigns that increase engagement, build communities and strengthen your brand's digital presence through meaningful content.",
+  ).replace(
+    'Motion and digital-first branding.',
+    'Public Relations & Media Outreach',
+  ).replace(
+    'Modern brands don’t sit still. We design identity systems with motion, interaction and digital experiences in mind from the start.',
+    'We connect your brand with relevant publications, journalists and media opportunities. Through strategic PR campaigns, we help build credibility, expand visibility and strengthen your industry presence.',
+  ).replace(
+    'Paid Media & Performance',
+    'Influencer, Podcast & Partnership Outreach',
+  ).replace(
+    'We plan and run paid advertising that stays rooted in your brand strategy. Creative, messaging, and targeting work together — so your spend actually drives results instead of noise.',
+    'We identify and connect your business with relevant influencers, podcast hosts and strategic partners to expand your reach, build credibility and create valuable business relationships.',
+  );
+}
+
+function replaceBrandStrategyCopy(text) {
+  return text.replace(
+    /Creative fuel <br \/>(?:\\r\\n|\r?\n)for brand <br \/>(?:\\r\\n|\r?\n)breakthroughs\./,
+    'Build a brand that knows what it stands for.',
+  ).replace(
+    'Strong brands start with clear decisions. We help you define what makes yours different, then build the strategy, voice and identity system to prove it.',
+    'We help businesses define who they are, what makes them different and why customers should choose them. Through research, strategic positioning and purposeful messaging, we build the foundation for brands that stand out and grow with direction.',
+  ).replace(
+    'Strategic clarity that creates sharper brands.',
+    'Start giving customers a reason to choose you.',
+  ).replace(
+    'At KOTA, we treat brand as infrastructure. Not surface-level aesthetics. Not vague purpose statements hidden in a slide deck. A strategic system that influences how you show up, scale up, and compete.',
+    'Unclear positioning, inconsistent messaging and a lack of brand direction can make it difficult to earn customer trust. At Kyoto Creative, we help you uncover your competitive advantage, clarify your brand identity and build a positioning strategy that makes your business memorable.',
+  ).replace(
+    'At Kyoto Creative, we treat brand as infrastructure. Not surface-level aesthetics. Not vague purpose statements hidden in a slide deck. A strategic system that influences how you show up, scale up, and compete.',
+    'Unclear positioning, inconsistent messaging and a lack of brand direction can make it difficult to earn customer trust. At Kyoto Creative, we help you uncover your competitive advantage, clarify your brand identity and build a positioning strategy that makes your business memorable.',
+  ).replace(
+    'Positioning and differentiation.',
+    'Brand Discovery & Research',
+  ).replace(
+    'We’ll uncover the signals, stories and tensions that make your brand different, then turn them into a strategic foundation for how you should exist in the market, where you can own space, and how to avoid blending into a sea of category clichés.',
+    'We uncover the insights behind your market, competitors and audience. Our research helps identify opportunities, understand customer expectations and make informed brand decisions.',
+  ).replace(
+    'Messaging and narrative systems.',
+    'Brand Positioning & Differentiation',
+  ).replace(
+    'From your value proposition to your messaging pillars, we create language systems that bring consistency across every touchpoint, helping your brand sound clearer, sharper and more recognisable.',
+    'We define your unique value proposition and establish a distinctive market position. This gives customers a clear reason to choose your business over the competition.',
+  ).replace(
+    'Brand & product architecture.',
+    'Brand Strategy & Architecture',
+  ).replace(
+    'Launching new products? Expanding services? Managing multiple audiences? We structure your brand in a way that feels intentional, scalable and easy for customers to understand and navigate.',
+    'We develop a cohesive brand strategy built around your vision, values and long-term objectives. From brand structure to strategic direction, we create a foundation that supports sustainable growth.',
+  ).replace(
+    'Strategic creative direction.',
+    'Audience & Brand Messaging',
+  ).replace(
+    'Your brand identity should reinforce your positioning, not fight against it. We’ll align your new strategy and creative output to build a brand that feels cohesive, distinctive and commercially effective.',
+    'We identify your ideal audience and develop messaging that speaks directly to their needs. From brand voice to communication frameworks, we make sure your brand sounds consistent, relevant and recognisable.',
+  );
 }
 
 function localizeDocument(html, route) {
@@ -1029,6 +1530,16 @@ function localizeDocument(html, route) {
     return result;
   });
   html = localize(html);
+  if (route === '/service/brand-strategy') html = replaceBrandStrategyCopy(html);
+  if (route === '/service/brand-identity-design') html = replaceBrandIdentityDesignCopy(html);
+  if (route === '/service/tone-of-voice') html = replaceToneOfVoiceCopy(html);
+  if (route === '/service/creative-web-design') html = replaceCreativeWebDesignCopy(html);
+  if (route === '/service/web-development') html = replaceWebDevelopmentCopy(html);
+  if (route === '/service/wordpress-cms') html = replaceWordPressCmsCopy(html);
+  if (route === '/service/seo-geo') html = replaceSeoGeoCopy(html);
+  if (route === '/service/copywriting') html = replaceCopywritingCopy(html);
+  if (route === '/service/sitecare') html = replaceSitecareCopy(html);
+  if (route === '/b2b-tech-software-saas' || route === '/healthcare' || route === '/retail') html = removeTestimonialsHtml(html);
   if (route === '/contact') html = replaceContactNewsletterCopy(html);
   html = replaceWebDesignProcessHtml(html);
   html = replaceGrowthMarketingProcessHtml(html);
@@ -1182,6 +1693,28 @@ export async function documentResponse(request, route) {
   const contactEmailStyle = route === '/contact'
     ? '<style>.ContactDetails_contactDetails__KiaCK .ContactDetails_right__D3SFA>div:first-child>.ContactDetails_email__X5toE:nth-child(-n+2) .CopyText_copyText__OtWNq{font-size:.8em}</style>'
     : '';
+  const toneHeadlineStyle = toneOfVoiceHeadlineStyle(route);
+  const brandIdentityHeadlineStyle = route === '/service/brand-identity-design'
+    ? '<style>.Hero_hero__18Xqo h2{font-size:clamp(2.25rem,6.4vw,6.75rem)!important}.Hero_hero__18Xqo .Hero_introText__HLM02{font-size:clamp(1.125rem,1.35vw,1.35rem)!important}@media (min-width:769px){.Hero_hero__18Xqo .Hero_introText__HLM02{max-width:40ch!important;grid-column:5/span 8!important}}</style>'
+    : '';
+  const creativeWebDesignHeadlineStyle = route === '/service/creative-web-design'
+    ? '<style>.Hero_hero__18Xqo h2{font-size:clamp(2.25rem,5vw,4.5rem)!important}</style>'
+    : '';
+  const webDevelopmentHeadlineStyle = route === '/service/web-development'
+    ? '<style>.Hero_hero__18Xqo h2{font-size:clamp(2.25rem,5vw,4.5rem)!important;width:44%!important}</style>'
+    : '';
+  const wordPressCmsHeadlineStyle = route === '/service/wordpress-cms'
+    ? '<style>@media (min-width:769px){.Hero_hero__18Xqo h2{font-size:clamp(2rem,4.5vw,4rem)!important;width:38%!important}}</style>'
+    : '';
+  const seoGeoHeadlineStyle = route === '/service/seo-geo'
+    ? '<style>.Hero_hero__18Xqo h2{font-size:clamp(2.15rem,4.4vw,4.4rem)!important}</style>'
+    : '';
+  const copywritingHeadlineStyle = route === '/service/copywriting'
+    ? '<style>.Hero_hero__18Xqo h2{font-size:clamp(1.95rem,3.85vw,3.85rem)!important}@media (min-width:769px){.Hero_hero__18Xqo .Hero_introText__HLM02{grid-column:6/span 7!important;max-width:427px!important}}</style>'
+    : '';
+  const sitecareHeadlineStyle = route === '/service/sitecare'
+    ? '<style>.Hero_hero__18Xqo h2{font-size:clamp(2.5rem,6.6vw,6rem)!important}</style>'
+    : '';
     const leadcourtQuoteStyle = (route === '/work/leadcourt' || route === '/work/interactfinancial.ca' || route === '/work/interactfinancial.ca/' || route === '/work/green-square-infra' || route === '/work/green-square-infra/' || route === '/work/seven-gate-holdings' || route === '/work/seven-gate-holdings/')
     ? '<style>' +
       '.Quote_quote__8BTRS .Quote_quoteText__isGTS { font-size: clamp(1.25rem, 2.2vw, 2.1rem) !important; line-height: 1.35 !important; max-width: 58ch !important; margin: 0 auto !important; }' +
@@ -1190,7 +1723,7 @@ export async function documentResponse(request, route) {
       '.Quote_quote__8BTRS svg { width: clamp(1.5rem, 2.5vw, 2rem) !important; margin-bottom: 1rem !important; }' +
       '</style>'
     : '';
-  html = html.replace('<head>', '<head>' + partnersStyle + homepageFooterStyle + processStyle + contactEmailStyle + leadcourtQuoteStyle + '<base href="' + base + '">' + boot);
+  html = html.replace('<head>', '<head>' + partnersStyle + homepageFooterStyle + processStyle + contactEmailStyle + toneHeadlineStyle + brandIdentityHeadlineStyle + creativeWebDesignHeadlineStyle + webDevelopmentHeadlineStyle + wordPressCmsHeadlineStyle + seoGeoHeadlineStyle + copywritingHeadlineStyle + sitecareHeadlineStyle + leadcourtQuoteStyle + '<base href="' + base + '">' + boot);
   html = html.replace(/<script[^>]*src="https:\/\/(?:www\.)?(?:googletagmanager\.com|vercel\.live)[^>]*><\/script>/g, '');
   return html;
   });
