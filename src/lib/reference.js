@@ -1616,6 +1616,39 @@ const boot = `<script data-replica-runtime>
 })();
 </script>`;
 
+function configureDocumentMetadata(html, route) {
+  const faviconLinks = [
+    '<link rel="icon" href="/favicon.ico" sizes="any">',
+    '<link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">',
+    '<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">',
+    '<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">',
+    '<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">',
+    '<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">',
+  ].join('');
+  let hasCanonical = false;
+  html = html.replace(/<link\b[^>]*>/gi, link => {
+    const rel = link.match(/\brel\s*=\s*["']([^"']+)["']/i)?.[1].toLowerCase().split(/\s+/) || [];
+    if (rel.some(value => ['icon', 'shortcut', 'apple-touch-icon', 'apple-touch-icon-precomposed'].includes(value))) return '';
+    if (!rel.includes('canonical')) return link;
+    hasCanonical = true;
+    if (route === '/') return '<link rel="canonical" href="https://www.kyotocreative.com/">';
+    return link.replace(/\bhref\s*=\s*(["'])(.*?)\1/i, (attribute, quote, href) => {
+      const canonical = new URL(href, 'https://www.kyotocreative.com');
+      if (['kota.co.uk', 'www.kota.co.uk', 'kyotocreative.com', 'www.kyotocreative.com'].includes(canonical.hostname)) {
+        canonical.protocol = 'https:';
+        canonical.hostname = 'www.kyotocreative.com';
+        canonical.port = '';
+      }
+      return `href=${quote}${canonical.href}${quote}`;
+    });
+  });
+  if (!/<\/head>/i.test(html)) throw new Error('Cannot add site metadata: document head is missing');
+  const canonicalLink = route === '/' && !hasCanonical
+    ? '<link rel="canonical" href="https://www.kyotocreative.com/">'
+    : '';
+  return html.replace(/<\/head>/i, `${canonicalLink}${faviconLinks}</head>`);
+}
+
 export async function documentResponse(request, route) {
   const routes = await readIndex('routes.json');
   route = route.replace(/\/index\.html$/, '').replace(/\.html$/, '').replace(/\/$/, '') || '/';
@@ -1649,6 +1682,7 @@ export async function documentResponse(request, route) {
   const { version } = await readIndex('static-assets.json');
   let html = await readPage(file, temporary);
   html = localizeDocument(html, route);
+  html = configureDocumentMetadata(html, route);
   html = html.replace(/((?:src|href)="\/_next\/static\/[^"?]+\.(?:js|css))"/g, '$1?replica=' + version + '"');
   // Fresh principal pages use untouched source markup. Older mirrored documents
   // have rewritten relative URLs; a base restores their original directory.
