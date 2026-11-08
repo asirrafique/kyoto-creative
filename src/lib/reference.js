@@ -1423,7 +1423,7 @@ function replaceSitecareCopy(text) {
 
 function toneOfVoiceHeadlineStyle(route) {
   return route === '/service/tone-of-voice'
-    ? '<style>@media (min-width:769px){.Hero_hero__18Xqo h2{font-size:clamp(2.25rem,5vw,4.5rem)!important;width:65%!important}.Hero_hero__18Xqo .Hero_video__IHL3y{width:30%!important;clip-path:ellipse(50% 50% at 50% 50%)}.Hero_hero__18Xqo .Hero_video__IHL3y>span{border-radius:50%;overflow:hidden}.Hero_hero__18Xqo .Hero_video__IHL3y video,.Hero_hero__18Xqo .Hero_video__IHL3y img{border-radius:50%}}</style>'
+    ? '<style>@media (min-width:769px){.Hero_hero__18Xqo h2{font-size:clamp(2.25rem,5vw,4.5rem)!important;width:65%!important}.Hero_hero__18Xqo div.Hero_video__IHL3y{width:30%!important;aspect-ratio:1/1!important;clip-path:circle(50% at 50% 50%)}.Hero_hero__18Xqo div.Hero_video__IHL3y>span{width:100%!important;height:100%!important;border-radius:50%;overflow:hidden}.Hero_hero__18Xqo div.Hero_video__IHL3y video,.Hero_hero__18Xqo div.Hero_video__IHL3y img{width:100%!important;height:100%!important;border-radius:50%;object-fit:cover}}</style>'
     : '';
 }
 
@@ -1649,6 +1649,26 @@ function configureDocumentMetadata(html, route) {
   return html.replace(/<\/head>/i, `${canonicalLink}${faviconLinks}</head>`);
 }
 
+function adjustJohnRuggieriQuote(content, route) {
+  if (route !== '/work/johnruggieri') return content;
+
+  const htmlQuote = '<p class="Quote_quoteText__isGTS">';
+  const flightQuote = '"className":"Quote_quoteText__isGTS","children":';
+  if (content.includes(htmlQuote)) {
+    return content.replace(
+      htmlQuote,
+      '<p class="Quote_quoteText__isGTS" style="font-size:clamp(1.25rem, 2.2vw, 2rem);line-height:1.35">',
+    );
+  }
+  if (content.includes(flightQuote)) {
+    return content.replace(
+      flightQuote,
+      '"className":"Quote_quoteText__isGTS","style":{"fontSize":"clamp(1.25rem, 2.2vw, 2rem)","lineHeight":1.35},"children":',
+    );
+  }
+  throw new Error('John Ruggieri quote markup was not found');
+}
+
 export async function documentResponse(request, route) {
   const routes = await readIndex('routes.json');
   route = route.replace(/\/index\.html$/, '').replace(/\.html$/, '').replace(/\/$/, '') || '/';
@@ -1671,9 +1691,11 @@ export async function documentResponse(request, route) {
       const flight = await memoize(cacheable && file + ':rsc', async () => {
         let text = await readPage(file.replace('.html', '.rsc'), temporary);
         if (route === '/work' || route.startsWith('/work/')) {
-          return localize(text);
+          text = localize(text);
+        } else {
+          text = localizeFlight(text, route);
         }
-        return localizeFlight(text, route);
+        return adjustJohnRuggieriQuote(text, route);
       });
       return new Response(flight, { headers: { 'Content-Type': 'text/x-component', 'Cache-Control': 'no-cache', Vary: 'RSC, Next-Router-State-Tree, Next-Router-Prefetch' } });
     } catch { /* Next's client falls back to document navigation if uncaptured. */ }
@@ -1682,6 +1704,7 @@ export async function documentResponse(request, route) {
   const { version } = await readIndex('static-assets.json');
   let html = await readPage(file, temporary);
   html = localizeDocument(html, route);
+  html = adjustJohnRuggieriQuote(html, route);
   html = configureDocumentMetadata(html, route);
   html = html.replace(/((?:src|href)="\/_next\/static\/[^"?]+\.(?:js|css))"/g, '$1?replica=' + version + '"');
   // Fresh principal pages use untouched source markup. Older mirrored documents
@@ -1721,6 +1744,9 @@ export async function documentResponse(request, route) {
       '}' +
       '</style>'
     : '';
+  const serviceHeroLabelStyle = route.startsWith('/service/')
+    ? '<style>.Hero_hero__18Xqo h1{opacity:0!important}</style>'
+    : '';
   const processStyle = route === '/service/growth-marketing' || route === '/service/web-design-development'
     ? '<style>.growth-marketing-process-timeline [class^="Timeline_workInvolved__"],.growth-marketing-process-timeline [class*=" Timeline_workInvolved__"],.growth-marketing-process-timeline [class^="Timeline_duration__"],.growth-marketing-process-timeline [class*=" Timeline_duration__"],.growth-marketing-process-timeline [class^="Timeline_bottomTimeline__"],.growth-marketing-process-timeline [class*=" Timeline_bottomTimeline__"],.web-design-process-timeline [class^="Timeline_workInvolved__"],.web-design-process-timeline [class*=" Timeline_workInvolved__"],.web-design-process-timeline [class^="Timeline_duration__"],.web-design-process-timeline [class*=" Timeline_duration__"],.web-design-process-timeline [class^="Timeline_bottomTimeline__"],.web-design-process-timeline [class*=" Timeline_bottomTimeline__"]{display:none!important}</style>'
     : '';
@@ -1757,7 +1783,7 @@ export async function documentResponse(request, route) {
       '.Quote_quote__8BTRS svg { width: clamp(1.5rem, 2.5vw, 2rem) !important; margin-bottom: 1rem !important; }' +
       '</style>'
     : '';
-  html = html.replace('<head>', '<head>' + partnersStyle + homepageFooterStyle + processStyle + contactEmailStyle + toneHeadlineStyle + brandIdentityHeadlineStyle + creativeWebDesignHeadlineStyle + webDevelopmentHeadlineStyle + wordPressCmsHeadlineStyle + seoGeoHeadlineStyle + copywritingHeadlineStyle + sitecareHeadlineStyle + leadcourtQuoteStyle + '<base href="' + base + '">' + boot);
+  html = html.replace('<head>', '<head>' + partnersStyle + homepageFooterStyle + serviceHeroLabelStyle + processStyle + contactEmailStyle + toneHeadlineStyle + brandIdentityHeadlineStyle + creativeWebDesignHeadlineStyle + webDevelopmentHeadlineStyle + wordPressCmsHeadlineStyle + seoGeoHeadlineStyle + copywritingHeadlineStyle + sitecareHeadlineStyle + leadcourtQuoteStyle + '<base href="' + base + '">' + boot);
   html = html.replace(/<script[^>]*src="https:\/\/(?:www\.)?(?:googletagmanager\.com|vercel\.live)[^>]*><\/script>/g, '');
   return html;
   });
