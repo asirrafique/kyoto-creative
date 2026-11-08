@@ -1008,6 +1008,217 @@ function removeTestimonialsHtml(html) {
 }
 
 /** Flight text rows carry UTF-8 byte lengths, not newline-delimited JSON. */
+const lazyImageDimensions = new Map([
+  ['/seven-gate-before-after.png', [655, 368]],
+  ['/app/uploads/2023/11/preto-logo.svg', [300, 101]],
+  ['/app/uploads/2023/11/aardvark-logo.svg', [300, 35]],
+  ['/app/uploads/2024/05/wogan-logo.svg', [290, 150]],
+  ['/app/uploads/2025/04/ISI_Global_Logo.svg', [300, 37]],
+  ['/app/uploads/2023/11/Floan-Logo-Black.svg', [300, 64]],
+  ['/app/uploads/2024/06/SteppingStone-logo-peach.svg', [150, 150]],
+  ['/app/uploads/2023/11/pixelartworks-logo.svg', [300, 36]],
+  ['/app/uploads/2024/05/dka-logo.svg', [300, 91]],
+  ['/app/uploads/2023/10/saatchi.svg', [300, 117]],
+  ['/app/uploads/2024/05/bms-logo.svg', [300, 142]],
+  ['/app/uploads/2023/11/lovebrands-logo.svg', [300, 32]],
+  ['/app/uploads/2023/10/Jamie-oliver.svg', [281, 150]],
+  ['/app/uploads/2023/11/cynozure-logo.svg', [300, 105]],
+  ['/app/uploads/2023/11/trace-logo.svg', [300, 39]],
+  ['/app/uploads/2024/01/PixelArtworks-Logo-Black.svg', [300, 82]],
+  ['/app/uploads/2023/11/Bellsant-Logo-Black.svg', [300, 52]],
+  ['/app/uploads/2025/05/Florence-Logo-White.svg', [230, 68]],
+  ['/app/uploads/2025/08/UPP-logo.svg', [65, 65]],
+  ['/images/interact-financial-logo.png', [308, 52]],
+  ['/images/sevengate-logo.png', [253, 226]],
+  ['/images/green-square-logo.png', [456, 234]],
+  ['/images/leadcourt-logo.png', [463, 65]],
+  ['/images/green-square-infra-logo.png', [456, 234]],
+  ['/images/seven-gate-holdings-logo.png', [253, 226]],
+]);
+
+function imageDimensionsForSource(source) {
+  if (typeof source !== 'string' || !source) return null;
+  try {
+    const pathname = new URL(source, 'https://www.kyotocreative.com').pathname;
+    for (const [imagePath, dimensions] of lazyImageDimensions) {
+      if (pathname === imagePath || pathname.endsWith(imagePath)) return dimensions;
+    }
+    return null;
+  } catch {
+    return null;
+  }
+}
+
+function addImageDimensionAttributes(tag, dimensions) {
+  const setAttribute = (html, name, value) => {
+    const attribute = new RegExp(`(^|\\s)(${name})\\s*=\\s*(["'])(.*?)\\3`, 'i');
+    if (attribute.test(html)) {
+      return html.replace(attribute, (match, prefix, attributeName, quote) =>
+        `${prefix}${attributeName}=${quote}${value}${quote}`);
+    }
+    return html.replace(/\/?>$/, suffix => ` ${name}="${value}"${suffix}`);
+  };
+  const width = Number(/\bwidth\s*=\s*(["'])(.*?)\1/i.exec(tag)?.[2]);
+  const height = Number(/\bheight\s*=\s*(["'])(.*?)\1/i.exec(tag)?.[2]);
+  if (width > 0 && height > 0) return tag;
+  return setAttribute(setAttribute(tag, 'width', dimensions[0]), 'height', dimensions[1]);
+}
+
+function reserveLazyImageDimensionsInMarkup(markup) {
+  return markup.replace(/<img\b[^>]*>/gi, tag => {
+    if (!/\bloading\s*=\s*(["'])lazy\1/i.test(tag) && !/\bclass\s*=\s*(["'])[^"']*\blazyload\b[^"']*\1/i.test(tag)) {
+      return tag;
+    }
+    const sources = [...tag.matchAll(/\b(?:src|data-src)\s*=\s*(["'])(.*?)\1/gi)]
+      .map(match => match[2])
+      .filter(Boolean);
+    const dimensions = sources.map(imageDimensionsForSource).find(Boolean);
+    return dimensions ? addImageDimensionAttributes(tag, dimensions) : tag;
+  });
+}
+
+function rewriteFlightRows(text, transformText, transformRow) {
+  const source = Buffer.from(text);
+  const rows = [];
+  let cursor = 0;
+  while (cursor < source.length) {
+    const colon = source.indexOf(58, cursor);
+    if (colon !== -1 && source[colon + 1] === 84) {
+      const id = source.subarray(cursor, colon).toString();
+      const comma = source.indexOf(44, colon + 2);
+      const hex = source.subarray(colon + 2, comma).toString();
+      if (/^[a-f\d]+$/i.test(id) && /^[a-f\d]+$/i.test(hex)) {
+        const end = comma + 1 + parseInt(hex, 16);
+        if (end <= source.length) {
+          const value = source.subarray(comma + 1, end).toString();
+          const transformed = transformText(value, id);
+          rows.push(transformed === value
+            ? source.subarray(cursor, end).toString()
+            : id + ':T' + Buffer.byteLength(transformed).toString(16) + ',' + transformed);
+          cursor = end;
+          continue;
+        }
+      }
+    }
+    const newline = source.indexOf(10, cursor);
+    const end = newline === -1 ? source.length : newline + 1;
+    const row = source.subarray(cursor, end).toString();
+    rows.push(transformRow(row, row.match(/^([a-f\d]+):/i)?.[1]?.toLowerCase()));
+    cursor = end;
+  }
+  return rows.join('');
+}
+
+function visitFlightImageData(value, referenceDimensions, dimensionsByReference) {
+  if (Array.isArray(value)) {
+    if (value[0] === '$' && value[1] === 'img' && value[3] && typeof value[3] === 'object') {
+      const dimensions = imageDimensionsForSource(value[3].src) || imageDimensionsForSource(value[3]['data-src']);
+      if (dimensions && !(Number(value[3].width) > 0 && Number(value[3].height) > 0)) {
+        value[3].width = dimensions[0];
+        value[3].height = dimensions[1];
+      }
+    }
+    for (let index = 0; index < value.length; index++) {
+      value[index] = visitFlightImageData(value[index], referenceDimensions, dimensionsByReference);
+    }
+    return value;
+  }
+  if (typeof value === 'string') return reserveLazyImageDimensionsInMarkup(value);
+  if (!value || typeof value !== 'object') return value;
+
+  const dimensions = imageDimensionsForSource(value.sourceUrl) ||
+    imageDimensionsForSource(value.src) ||
+    imageDimensionsForSource(value['data-src']);
+  if (dimensions && value.mediaDetails && typeof value.mediaDetails === 'object') {
+    value.mediaDetails.width = dimensions[0];
+    value.mediaDetails.height = dimensions[1];
+  } else if (dimensions && typeof value.mediaDetails === 'string') {
+    const reference = /^\$([a-f\d]+)$/i.exec(value.mediaDetails)?.[1]?.toLowerCase();
+    if (reference) dimensionsByReference.set(reference, dimensions);
+  }
+  if (referenceDimensions) {
+    value.width = referenceDimensions[0];
+    value.height = referenceDimensions[1];
+  }
+  for (const [key, child] of Object.entries(value)) {
+    value[key] = visitFlightImageData(child, null, dimensionsByReference);
+  }
+  return value;
+}
+
+function parseFlightModelRow(row) {
+  const prefix = row.match(/^([a-f\d]+:)/i)?.[1];
+  if (!prefix) return null;
+  const suffix = row.endsWith('\r\n') ? '\r\n' : row.endsWith('\n') ? '\n' : '';
+  const payload = row.slice(prefix.length, suffix ? -suffix.length : undefined);
+  const firstCharacter = payload.trimStart()[0];
+  if (firstCharacter !== '{' && firstCharacter !== '[') return null;
+  return { prefix, suffix, model: JSON.parse(payload) };
+}
+
+function replaceHomepageStatisticsFlightRow(row) {
+  const statistic = '"mainStatistic":"104.9% "';
+  const description = '"description":"increase in organic visits after 1 month"';
+  if (!row.includes(statistic) || !row.includes(description)) return row;
+
+  const parsed = parseFlightModelRow(row);
+  if (!parsed) throw new Error('Homepage statistics Flight row has an unexpected format');
+
+  let replacements = 0;
+  const visit = value => {
+    if (Array.isArray(value)) {
+      for (const child of value) visit(child);
+    } else if (value && typeof value === 'object') {
+      if (value.mainStatistic === '104.9% ' &&
+          value.description === 'increase in organic visits after 1 month') {
+        value.mainStatistic = '10,000 ';
+        value.description = 'users in six months';
+        replacements++;
+      }
+      for (const child of Object.values(value)) visit(child);
+    }
+  };
+  visit(parsed.model);
+  if (replacements !== 1) {
+    throw new Error(`Expected one homepage statistics Flight record, found ${replacements}`);
+  }
+  return parsed.prefix + JSON.stringify(parsed.model) + parsed.suffix;
+}
+
+function containsKnownImageSource(text) {
+  for (const sourcePath of lazyImageDimensions.keys()) {
+    if (text.includes(sourcePath)) return true;
+  }
+  return false;
+}
+
+function reserveLazyImageDimensionsInFlight(text) {
+  const dimensionsByReference = new Map();
+  rewriteFlightRows(text, value => value, row => {
+    const parsed = parseFlightModelRow(row);
+    if (parsed && containsKnownImageSource(row)) {
+      visitFlightImageData(parsed.model, null, dimensionsByReference);
+    }
+    return row;
+  });
+  return rewriteFlightRows(
+    text,
+    value => reserveLazyImageDimensionsInMarkup(value),
+    (row, id) => {
+      const parsed = parseFlightModelRow(row);
+      if (!parsed || (!containsKnownImageSource(row) && (!id || !dimensionsByReference.has(id)))) {
+        return reserveLazyImageDimensionsInMarkup(row);
+      }
+      visitFlightImageData(
+        parsed.model,
+        id ? dimensionsByReference.get(id) : null,
+        dimensionsByReference,
+      );
+      return parsed.prefix + JSON.stringify(parsed.model) + parsed.suffix;
+    },
+  );
+}
+
 export function localizeFlight(text, route) {
   const source = Buffer.from(text);
   const rows = [];
@@ -1047,7 +1258,10 @@ export function localizeFlight(text, route) {
     if (route === '/service/seo-geo') row = replaceSeoGeoCopy(row);
     if (route === '/service/copywriting') row = replaceCopywritingCopy(row);
     if (route === '/service/sitecare') row = replaceSitecareCopy(row);
-    if (route === '/') row = replaceHomepageFaqFlightRow(row);
+    if (route === '/') {
+      row = replaceHomepageFaqFlightRow(row);
+      row = replaceHomepageStatisticsFlightRow(row);
+    }
     row = replaceWebDesignProcessFlightRow(row);
     row = replaceGrowthMarketingProcessFlightRow(row);
     row = replaceBrandProcessFlightRow(row);
@@ -1565,14 +1779,14 @@ function localizeDocument(html, route) {
   if (parts.length) {
     let flightText;
     if (route === '/work' || route.startsWith('/work/')) {
-      flightText = localize(parts.join(''));
+      flightText = localize(reserveLazyImageDimensionsInFlight(parts.join('')));
     } else {
-      flightText = localizeFlight(parts.join(''), route);
+      flightText = reserveLazyImageDimensionsInFlight(localizeFlight(parts.join(''), route));
     }
     const data = JSON.stringify([1, flightText]).replaceAll('<', '\\u003c');
     html = html.replace(placeholder, '<script>self.__next_f.push(' + data + ')</script>');
   }
-  return html;
+  return reserveLazyImageDimensionsInMarkup(html);
 }
 
 const rendered = new Map();
@@ -1691,9 +1905,9 @@ export async function documentResponse(request, route) {
       const flight = await memoize(cacheable && file + ':rsc', async () => {
         let text = await readPage(file.replace('.html', '.rsc'), temporary);
         if (route === '/work' || route.startsWith('/work/')) {
-          text = localize(text);
+          text = localize(reserveLazyImageDimensionsInFlight(text));
         } else {
-          text = localizeFlight(text, route);
+          text = reserveLazyImageDimensionsInFlight(localizeFlight(text, route));
         }
         return adjustJohnRuggieriQuote(text, route);
       });
@@ -1707,6 +1921,11 @@ export async function documentResponse(request, route) {
   html = adjustJohnRuggieriQuote(html, route);
   html = configureDocumentMetadata(html, route);
   html = html.replace(/((?:src|href)="\/_next\/static\/[^"?]+\.(?:js|css))"/g, '$1?replica=' + version + '"');
+  const lazyLogoSelectors = [...lazyImageDimensions.keys()]
+    .filter(imagePath => imagePath !== '/seven-gate-before-after.png')
+    .map(imagePath => `img[src$="${imagePath}"],img[data-src$="${imagePath}"]`)
+    .join(',');
+  const lazyImageLayoutStyle = `<style>${lazyLogoSelectors}{object-fit:contain!important}</style>`;
   // Fresh principal pages use untouched source markup. Older mirrored documents
   // have rewritten relative URLs; a base restores their original directory.
   const base = route === '/' ? '/' : route.slice(0, route.lastIndexOf('/') + 1);
@@ -1783,7 +2002,7 @@ export async function documentResponse(request, route) {
       '.Quote_quote__8BTRS svg { width: clamp(1.5rem, 2.5vw, 2rem) !important; margin-bottom: 1rem !important; }' +
       '</style>'
     : '';
-  html = html.replace('<head>', '<head>' + partnersStyle + homepageFooterStyle + serviceHeroLabelStyle + processStyle + contactEmailStyle + toneHeadlineStyle + brandIdentityHeadlineStyle + creativeWebDesignHeadlineStyle + webDevelopmentHeadlineStyle + wordPressCmsHeadlineStyle + seoGeoHeadlineStyle + copywritingHeadlineStyle + sitecareHeadlineStyle + leadcourtQuoteStyle + '<base href="' + base + '">' + boot);
+  html = html.replace('<head>', '<head>' + partnersStyle + homepageFooterStyle + serviceHeroLabelStyle + processStyle + contactEmailStyle + toneHeadlineStyle + brandIdentityHeadlineStyle + creativeWebDesignHeadlineStyle + webDevelopmentHeadlineStyle + wordPressCmsHeadlineStyle + seoGeoHeadlineStyle + copywritingHeadlineStyle + sitecareHeadlineStyle + leadcourtQuoteStyle + lazyImageLayoutStyle + '<base href="' + base + '">' + boot);
   html = html.replace(/<script[^>]*src="https:\/\/(?:www\.)?(?:googletagmanager\.com|vercel\.live)[^>]*><\/script>/g, '');
   return html;
   });

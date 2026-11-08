@@ -1,0 +1,49 @@
+{
+  "projectType": "webapp",
+  "devServer": {
+    "command": "npm",
+    "args": [
+      "run",
+      "start",
+      "--",
+      "--port",
+      "3102"
+    ],
+    "url": "http://127.0.0.1:3102/",
+    "readyTimeoutSeconds": 120
+  },
+  "assertions": [
+    {
+      "name": "tests-pass",
+      "kind": "process",
+      "command": "npm",
+      "args": [
+        "run",
+        "verify"
+      ],
+      "env": {
+        "REPLICA_URL": "http://127.0.0.1:3102",
+        "CHROME_PATH": "C:/Program Files/Google/Chrome/Application/chrome.exe"
+      },
+      "verificationMethod": "test-results",
+      "expected": "0",
+      "timeoutSeconds": 300
+    },
+    {
+      "name": "work-route-direct-access",
+      "kind": "http-probe",
+      "startCommand": "npm",
+      "startArgs": [
+        "run",
+        "start",
+        "--",
+        "--port",
+        "3103"
+      ],
+      "url": "http://127.0.0.1:3103/work",
+      "verificationMethod": "http-status",
+      "expected": "200",
+      "timeoutSeconds": 120
+    }
+  ]
+}

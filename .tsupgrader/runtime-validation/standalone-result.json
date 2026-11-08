@@ -1,0 +1,95 @@
+{
+  "planHash": "f48f6ad7496bd28f20e3e375d5d9d5246dbb8cbafb17995ab694c1e42ca5c75a",
+  "phase": "standalone",
+  "recordedAtUtc": "2026-11-08T13:12:11.7599130Z",
+  "retryCount": 0,
+  "resetBaseline": false,
+  "complete": true,
+  "result": {
+    "setupSucceeded": true,
+    "setupDurationMs": 0,
+    "setupFailureOutput": null,
+    "assertions": [
+      {
+        "name": "tests-pass",
+        "kind": "process",
+        "verificationMethod": "test-results",
+        "passed": false,
+        "timedOut": false,
+        "skipped": false,
+        "skippedReason": null,
+        "exitCode": 1,
+        "outputSample": "\r\n\u003E kota-replica@1.0.0 verify\r\n\u003E node scripts/verify.mjs\r\n\r\n{\r\n  \u0022checks\u0022: [\r\n    {\r\n      \u0022name\u0022: \u0022No horizontal overflow at 1902\u0022,\r\n      \u0022pass\u0022: true,\r\n      \u0022detail\u0022: 1902\r\n    },\r\n    {\r\n      \u0022name\u0022: \u0022Typography and section geometry match at 1902\u0022,\r\n      \u0022pass\u0022: false,\r\n      \u0022detail\u0022: [\r\n        {\r\n          \u0022class\u0022: \u0022Header_header__KwdYD\u0022,\r\n          \u0022key\u0022: \u0022x\u0022,\r\n          \u0022original\u0022: 0,\r\n          \u0022replica\u0022: 951\r\n        },\r\n        {\r\n          \u0022class\u0022: \u0022Header_header__KwdYD\u0022,\r\n          \u0022key\u0022: \u0022h\u0022,\r\n          \u0022original\u0022: 112,\r\n          \u0022replica\u0022: 107\r\n        },\r\n        {\r\n          \u0022class\u0022: \u0022kyoto-hero-title\u0022,\r\n          \u0022problem\u0022: \u0022Element order differs\u0022\r\n        },\r\n        {\r\n          \u0022class\u0022: \u0022Hero_introText__wboFn\u0022,\r\n          \u0022problem\u0022: \u0022Element order differs\u0022\r\n        },\r\n        {\r\n          \u0022class\u0022: \u0022Approach_approach__kHR9Y\u0022,\r\n          \u0022problem\u0022: \u0022Element order differs\u0022\r\n        },\r\n        {\r\n          \u0022class\u0022: \u0022\u0022,\r\n          \u0022problem\u0022: \u0022Element order differs\u0022\r\n        },\r\n        {\r\n          \u0022class\u0022: \u0022ServicesHeading_heading__w6gAZ\u0022,\r\n          \u0022problem\u0022: \u0022Element order differs\u0022\r\n        },\r\n        {\r\n          \u0022class\u0022: \u0022Carousel_heading__kEfF1\u0022,\r\n          \u0022problem\u0022: \u0022Element order differs\u0022\r\n        },\r\n        {\r\n          \u0022class\u0022: \u0022\u0022,\r\n          \u0022key\u0022: \u0022x\u0022,\r\n          \u0022original\u0022: 2229,\r\n          \u0022replica\u0022: 989\r\n        },\r\n        {\r\n          \u0022class\u0022: \u0022\u0022,\r\n          \u0022key\u0022: \u0022y\u0022,\r\n          \u0022original\u0022: 6713,\r\n          \u0022replica\u0022: 6738\r\n        },\r\n        {\r\n          \u0022class\u0022: \u0022\u0022,\r\n          \u0022key\u0022: \u0022h\u0022,\r\n          \u0022original\u0022: 126,\r\n          \u0022replica\u0022: 63\r\n        },\r\n        {\r\n          \u0022class\u0022: \u0022\u0022,\r\n          \u0022key\u0022: \u0022x\u0022,\r\n          \u0022original\u0022: 3469,\r\n          \u0022replica\u0022: 2229\r\n        },\r\n        {\r\n          \u0022class\u0022: \u0022\u0022,\r\n          \u0022key\u0022: \u0022y\u0022,\r\n          \u0022original\u0022: 6713,\r\n          \u0022replica\u0022: 6738\r\n        },\r\n        {\r\n          \u0022class\u0022: \u0022\u0022,\r\n          \u0022key\u0022: \u0022h\u0022,\r\n          \u0022original\u0022: 126,\r\n          \u0022replica\u0022: 63\r\n        },\r\n        {\r\n          \u0022class\u0022: \u0022\u0022,\r\n          \u0022key\u0022: \u0022x\u0022,\r\n          \u0022original\u0022: 4709,\r\n          \u0022replica\u0022: 3469\r\n        },\r\n        {\r\n          \u0022class\u0022: \u0022\u0022,\r\n          \u0022key\u0022: \u0022y\u0022,\r\n          \u0022original\u0022: 6713,\r\n          \u0022replica\u0022: 6738\r\n        },\r\n        {\r\n          \u0022class\u0022: \u0022\u0022,\r\n          \u0022key\u0022: \u0022h\u0022,\r\n          \u0022original\u0022: 126,\r\n          \u0022replica\u0022: 63\r\n        },\r\n        {\r\n          \u0022class\u0022: \u0022\u0022,\r\n          \u0022key\u0022: \u0022x\u0022,\r\n          \u0022original\u0022: 5949,\r\n          \u0022replica\u0022: 4709\r\n        },\r\n        {\r\n          \u0022class\u0022: \u0022\u0022,\r\n          \u0022key\u0022: \u0022y\u0022,\r\n          \u0022original\u0022: 6713,\r\n          \u0022replica\u0022: 6738\r\n        },\r\n        {\r\n          \u0022class\u0022: \u0022\u0022,\r\n          \u0022key\u0022: \u0022h\u0022,\r\n          \u0022original\u0022: 126,\r\n          \u0022replica\u0022: 63\r\n        },\r\n        {\r\n          \u0022class\u0022: \u0022\u0022,\r\n          \u0022problem\u0022: \u0022Element order differs\u0022\r\n        },\r\n        {\r\n          \u0022class\u0022: \u0022Work_heading__pbv4g\u0022,\r\n          \u0022problem\u0022: \u0022Element order differs\u0022\r\n        },\r\n        {\r\n          \u0022class\u0022: \u0022StatisticsHeading_heading__3C_3F\u0022,\r\n          \u0022problem\u0022: \u0022Element order differs\u0022\r\n        },\r\n        {\r\n          \u0022class\u0022: \u0022Partners_heading__AOTNV\u0022,\r\n          \u0022problem\u0022: \u0022Element order differs\u0022\r\n        },\r\n        {\r\n          \u0022class\u0022: \u0022Testimonials_testimonials__AMUEx\u0022,\r\n          \u0022problem\u0022: \u0022Element order differs\u0022\r\n        },\r\n        {\r\n          \u0022class\u0022: \u0022Testimonials_heading__k0Yyf\u0022,\r\n          \u0022problem\u0022: \u0022Element order differs\u0022\r\n        },\r\n        {\r\n          \u0022class\u0022: \u0022FaqsList_faqsList__3yyiS\u0022,\r\n          \u0022problem\u0022: \u0022Element order differs\u0022\r\n        },\r\n        {\r\n          \u0022class\u0022: \u0022KotaverseCta_kotaverseCta__bBpWa\u0022,\r\n          \u0022problem\u0022: \u0022Element order differs\u0022\r\n        }\r\n      ]\r\n    },\r\n    {\r\n      \u0022name\u0022: \u0022All revealed images load at 1902\u0022,\r\n      \u0022pass\u0022: true,\r\n      \u0022detail\u0022: []\r\n    }\r\n  ],\r\n  \u0022errors\u0022: [\r\n    {\r\n      \u0022viewport\u0022: {\r\n        \u0022width\u0022: 1902,\r\n        \u0022height\u0022: 950\r\n      },\r\n      \u0022error\u0022: \u0022Minified React error #425; visit https://react.dev/errors/425 for the full message or use the non-minified dev environment for full errors and additional helpful war\n\u2026[truncated]",
+        "durationMs": 61183,
+        "testResults": {
+          "testFramework": "unknown",
+          "runnerDetectedFrom": "none",
+          "testsTotal": 0,
+          "testsPassed": 0,
+          "testsFailed": 0,
+          "testsSkipped": 0,
+          "parseFailed": true
+        }
+      },
+      {
+        "name": "work-route-direct-access",
+        "kind": "http-probe",
+        "verificationMethod": "http-status",
+        "passed": true,
+        "timedOut": false,
+        "skipped": false,
+        "skippedReason": null,
+        "exitCode": null,
+        "outputSample": "HTTP 200\n\u003C!DOCTYPE html\u003E\u003Chtml lang=\u0022en\u0022 class=\u0022__variable_a78db3 __variable_ab8453\u0022\u003E\u003Chead\u003E\u003Cstyle\u003Eimg[src$=\u0022/app/uploads/2023/11/preto-logo.svg\u0022],img[data-src$=\u0022/app/uploads/2023/11/preto-logo.svg\u0022],img[src$=\u0022/app/uploads/2023/11/aardvark-logo.svg\u0022],img[data-src$=\u0022/app/uploads/2023/11/aardvark-logo.svg\u0022],img[src$=\u0022/app/uploads/2024/05/wogan-logo.svg\u0022],img[data-src$=\u0022/app/uploads/2024/05/wogan-logo.svg\u0022],img[src$=\u0022/app/uploads/2025/04/ISI_Global_Logo.svg\u0022],img[data-src$=\u0022/app/uploads/2025/04/ISI_Global_Logo.svg\u0022],img[src$=\u0022/app/uploads/2023/11/Floan-Logo-Black.svg\u0022],img[data-src$=\u0022/app/uploads/2023/11/Floan-Logo-Black.svg\u0022],img[src$=\u0022/app/uploads/2024/06/SteppingStone-logo-peach.svg\u0022],img[data-src$=\u0022/app/uploads/2024/06/SteppingStone-logo-peach.svg\u0022],img[src$=\u0022/app/uploads/2023/11/pixelartworks-logo.svg\u0022],img[data-src$=\u0022/app/uploads/2023/11/pixelartworks-logo.svg\u0022],img[src$=\u0022/app/uploads/2024/05/dka-logo.svg\u0022],img[data-src$=\u0022/app/uploads/2024/05/dka-logo.svg\u0022],img[src$=\u0022/app/uploads/2023/10/saatchi.svg\u0022],img[data-src$=\u0022/app/uploads/2023/10/saatchi.svg\u0022],img[src$=\u0022/app/uploads/2024/05/bms-logo.svg\u0022],img[data-src$=\u0022/app/uploads/2024/05/bms-logo.svg\u0022],img[src$=\u0022/app/uploads/2023/11/lovebrands-logo.svg\u0022],img[data-src$=\u0022/app/uploads/2023/11/lovebrands-logo.svg\u0022],img[src$=\u0022/app/uploads/2023/10/Jamie-oliver.svg\u0022],img[data-src$=\u0022/app/uploads/2023/10/Jamie-oliver.svg\u0022],img[src$=\u0022/app/uploads/2023/11/cynozure-logo.svg\u0022],img[data-src$=\u0022/app/uploads/2023/11/cynozure-logo.svg\u0022],img[src$=\u0022/app/uploads/2023/11/trace-logo.svg\u0022],img[data-src$=\u0022/app/uploads/2023/11/trace-logo.svg\u0022],img[src$=\u0022/app/uploads/2024/01/PixelArtworks-Logo-Black.svg\u0022],img[data-src$=\u0022/app/uploads/2024/01/PixelArtworks-Logo-Black.svg\u0022],img[src$=\u0022/app/uploads/2023/11/Bellsant-Logo-Black.svg\u0022],img[data-src$=\u0022/app/uploads/2023/11/Bellsant-Logo-Black.svg\u0022],img[src$=\u0022/app/uploads/2025/05/Florence-Logo-White.svg\u0022],img[data-src$=\u0022/app/uploads/2025/05/Florence-Logo-White.svg\u0022],img[src$=\u0022/app/uploads/2025/08/UPP-logo.svg\u0022],img[data-src$=\u0022/app/uploads/2025/08/UPP-logo.svg\u0022],img[src$=\u0022/images/interact-financial-logo.png\u0022],img[data-src$=\u0022/images/interact-financial-logo.png\u0022],img[src$=\u0022/images/sevengate-logo.png\u0022],img[data-src$=\u0022/images/sevengate-logo.png\u0022],img[src$=\u0022/images/green-square-logo.png\u0022],img[data-src$=\u0022/images/green-square-logo.png\u0022],img[src$=\u0022/images/leadcourt-logo.png\u0022],img[data-src$=\u0022/images/leadcourt-logo.png\u0022],img[src$=\u0022/images/green-square-infra-logo.png\u0022],img[data-src$=\u0022/images/green-square-infra-logo.png\u0022],img[src$=\u0022/images/seven-gate-holdings-logo.png\u0022],img[data-src$=\u0022/images/seven-gate-holdings-logo.png\u0022]{object-fit:contain!important}\u003C/style\u003E\u003Cbase href=\u0022/\u0022\u003E\u003Cscript data-replica-runtime\u003E\n(function(){let e=[{selector:\u0022.Bento_media1__Zf6n4 video\u0022,src:\u0022https://kota-content.b-cdn.net/app/uploads/2025/04/Square-Rotating-Cube2.mp4\u0022},{selector:\u0022.Bento_media2__Z_9Z_ video\u0022,src:\u0022https://kota-content.b-cdn.net/app/uploads/2025/04/Bento-Right2.mp4\u0022},{selector:\u0022.Bento_media3__Je_Pc video\u0022,src:\u0022https://kota-content.b-cdn.net/app/uploads/2025/04/Bento-Earth-Spin2.mp4\u0022},{selector:\u0022.Bento_media4__xfRDt video\u0022,src:\u0022https://kota-content.b-cdn.net/app/uploads/2025/04/Right-Side-Mobile-Devices5.mp4\u0022},{selector:\u0022.Video_loopVideo__1G4By video\u0022,src:\u0022https://kota-content.b-cdn.net/app/uploads/2025/04/All-Pages-3D-2.mp4\u0022}],t=new Set,r=new Set,a=new IntersectionObserver(e=\u003E{for(let{target:t,isIntersecting:a}of e)a?(r.add(t),document.hidden||t.play().catch(()=\u003E{})):(r.delete(t),t.pause())},{rootMargin:\u0022100px 0px\u0022});function n(){for(let{selector:t,src:r}of e)for(let e of document.querySelectorAll(t))e.src||e.querySelector(\u0022source\u0022)||(e.src=r,e.muted=!0,e.defaultMuted=!0,e.loop=!0,e.playsInline=!0,e.play().catch(()=\u003E{}));for(let e of document.querySelectorAll(\u0022video\u0022))!t.has(e)\u0026\u0026(t.add(e),a.observe(e),e.parentElement\u0026\u0026e.getBoundingClientRect().top\u003Cwindow.innerHeight\u0026\u0026e.play().catch(()=\u003E{}));for(let e of t)e.isConnected||(t.delete(e),r.delete(e),a.unobserve(e))}document.addEventListener(\u0022visibilitychange\u0022,()=\u003E{for(let e of r)document.hidden?e.pause():e.play().catch(()=\u003E{})}),\u0022loading\u0022===docu\n\u2026[truncated]",
+        "durationMs": 65
+      }
+    ],
+    "executions": [
+      {
+        "source": "devServer",
+        "resolvedExecutable": "C:\\Program Files\\nodejs\\npm.CMD",
+        "args": [
+          "run",
+          "start",
+          "--",
+          "--port",
+          "3102"
+        ],
+        "cwd": "C:\\Users\\ASUS\\Desktop\\kyoto-creative",
+        "env": {},
+        "prependPath": [],
+        "platform": "win32"
+      },
+      {
+        "source": "tests-pass",
+        "resolvedExecutable": "C:\\Program Files\\nodejs\\npm.CMD",
+        "args": [
+          "run",
+          "verify"
+        ],
+        "cwd": "C:\\Users\\ASUS\\Desktop\\kyoto-creative",
+        "env": {
+          "REPLICA_URL": "http://127.0.0.1:3102",
+          "CHROME_PATH": "C:/Program Files/Google/Chrome/Application/chrome.exe"
+        },
+        "prependPath": [],
+        "platform": "win32"
+      },
+      {
+        "source": "work-route-direct-access",
+        "resolvedExecutable": "C:\\Program Files\\nodejs\\npm.CMD",
+        "args": [
+          "run",
+          "start",
+          "--",
+          "--port",
+          "3103"
+        ],
+        "cwd": "C:\\Users\\ASUS\\Desktop\\kyoto-creative",
+        "env": {},
+        "prependPath": [],
+        "platform": "win32"
+      }
+    ]
+  }
+}

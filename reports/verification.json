@@ -1,10 +1,798 @@
 {
-  "checks": [],
+  "checks": [
+    {
+      "name": "No horizontal overflow at 1902",
+      "pass": true,
+      "detail": 1902
+    },
+    {
+      "name": "Typography and section geometry match at 1902",
+      "pass": false,
+      "detail": [
+        {
+          "class": "Header_header__KwdYD",
+          "key": "x",
+          "original": 0,
+          "replica": 951
+        },
+        {
+          "class": "Header_header__KwdYD",
+          "key": "h",
+          "original": 112,
+          "replica": 107
+        },
+        {
+          "class": "kyoto-hero-title",
+          "problem": "Element order differs"
+        },
+        {
+          "class": "Hero_introText__wboFn",
+          "problem": "Element order differs"
+        },
+        {
+          "class": "Approach_approach__kHR9Y",
+          "problem": "Element order differs"
+        },
+        {
+          "class": "",
+          "problem": "Element order differs"
+        },
+        {
+          "class": "ServicesHeading_heading__w6gAZ",
+          "problem": "Element order differs"
+        },
+        {
+          "class": "Carousel_heading__kEfF1",
+          "problem": "Element order differs"
+        },
+        {
+          "class": "",
+          "key": "x",
+          "original": 2229,
+          "replica": 989
+        },
+        {
+          "class": "",
+          "key": "y",
+          "original": 6713,
+          "replica": 6738
+        },
+        {
+          "class": "",
+          "key": "h",
+          "original": 126,
+          "replica": 63
+        },
+        {
+          "class": "",
+          "key": "x",
+          "original": 3469,
+          "replica": 2229
+        },
+        {
+          "class": "",
+          "key": "y",
+          "original": 6713,
+          "replica": 6738
+        },
+        {
+          "class": "",
+          "key": "h",
+          "original": 126,
+          "replica": 63
+        },
+        {
+          "class": "",
+          "key": "x",
+          "original": 4709,
+          "replica": 3469
+        },
+        {
+          "class": "",
+          "key": "y",
+          "original": 6713,
+          "replica": 6738
+        },
+        {
+          "class": "",
+          "key": "h",
+          "original": 126,
+          "replica": 63
+        },
+        {
+          "class": "",
+          "key": "x",
+          "original": 5949,
+          "replica": 4709
+        },
+        {
+          "class": "",
+          "key": "y",
+          "original": 6713,
+          "replica": 6738
+        },
+        {
+          "class": "",
+          "key": "h",
+          "original": 126,
+          "replica": 63
+        },
+        {
+          "class": "",
+          "problem": "Element order differs"
+        },
+        {
+          "class": "Work_heading__pbv4g",
+          "problem": "Element order differs"
+        },
+        {
+          "class": "StatisticsHeading_heading__3C_3F",
+          "problem": "Element order differs"
+        },
+        {
+          "class": "Partners_heading__AOTNV",
+          "problem": "Element order differs"
+        },
+        {
+          "class": "Testimonials_testimonials__AMUEx",
+          "problem": "Element order differs"
+        },
+        {
+          "class": "Testimonials_heading__k0Yyf",
+          "problem": "Element order differs"
+        },
+        {
+          "class": "FaqsList_faqsList__3yyiS",
+          "problem": "Element order differs"
+        },
+        {
+          "class": "KotaverseCta_kotaverseCta__bBpWa",
+          "problem": "Element order differs"
+        }
+      ]
+    },
+    {
+      "name": "All revealed images load at 1902",
+      "pass": true,
+      "detail": []
+    }
+  ],
   "errors": [
     {
-      "error": "page.goto: net::ERR_NETWORK_ACCESS_DENIED at http://127.0.0.1:3100/\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:3100/\", waiting until \"domcontentloaded\"\u001b[22m\n\n    at C:\\Users\\ASUS\\Desktop\\kyoto-creative\\scripts\\verify.mjs:41:16"
+      "error": "locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[class*=\"FaqsList_faqsList\"]').getByText('How much does web design and development typically cost?', { exact: true })\u001b[22m\n\n    at C:\\Users\\ASUS\\Desktop\\kyoto-creative\\scripts\\verify.mjs:81:17"
     }
   ],
   "failedResources": [],
-  "comparisons": []
+  "comparisons": [
+    {
+      "viewport": {
+        "width": 1902,
+        "height": 950
+      },
+      "actual": {
+        "viewport": 1902,
+        "width": 1902,
+        "height": 14397,
+        "elements": [
+          {
+            "tag": "HEADER",
+            "class": "Header_header__KwdYD",
+            "x": 951,
+            "y": 0,
+            "w": 1902,
+            "h": 107,
+            "font": "__montreal_a78db3, __montreal_Fallback_a78db3",
+            "size": "20px",
+            "lineHeight": "28px",
+            "spacing": "normal"
+          },
+          {
+            "tag": "SECTION",
+            "class": "Hero_hero__IrR3f",
+            "x": 0,
+            "y": 0,
+            "w": 1902,
+            "h": 950,
+            "font": "__montreal_a78db3, __montreal_Fallback_a78db3",
+            "size": "20px",
+            "lineHeight": "28px",
+            "spacing": "normal"
+          },
+          {
+            "tag": "H1",
+            "class": "kyoto-hero-title",
+            "x": 251,
+            "y": 368,
+            "w": 1282,
+            "h": 264,
+            "font": "__montreal_a78db3, __montreal_Fallback_a78db3, sans-serif",
+            "size": "88px",
+            "lineHeight": "88px",
+            "spacing": "-1.76px"
+          },
+          {
+            "tag": "H1",
+            "class": "Hero_introText__wboFn",
+            "x": 1074,
+            "y": 552,
+            "w": 459,
+            "h": 120,
+            "font": "__montreal_a78db3, __montreal_Fallback_a78db3",
+            "size": "24px",
+            "lineHeight": "30px",
+            "spacing": "normal"
+          },
+          {
+            "tag": "SECTION",
+            "class": "Approach_approach__kHR9Y",
+            "x": 0,
+            "y": 950,
+            "w": 1902,
+            "h": 825,
+            "font": "__montreal_a78db3, __montreal_Fallback_a78db3",
+            "size": "20px",
+            "lineHeight": "28px",
+            "spacing": "normal"
+          },
+          {
+            "tag": "H2",
+            "class": "",
+            "x": 251,
+            "y": 1100,
+            "w": 840,
+            "h": 210,
+            "font": "__montreal_a78db3, __montreal_Fallback_a78db3",
+            "size": "70px",
+            "lineHeight": "70px",
+            "spacing": "normal"
+          },
+          {
+            "tag": "H2",
+            "class": "ServicesHeading_heading__w6gAZ",
+            "x": 251,
+            "y": 1925,
+            "w": 1400,
+            "h": 407,
+            "font": "__montreal_a78db3, __montreal_Fallback_a78db3",
+            "size": "160px",
+            "lineHeight": "144px",
+            "spacing": "-3.2px"
+          },
+          {
+            "tag": "H2",
+            "class": "Carousel_heading__kEfF1",
+            "x": 251,
+            "y": 6359,
+            "w": 1400,
+            "h": 240,
+            "font": "__montreal_a78db3, __montreal_Fallback_a78db3",
+            "size": "120px",
+            "lineHeight": "114px",
+            "spacing": "normal"
+          },
+          {
+            "tag": "H2",
+            "class": "",
+            "x": 989,
+            "y": 6738,
+            "w": 543,
+            "h": 63,
+            "font": "__montreal_a78db3, __montreal_Fallback_a78db3",
+            "size": "60px",
+            "lineHeight": "63px",
+            "spacing": "normal"
+          },
+          {
+            "tag": "H2",
+            "class": "",
+            "x": 2229,
+            "y": 6738,
+            "w": 543,
+            "h": 63,
+            "font": "__montreal_a78db3, __montreal_Fallback_a78db3",
+            "size": "60px",
+            "lineHeight": "63px",
+            "spacing": "normal"
+          },
+          {
+            "tag": "H2",
+            "class": "",
+            "x": 3469,
+            "y": 6738,
+            "w": 543,
+            "h": 63,
+            "font": "__montreal_a78db3, __montreal_Fallback_a78db3",
+            "size": "60px",
+            "lineHeight": "63px",
+            "spacing": "normal"
+          },
+          {
+            "tag": "H2",
+            "class": "",
+            "x": 4709,
+            "y": 6738,
+            "w": 543,
+            "h": 63,
+            "font": "__montreal_a78db3, __montreal_Fallback_a78db3",
+            "size": "60px",
+            "lineHeight": "63px",
+            "spacing": "normal"
+          },
+          {
+            "tag": "H2",
+            "class": "",
+            "x": 5949,
+            "y": 6738,
+            "w": 543,
+            "h": 63,
+            "font": "__montreal_a78db3, __montreal_Fallback_a78db3",
+            "size": "60px",
+            "lineHeight": "63px",
+            "spacing": "normal"
+          },
+          {
+            "tag": "H2",
+            "class": "Work_heading__pbv4g",
+            "x": 251,
+            "y": 7648,
+            "w": 684,
+            "h": 424,
+            "font": "__montreal_a78db3, __montreal_Fallback_a78db3",
+            "size": "160px",
+            "lineHeight": "128px",
+            "spacing": "-3.2px"
+          },
+          {
+            "tag": "H2",
+            "class": "StatisticsHeading_heading__3C_3F",
+            "x": 251,
+            "y": 10169,
+            "w": 1400,
+            "h": 407,
+            "font": "__montreal_a78db3, __montreal_Fallback_a78db3",
+            "size": "160px",
+            "lineHeight": "144px",
+            "spacing": "-3.2px"
+          },
+          {
+            "tag": "H2",
+            "class": "Partners_heading__AOTNV",
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "font": "__montreal_a78db3, __montreal_Fallback_a78db3",
+            "size": "160px",
+            "lineHeight": "160px",
+            "spacing": "-3.2px"
+          },
+          {
+            "tag": "SECTION",
+            "class": "Testimonials_testimonials__AMUEx",
+            "x": 0,
+            "y": 11386,
+            "w": 1902,
+            "h": 957,
+            "font": "__montreal_a78db3, __montreal_Fallback_a78db3",
+            "size": "20px",
+            "lineHeight": "28px",
+            "spacing": "normal"
+          },
+          {
+            "tag": "H2",
+            "class": "Testimonials_heading__k0Yyf",
+            "x": 251,
+            "y": 11696,
+            "w": 694,
+            "h": 240,
+            "font": "__montreal_a78db3, __montreal_Fallback_a78db3",
+            "size": "120px",
+            "lineHeight": "120px",
+            "spacing": "normal"
+          },
+          {
+            "tag": "SECTION",
+            "class": "FaqsList_faqsList__3yyiS",
+            "x": 0,
+            "y": 13013,
+            "w": 1902,
+            "h": 779,
+            "font": "__montreal_a78db3, __montreal_Fallback_a78db3",
+            "size": "20px",
+            "lineHeight": "28px",
+            "spacing": "normal"
+          },
+          {
+            "tag": "SECTION",
+            "class": "KotaverseCta_kotaverseCta__bBpWa",
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "font": "__montreal_a78db3, __montreal_Fallback_a78db3",
+            "size": "20px",
+            "lineHeight": "28px",
+            "spacing": "normal"
+          }
+        ]
+      },
+      "expected": {
+        "viewport": 1902,
+        "width": 1902,
+        "height": 17146,
+        "elements": [
+          {
+            "tag": "HEADER",
+            "class": "Header_header__KwdYD",
+            "x": 0,
+            "y": 0,
+            "w": 1902,
+            "h": 112,
+            "font": "__montreal_a78db3, __montreal_Fallback_a78db3",
+            "size": "20px",
+            "lineHeight": "28px",
+            "spacing": "normal"
+          },
+          {
+            "tag": "SECTION",
+            "class": "Hero_hero__IrR3f",
+            "x": 0,
+            "y": 0,
+            "w": 1902,
+            "h": 950,
+            "font": "__montreal_a78db3, __montreal_Fallback_a78db3",
+            "size": "20px",
+            "lineHeight": "28px",
+            "spacing": "normal"
+          },
+          {
+            "tag": "H1",
+            "class": "Hero_introText__wboFn",
+            "x": 1149,
+            "y": 729,
+            "w": 385,
+            "h": 122,
+            "font": "__montreal_a78db3, __montreal_Fallback_a78db3",
+            "size": "24px",
+            "lineHeight": "30px",
+            "spacing": "normal"
+          },
+          {
+            "tag": "SECTION",
+            "class": "Approach_approach__kHR9Y",
+            "x": 0,
+            "y": 950,
+            "w": 1902,
+            "h": 800,
+            "font": "__montreal_a78db3, __montreal_Fallback_a78db3",
+            "size": "20px",
+            "lineHeight": "28px",
+            "spacing": "normal"
+          },
+          {
+            "tag": "H2",
+            "class": "",
+            "x": 251,
+            "y": 1100,
+            "w": 840,
+            "h": 210,
+            "font": "__montreal_a78db3, __montreal_Fallback_a78db3",
+            "size": "70px",
+            "lineHeight": "70px",
+            "spacing": "normal"
+          },
+          {
+            "tag": "H2",
+            "class": "ServicesHeading_heading__w6gAZ",
+            "x": 251,
+            "y": 1900,
+            "w": 1400,
+            "h": 407,
+            "font": "__montreal_a78db3, __montreal_Fallback_a78db3",
+            "size": "160px",
+            "lineHeight": "144px",
+            "spacing": "-3.2px"
+          },
+          {
+            "tag": "H2",
+            "class": "Carousel_heading__kEfF1",
+            "x": 251,
+            "y": 6334,
+            "w": 1400,
+            "h": 240,
+            "font": "__montreal_a78db3, __montreal_Fallback_a78db3",
+            "size": "120px",
+            "lineHeight": "114px",
+            "spacing": "normal"
+          },
+          {
+            "tag": "H2",
+            "class": "",
+            "x": 989,
+            "y": 6713,
+            "w": 543,
+            "h": 126,
+            "font": "__montreal_a78db3, __montreal_Fallback_a78db3",
+            "size": "60px",
+            "lineHeight": "63px",
+            "spacing": "normal"
+          },
+          {
+            "tag": "H2",
+            "class": "",
+            "x": 2229,
+            "y": 6713,
+            "w": 543,
+            "h": 126,
+            "font": "__montreal_a78db3, __montreal_Fallback_a78db3",
+            "size": "60px",
+            "lineHeight": "63px",
+            "spacing": "normal"
+          },
+          {
+            "tag": "H2",
+            "class": "",
+            "x": 3469,
+            "y": 6713,
+            "w": 543,
+            "h": 126,
+            "font": "__montreal_a78db3, __montreal_Fallback_a78db3",
+            "size": "60px",
+            "lineHeight": "63px",
+            "spacing": "normal"
+          },
+          {
+            "tag": "H2",
+            "class": "",
+            "x": 4709,
+            "y": 6713,
+            "w": 543,
+            "h": 126,
+            "font": "__montreal_a78db3, __montreal_Fallback_a78db3",
+            "size": "60px",
+            "lineHeight": "63px",
+            "spacing": "normal"
+          },
+          {
+            "tag": "H2",
+            "class": "",
+            "x": 5949,
+            "y": 6713,
+            "w": 543,
+            "h": 126,
+            "font": "__montreal_a78db3, __montreal_Fallback_a78db3",
+            "size": "60px",
+            "lineHeight": "63px",
+            "spacing": "normal"
+          },
+          {
+            "tag": "H2",
+            "class": "Work_heading__pbv4g",
+            "x": 251,
+            "y": 7623,
+            "w": 684,
+            "h": 343,
+            "font": "__montreal_a78db3, __montreal_Fallback_a78db3",
+            "size": "160px",
+            "lineHeight": "128px",
+            "spacing": "-3.2px"
+          },
+          {
+            "tag": "H2",
+            "class": "StatisticsHeading_heading__3C_3F",
+            "x": 251,
+            "y": 10063,
+            "w": 1400,
+            "h": 407,
+            "font": "__montreal_a78db3, __montreal_Fallback_a78db3",
+            "size": "160px",
+            "lineHeight": "144px",
+            "spacing": "-3.2px"
+          },
+          {
+            "tag": "H2",
+            "class": "Partners_heading__AOTNV",
+            "x": 251,
+            "y": 11396,
+            "w": 1282,
+            "h": 400,
+            "font": "__montreal_a78db3, __montreal_Fallback_a78db3",
+            "size": "160px",
+            "lineHeight": "160px",
+            "spacing": "-3.2px"
+          },
+          {
+            "tag": "SECTION",
+            "class": "Testimonials_testimonials__AMUEx",
+            "x": 0,
+            "y": 12348,
+            "w": 1902,
+            "h": 842,
+            "font": "__montreal_a78db3, __montreal_Fallback_a78db3",
+            "size": "20px",
+            "lineHeight": "28px",
+            "spacing": "normal"
+          },
+          {
+            "tag": "H2",
+            "class": "Testimonials_heading__k0Yyf",
+            "x": 251,
+            "y": 12601,
+            "w": 694,
+            "h": 240,
+            "font": "__montreal_a78db3, __montreal_Fallback_a78db3",
+            "size": "120px",
+            "lineHeight": "120px",
+            "spacing": "normal"
+          },
+          {
+            "tag": "SECTION",
+            "class": "FaqsList_faqsList__3yyiS",
+            "x": 0,
+            "y": 14845,
+            "w": 1902,
+            "h": 862,
+            "font": "__montreal_a78db3, __montreal_Fallback_a78db3",
+            "size": "20px",
+            "lineHeight": "28px",
+            "spacing": "normal"
+          },
+          {
+            "tag": "SECTION",
+            "class": "KotaverseCta_kotaverseCta__bBpWa",
+            "x": 0,
+            "y": 15707,
+            "w": 1902,
+            "h": 895,
+            "font": "__montreal_a78db3, __montreal_Fallback_a78db3",
+            "size": "20px",
+            "lineHeight": "28px",
+            "spacing": "normal"
+          }
+        ]
+      },
+      "differences": [
+        {
+          "class": "Header_header__KwdYD",
+          "key": "x",
+          "original": 0,
+          "replica": 951
+        },
+        {
+          "class": "Header_header__KwdYD",
+          "key": "h",
+          "original": 112,
+          "replica": 107
+        },
+        {
+          "class": "kyoto-hero-title",
+          "problem": "Element order differs"
+        },
+        {
+          "class": "Hero_introText__wboFn",
+          "problem": "Element order differs"
+        },
+        {
+          "class": "Approach_approach__kHR9Y",
+          "problem": "Element order differs"
+        },
+        {
+          "class": "",
+          "problem": "Element order differs"
+        },
+        {
+          "class": "ServicesHeading_heading__w6gAZ",
+          "problem": "Element order differs"
+        },
+        {
+          "class": "Carousel_heading__kEfF1",
+          "problem": "Element order differs"
+        },
+        {
+          "class": "",
+          "key": "x",
+          "original": 2229,
+          "replica": 989
+        },
+        {
+          "class": "",
+          "key": "y",
+          "original": 6713,
+          "replica": 6738
+        },
+        {
+          "class": "",
+          "key": "h",
+          "original": 126,
+          "replica": 63
+        },
+        {
+          "class": "",
+          "key": "x",
+          "original": 3469,
+          "replica": 2229
+        },
+        {
+          "class": "",
+          "key": "y",
+          "original": 6713,
+          "replica": 6738
+        },
+        {
+          "class": "",
+          "key": "h",
+          "original": 126,
+          "replica": 63
+        },
+        {
+          "class": "",
+          "key": "x",
+          "original": 4709,
+          "replica": 3469
+        },
+        {
+          "class": "",
+          "key": "y",
+          "original": 6713,
+          "replica": 6738
+        },
+        {
+          "class": "",
+          "key": "h",
+          "original": 126,
+          "replica": 63
+        },
+        {
+          "class": "",
+          "key": "x",
+          "original": 5949,
+          "replica": 4709
+        },
+        {
+          "class": "",
+          "key": "y",
+          "original": 6713,
+          "replica": 6738
+        },
+        {
+          "class": "",
+          "key": "h",
+          "original": 126,
+          "replica": 63
+        },
+        {
+          "class": "",
+          "problem": "Element order differs"
+        },
+        {
+          "class": "Work_heading__pbv4g",
+          "problem": "Element order differs"
+        },
+        {
+          "class": "StatisticsHeading_heading__3C_3F",
+          "problem": "Element order differs"
+        },
+        {
+          "class": "Partners_heading__AOTNV",
+          "problem": "Element order differs"
+        },
+        {
+          "class": "Testimonials_testimonials__AMUEx",
+          "problem": "Element order differs"
+        },
+        {
+          "class": "Testimonials_heading__k0Yyf",
+          "problem": "Element order differs"
+        },
+        {
+          "class": "FaqsList_faqsList__3yyiS",
+          "problem": "Element order differs"
+        },
+        {
+          "class": "KotaverseCta_kotaverseCta__bBpWa",
+          "problem": "Element order differs"
+        }
+      ]
+    }
+  ]
 }

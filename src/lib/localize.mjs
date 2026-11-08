@@ -112,7 +112,7 @@ export function localize(text) {
   text = text.replace(/Strategy first\.(?:\\r?\\n|\s)+Always\.?/g, 'Convert & Build');
   text = text.replace(/Find the(?:\\r?\\n|\s)+bold idea\.?/g, 'Automate & Scale');
   text = text.replace(/Nail the(?:\\r?\\n|\s)+process\.?/g, 'Launch & Grow');
-  text = text.replace(/Create to(?:\\r?\\n|\s)+convert\.?/gi, 'Clarity First. Always.');
+  text = text.replace(/Create to(?:\\r?\\n|\s)+convert\.?/gi, 'Clarity First. Always');
   text = text.replaceAll('We\u2019re ready for your growth. In fact, we\u2019re rooting for it. Whether it\u2019s a new product, campaign, or pivot, we make sure your digital presence is set up to flex with you', 'We cut through the noise and define exactly how your brand should look, sound, and show up. The result? Messaging and identity that feel sharp, consistent, and impossible to ignore.');
   text = text.replaceAll('We sweat the small stuff. That means from brand visuals to SEO and UX flow, every creative decision is designed to boost engagement, drive conversions, and build brand equity.', 'No guesswork. No wasted effort. We dig deep into your business, audience, and goals — then lock in clear direction before a single design, website, or automation is built.');
   text = text.replaceAll('We\u2019re collaborative, decisive, and clear from day one. You\u2019ll feel the momentum. You\u2019ll know where you stand. You\u2019ll have a team that knows when to lead, and when to listen.', 'Going live is just the beginning. We support the launch, track what\u2019s working, and keep refining your marketing, website, and automations so performance compounds over time.');
