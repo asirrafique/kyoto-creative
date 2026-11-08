@@ -1563,12 +1563,7 @@ function localizeDocument(html, route) {
       .replaceAll('/images/kyoto-creative-footer-white.png', '/images/kyoto-creative-home-footer.png');
   }
   if (parts.length) {
-    let flightText;
-    if (route === '/work' || route.startsWith('/work/')) {
-      flightText = localize(parts.join(''));
-    } else {
-      flightText = localizeFlight(parts.join(''), route);
-    }
+    const flightText = localizeFlight(parts.join(''), route);
     const data = JSON.stringify([1, flightText]).replaceAll('<', '\\u003c');
     html = html.replace(placeholder, '<script>self.__next_f.push(' + data + ')</script>');
   }
@@ -1690,11 +1685,7 @@ export async function documentResponse(request, route) {
     try {
       const flight = await memoize(cacheable && file + ':rsc', async () => {
         let text = await readPage(file.replace('.html', '.rsc'), temporary);
-        if (route === '/work' || route.startsWith('/work/')) {
-          text = localize(text);
-        } else {
-          text = localizeFlight(text, route);
-        }
+        text = localizeFlight(text, route);
         return adjustJohnRuggieriQuote(text, route);
       });
       return new Response(flight, { headers: { 'Content-Type': 'text/x-component', 'Cache-Control': 'no-cache', Vary: 'RSC, Next-Router-State-Tree, Next-Router-Prefetch' } });
