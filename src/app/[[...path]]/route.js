@@ -1,5 +1,6 @@
 import { assetResponse, documentResponse } from '../../lib/reference';
 import { formActionResponse } from '../../lib/form-actions';
+import { generateSitemapXml, generateRobotsTxt } from '../../lib/sitemap';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -10,6 +11,28 @@ export async function POST(request) {
 
 export async function GET(request, context) {
   const { path = [] } = await context.params;
+  const fullPath = path.join('/');
+
+  if (fullPath === 'sitemap.xml') {
+    return new Response(generateSitemapXml(), {
+      status: 200,
+      headers: {
+        'Content-Type': 'application/xml; charset=utf-8',
+        'Cache-Control': 'public, max-age=3600, s-maxage=86400',
+      },
+    });
+  }
+
+  if (fullPath === 'robots.txt') {
+    return new Response(generateRobotsTxt(), {
+      status: 200,
+      headers: {
+        'Content-Type': 'text/plain; charset=utf-8',
+        'Cache-Control': 'public, max-age=3600, s-maxage=86400',
+      },
+    });
+  }
+
   if (path[0] === '__static' && path[2] === '__assets') return assetResponse(request, path[3], path.slice(4).join('/'));
   if (path[0] === '__analytics') return new Response('/* Analytics disabled in the local replica. */', { headers: { 'Content-Type': 'application/javascript' } });
   if (path[0] === '__assets') return assetResponse(request, path[1], path.slice(2).join('/'));
