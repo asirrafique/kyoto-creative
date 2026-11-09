@@ -1232,6 +1232,11 @@ export function localizeFlight(text, route) {
       if (/^[a-f\d]+$/i.test(id) && /^[a-f\d]+$/i.test(hex)) {
         const end = comma + 1 + parseInt(hex, 16);
         let value = localize(source.subarray(comma + 1, end).toString());
+        if (route === '/work/leadcourt') value = removeLeadCourtServiceLabelDashes(value);
+        if (route === '/work/interactfinancial.ca') value = removeInteractFinancialServiceLabelDots(value);
+        if (route === '/work/green-square-infra') value = removeGreenSquareServiceLabelDashes(value);
+        if (route === '/work/johnruggieri') value = removeJohnRuggieriServiceLabelDots(value);
+        if (route === '/work/seven-gate-holdings') value = removeSevenGateServiceLabelDots(value);
         if (route === '/service/brand-strategy') value = replaceBrandStrategyCopy(value);
         if (route === '/service/brand-identity-design') value = replaceBrandIdentityDesignCopy(value);
         if (route === '/service/tone-of-voice') value = replaceToneOfVoiceCopy(value);
@@ -1289,6 +1294,11 @@ export function localizeFlight(text, route) {
     row = replaceWebDesignFaqFlightRow(row);
     row = replaceBrandFaqFlightRow(row);
     row = localize(row);
+    if (route === '/work/leadcourt') row = removeLeadCourtServiceLabelDashes(row);
+    if (route === '/work/interactfinancial.ca') row = removeInteractFinancialServiceLabelDots(row);
+    if (route === '/work/green-square-infra') row = removeGreenSquareServiceLabelDashes(row);
+    if (route === '/work/johnruggieri') row = removeJohnRuggieriServiceLabelDots(row);
+    if (route === '/work/seven-gate-holdings') row = removeSevenGateServiceLabelDots(row);
     if (route === '/service/brand-strategy') row = replaceBrandStrategyCopy(row);
     if (route === '/service/brand-identity-design') row = replaceBrandIdentityDesignCopy(row);
     if (route === '/service/tone-of-voice') row = replaceToneOfVoiceCopy(row);
@@ -1744,6 +1754,11 @@ function localizeDocument(html, route) {
     return result;
   });
   html = localize(html);
+  if (route === '/work/leadcourt') html = removeLeadCourtServiceLabelDashes(html);
+  if (route === '/work/interactfinancial.ca') html = removeInteractFinancialServiceLabelDots(html);
+  if (route === '/work/green-square-infra') html = removeGreenSquareServiceLabelDashes(html);
+  if (route === '/work/johnruggieri') html = removeJohnRuggieriServiceLabelDots(html);
+  if (route === '/work/seven-gate-holdings') html = removeSevenGateServiceLabelDots(html);
   if (route === '/service/brand-strategy') html = replaceBrandStrategyCopy(html);
   if (route === '/service/brand-identity-design') html = replaceBrandIdentityDesignCopy(html);
   if (route === '/service/tone-of-voice') html = replaceToneOfVoiceCopy(html);
@@ -1782,6 +1797,26 @@ function localizeDocument(html, route) {
     html = html.replace(placeholder, '<script>self.__next_f.push(' + data + ')</script>');
   }
   return reserveLazyImageDimensionsInMarkup(html);
+}
+
+function removeLeadCourtServiceLabelDashes(text) {
+  return text.replace(/(Growth Marketing|SEO|Paid Advertising)(?:\s|&nbsp;)*(?:&#8211;|&ndash;|–|-)/g, '$1');
+}
+
+function removeInteractFinancialServiceLabelDots(text) {
+  return text.replace(/(Website Development|Search Engine Optimisation|Answer Engine Optimisation) ·/g, '$1');
+}
+
+function removeGreenSquareServiceLabelDashes(text) {
+  return text.replace(/(Website Development|Performance Marketing|Real Estate Marketing) —/g, '$1');
+}
+
+function removeJohnRuggieriServiceLabelDots(text) {
+  return text.replace(/(Personal Branding|Digital Marketing|Lead Generation) ·/g, '$1');
+}
+
+function removeSevenGateServiceLabelDots(text) {
+  return text.replace(/(Website Design &amp; Development|Brand Experience) ·/g, '$1');
 }
 
 const rendered = new Map();
@@ -1963,6 +1998,9 @@ export async function documentResponse(request, route) {
   const contactEmailStyle = route === '/contact'
     ? '<style>.ContactDetails_contactDetails__KiaCK .ContactDetails_right__D3SFA>div:first-child>.ContactDetails_email__X5toE:nth-child(-n+2) .CopyText_copyText__OtWNq{font-size:.8em}</style>'
     : '';
+  const agencyEmailStyle = route === '/agency'
+    ? '<style>.LargeCta_subHeading__Cs6d8 a{font-size:clamp(1.25rem,3vw,2.5rem)!important}</style>'
+    : '';
   const toneHeadlineStyle = toneOfVoiceHeadlineStyle(route);
   const brandIdentityHeadlineStyle = route === '/service/brand-identity-design'
     ? '<style>.Hero_hero__18Xqo h2{font-size:clamp(2.25rem,6.4vw,6.75rem)!important}.Hero_hero__18Xqo .Hero_introText__HLM02{font-size:clamp(1.125rem,1.35vw,1.35rem)!important}@media (min-width:769px){.Hero_hero__18Xqo .Hero_introText__HLM02{max-width:40ch!important;grid-column:5/span 8!important}}</style>'
@@ -1993,7 +2031,7 @@ export async function documentResponse(request, route) {
       '.Quote_quote__8BTRS svg { width: clamp(1.5rem, 2.5vw, 2rem) !important; margin-bottom: 1rem !important; }' +
       '</style>'
     : '';
-  html = html.replace('<head>', '<head>' + partnersStyle + homepageFooterStyle + serviceHeroLabelStyle + processStyle + contactEmailStyle + toneHeadlineStyle + brandIdentityHeadlineStyle + creativeWebDesignHeadlineStyle + webDevelopmentHeadlineStyle + wordPressCmsHeadlineStyle + seoGeoHeadlineStyle + copywritingHeadlineStyle + sitecareHeadlineStyle + leadcourtQuoteStyle + lazyImageLayoutStyle + '<base href="' + base + '">' + boot);
+  html = html.replace('<head>', '<head>' + partnersStyle + homepageFooterStyle + serviceHeroLabelStyle + processStyle + contactEmailStyle + agencyEmailStyle + toneHeadlineStyle + brandIdentityHeadlineStyle + creativeWebDesignHeadlineStyle + webDevelopmentHeadlineStyle + wordPressCmsHeadlineStyle + seoGeoHeadlineStyle + copywritingHeadlineStyle + sitecareHeadlineStyle + leadcourtQuoteStyle + lazyImageLayoutStyle + '<base href="' + base + '">' + boot);
   html = html.replace(/<script[^>]*src="https:\/\/(?:www\.)?(?:googletagmanager\.com|vercel\.live)[^>]*><\/script>/g, '');
   return html;
   });
