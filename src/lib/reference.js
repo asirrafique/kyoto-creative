@@ -1220,6 +1220,7 @@ function reserveLazyImageDimensionsInFlight(text) {
 }
 
 export function localizeFlight(text, route) {
+  route = getCanonicalServiceRoute(route);
   const source = Buffer.from(text);
   const rows = [];
   let cursor = 0;
@@ -1237,16 +1238,19 @@ export function localizeFlight(text, route) {
         if (route === '/work/green-square-infra') value = removeGreenSquareServiceLabelDashes(value);
         if (route === '/work/johnruggieri') value = removeJohnRuggieriServiceLabelDots(value);
         if (route === '/work/seven-gate-holdings') value = removeSevenGateServiceLabelDots(value);
-        if (route === '/service/brand-strategy') value = replaceBrandStrategyCopy(value);
-        if (route === '/service/brand-identity-design') value = replaceBrandIdentityDesignCopy(value);
-        if (route === '/service/tone-of-voice') value = replaceToneOfVoiceCopy(value);
-        if (route === '/service/creative-web-design') value = replaceCreativeWebDesignCopy(value);
-        if (route === '/service/web-development') value = replaceWebDevelopmentCopy(value);
-        if (route === '/service/wordpress-cms') value = replaceWordPressCmsCopy(value);
-        if (route === '/service/seo-geo') value = replaceSeoGeoCopy(value);
-        if (route === '/service/copywriting') value = replaceCopywritingCopy(value);
-        if (route === '/service/sitecare') value = replaceSitecareCopy(value);
-        rows.push(id + ':T' + Buffer.byteLength(value).toString(16) + ',' + value);
+        if (route === '/service/brand-strategy-positioning') value = replaceBrandStrategyCopy(value);
+        if (route === '/service/content-campaigns-pr') value = replaceBrandIdentityDesignCopy(value);
+        if (route === '/service/paid-media-performance') value = replaceToneOfVoiceCopy(value);
+        if (route === '/service/website-design-development') value = replaceCreativeWebDesignCopy(value);
+        if (route === '/service/product-design-ux') value = replaceWebDevelopmentCopy(value);
+        if (route === '/service/app-design-development') value = replaceWordPressCmsCopy(value);
+        if (route === '/service/autonomous-ai-agents-copilots') value = replaceSeoGeoCopy(value);
+        if (route === '/service/workflow-orchestration-api-integration') value = replaceCopywritingCopy(value);
+        if (route === '/service/intelligent-document-data-processing') value = replaceSitecareCopy(value);
+        value = replaceServicePageName(value, route);
+        let tLine = id + ':T' + Buffer.byteLength(value).toString(16) + ',' + value;
+        tLine = replaceFlightMetadataRow(tLine, route);
+        rows.push(tLine);
         cursor = end;
         continue;
       }
@@ -1254,15 +1258,15 @@ export function localizeFlight(text, route) {
     const newline = source.indexOf(10, cursor);
     const end = newline === -1 ? source.length : newline + 1;
     let row = source.subarray(cursor, end).toString();
-    if (route === '/service/brand-strategy') row = replaceBrandStrategyCopy(row);
-    if (route === '/service/brand-identity-design') row = replaceBrandIdentityDesignCopy(row);
-    if (route === '/service/tone-of-voice') row = replaceToneOfVoiceCopy(row);
-    if (route === '/service/creative-web-design') row = replaceCreativeWebDesignCopy(row);
-    if (route === '/service/web-development') row = replaceWebDevelopmentCopy(row);
-    if (route === '/service/wordpress-cms') row = replaceWordPressCmsCopy(row);
-    if (route === '/service/seo-geo') row = replaceSeoGeoCopy(row);
-    if (route === '/service/copywriting') row = replaceCopywritingCopy(row);
-    if (route === '/service/sitecare') row = replaceSitecareCopy(row);
+    if (route === '/service/brand-strategy-positioning') row = replaceBrandStrategyCopy(row);
+    if (route === '/service/content-campaigns-pr') row = replaceBrandIdentityDesignCopy(row);
+    if (route === '/service/paid-media-performance') row = replaceToneOfVoiceCopy(row);
+    if (route === '/service/website-design-development') row = replaceCreativeWebDesignCopy(row);
+    if (route === '/service/product-design-ux') row = replaceWebDevelopmentCopy(row);
+    if (route === '/service/app-design-development') row = replaceWordPressCmsCopy(row);
+    if (route === '/service/autonomous-ai-agents-copilots') row = replaceSeoGeoCopy(row);
+    if (route === '/service/workflow-orchestration-api-integration') row = replaceCopywritingCopy(row);
+    if (route === '/service/intelligent-document-data-processing') row = replaceSitecareCopy(row);
     if (route === '/') {
       row = replaceHomepageFaqFlightRow(row);
       row = replaceHomepageStatisticsFlightRow(row);
@@ -1299,15 +1303,17 @@ export function localizeFlight(text, route) {
     if (route === '/work/green-square-infra') row = removeGreenSquareServiceLabelDashes(row);
     if (route === '/work/johnruggieri') row = removeJohnRuggieriServiceLabelDots(row);
     if (route === '/work/seven-gate-holdings') row = removeSevenGateServiceLabelDots(row);
-    if (route === '/service/brand-strategy') row = replaceBrandStrategyCopy(row);
-    if (route === '/service/brand-identity-design') row = replaceBrandIdentityDesignCopy(row);
-    if (route === '/service/tone-of-voice') row = replaceToneOfVoiceCopy(row);
-    if (route === '/service/creative-web-design') row = replaceCreativeWebDesignCopy(row);
-    if (route === '/service/web-development') row = replaceWebDevelopmentCopy(row);
-    if (route === '/service/wordpress-cms') row = replaceWordPressCmsCopy(row);
-    if (route === '/service/seo-geo') row = replaceSeoGeoCopy(row);
-    if (route === '/service/copywriting') row = replaceCopywritingCopy(row);
-    if (route === '/service/sitecare') row = replaceSitecareCopy(row);
+    if (route === '/service/brand-strategy-positioning') row = replaceBrandStrategyCopy(row);
+    if (route === '/service/content-campaigns-pr') row = replaceBrandIdentityDesignCopy(row);
+    if (route === '/service/paid-media-performance') row = replaceToneOfVoiceCopy(row);
+    if (route === '/service/website-design-development') row = replaceCreativeWebDesignCopy(row);
+    if (route === '/service/product-design-ux') row = replaceWebDevelopmentCopy(row);
+    if (route === '/service/app-design-development') row = replaceWordPressCmsCopy(row);
+    if (route === '/service/autonomous-ai-agents-copilots') row = replaceSeoGeoCopy(row);
+    if (route === '/service/workflow-orchestration-api-integration') row = replaceCopywritingCopy(row);
+    if (route === '/service/intelligent-document-data-processing') row = replaceSitecareCopy(row);
+    row = replaceServicePageName(row, route);
+    row = replaceFlightMetadataRow(row, route);
     rows.push(row);
     cursor = end;
   }
@@ -1646,7 +1652,7 @@ function replaceSitecareCopy(text) {
 }
 
 function toneOfVoiceHeadlineStyle(route) {
-  return route === '/service/tone-of-voice'
+  return route === '/service/paid-media-performance'
     ? '<style>@media (min-width:769px){.Hero_hero__18Xqo h2{font-size:clamp(2.25rem,5vw,4.5rem)!important;width:65%!important}.Hero_hero__18Xqo div.Hero_video__IHL3y{width:30%!important;aspect-ratio:1/1!important;clip-path:circle(50% at 50% 50%)}.Hero_hero__18Xqo div.Hero_video__IHL3y>span{width:100%!important;height:100%!important;border-radius:50%;overflow:hidden}.Hero_hero__18Xqo div.Hero_video__IHL3y video,.Hero_hero__18Xqo div.Hero_video__IHL3y img{width:100%!important;height:100%!important;border-radius:50%;object-fit:cover}}</style>'
     : '';
 }
@@ -1741,6 +1747,8 @@ function replaceBrandStrategyCopy(text) {
 }
 
 function localizeDocument(html, route) {
+  const rawRoute = route;
+  route = getCanonicalServiceRoute(route);
   const parts = [];
   const placeholder = '<!--replica-flight-stream-->';
   let first = true;
@@ -1759,15 +1767,15 @@ function localizeDocument(html, route) {
   if (route === '/work/green-square-infra') html = removeGreenSquareServiceLabelDashes(html);
   if (route === '/work/johnruggieri') html = removeJohnRuggieriServiceLabelDots(html);
   if (route === '/work/seven-gate-holdings') html = removeSevenGateServiceLabelDots(html);
-  if (route === '/service/brand-strategy') html = replaceBrandStrategyCopy(html);
-  if (route === '/service/brand-identity-design') html = replaceBrandIdentityDesignCopy(html);
-  if (route === '/service/tone-of-voice') html = replaceToneOfVoiceCopy(html);
-  if (route === '/service/creative-web-design') html = replaceCreativeWebDesignCopy(html);
-  if (route === '/service/web-development') html = replaceWebDevelopmentCopy(html);
-  if (route === '/service/wordpress-cms') html = replaceWordPressCmsCopy(html);
-  if (route === '/service/seo-geo') html = replaceSeoGeoCopy(html);
-  if (route === '/service/copywriting') html = replaceCopywritingCopy(html);
-  if (route === '/service/sitecare') html = replaceSitecareCopy(html);
+  if (route === '/service/brand-strategy-positioning') html = replaceBrandStrategyCopy(html);
+  if (route === '/service/content-campaigns-pr') html = replaceBrandIdentityDesignCopy(html);
+  if (route === '/service/paid-media-performance') html = replaceToneOfVoiceCopy(html);
+  if (route === '/service/website-design-development') html = replaceCreativeWebDesignCopy(html);
+  if (route === '/service/product-design-ux') html = replaceWebDevelopmentCopy(html);
+  if (route === '/service/app-design-development') html = replaceWordPressCmsCopy(html);
+  if (route === '/service/autonomous-ai-agents-copilots') html = replaceSeoGeoCopy(html);
+  if (route === '/service/workflow-orchestration-api-integration') html = replaceCopywritingCopy(html);
+  if (route === '/service/intelligent-document-data-processing') html = replaceSitecareCopy(html);
   if (route === '/b2b-tech-software-saas' || route === '/healthcare' || route === '/retail') html = removeTestimonialsHtml(html);
   if (route === '/contact') html = replaceContactNewsletterCopy(html);
   html = replaceWebDesignProcessHtml(html);
@@ -1775,14 +1783,26 @@ function localizeDocument(html, route) {
   html = replaceBrandProcessHtml(html);
   html = replaceWebDesignFaqHtml(html);
   html = replaceBrandFaqHtml(html);
+  html = replaceServicePageName(html, route);
   if (route === '/contact') {
     html = replaceContactEmailsHtml(html);
     html = removeCareersEmailHtml(html);
+    html = html.replace('<section class="Hero_hero___ImMv">', '<section class="Hero_hero___ImMv"><h1 class="visually-hidden">Let’s Talk About Your Next Project</h1>');
   }
   if (route === '/work') {
     html = replaceWorkArchiveHtml(html);
+    html = html.replace('<h1><span class="MaskInUp_container__0AW5i" data-fill="false"><div><span><i></i>Work</span></div></span></h1>', '<h1><span class="MaskInUp_container__0AW5i" data-fill="false"><div><span><i></i>Selected Work &amp; Client Results</span></div></span></h1>');
   }
   if (route === '/') {
+    html = html.replace('<h1 class="kyoto-hero-title"><span class="kyoto-hero-line">Marketing that works.</span><span class="kyoto-hero-line">Websites that convert.</span><span class="kyoto-hero-line">AI that delivers.</span></h1>', '<h1 class="kyoto-hero-title">Marketing, Websites &amp; AI Automations That Drive Growth</h1>');
+    html = html.replace('<h1 class="Hero_introText__wboFn">', '<p class="Hero_introText__wboFn">');
+    const introPIdx = html.indexOf('<p class="Hero_introText__wboFn">');
+    if (introPIdx !== -1) {
+      const closingH1 = html.indexOf('</h1>', introPIdx);
+      if (closingH1 !== -1) {
+        html = html.slice(0, closingH1) + '</p>' + html.slice(closingH1 + 5);
+      }
+    }
     html = replaceHomepageFaqHtml(html);
     html = html
       .replace(
@@ -1818,6 +1838,305 @@ function removeJohnRuggieriServiceLabelDots(text) {
 function removeSevenGateServiceLabelDots(text) {
   return text.replace(/(Website Design &amp; Development|Brand Experience) ·/g, '$1');
 }
+
+const pageSEOMap = new Map([
+  ['/', {
+    title: 'Kyoto Creative | Marketing, Web & AI Automation Agency',
+    description: 'Kyoto Creative is a marketing, web & AI automation agency. Brand strategy, high-converting websites and practical AI systems that drive real growth.',
+    h1: 'Marketing, Websites & AI Automations That Drive Growth',
+    canonical: 'https://www.kyotocreative.com/',
+  }],
+  ['/work', {
+    title: 'Our Work & Case Studies | Kyoto Creative',
+    description: 'Explore selected work from Kyoto Creative — branding, websites, apps and AI automations that delivered measurable results for our clients.',
+    h1: 'Selected Work & Client Results',
+    canonical: 'https://www.kyotocreative.com/work',
+  }],
+  ['/contact', {
+    title: 'Contact Us | Start Your Project | Kyoto Creative',
+    description: 'Ready to grow? Contact Kyoto Creative to discuss brand strategy, website development or AI automation. Let’s start your next project.',
+    h1: 'Let’s Talk About Your Next Project',
+    canonical: 'https://www.kyotocreative.com/contact',
+  }],
+  ['/marketing', {
+    title: 'Marketing Agency | Brand Strategy & Performance | Kyoto Creative',
+    description: 'Full-service marketing from Kyoto Creative: brand strategy & positioning, content campaigns & PR, paid media, and brand identity. Results-driven growth.',
+    h1: 'Marketing Services That Drive Growth',
+    canonical: 'https://www.kyotocreative.com/marketing',
+  }],
+  ['/service/marketing', {
+    title: 'Marketing Agency | Brand Strategy & Performance | Kyoto Creative',
+    description: 'Full-service marketing from Kyoto Creative: brand strategy & positioning, content campaigns & PR, paid media, and brand identity. Results-driven growth.',
+    h1: 'Marketing Services That Drive Growth',
+    canonical: 'https://www.kyotocreative.com/marketing',
+  }],
+  ['/brand-strategy-positioning', {
+    title: 'Brand Strategy & Positioning Services | Kyoto Creative',
+    description: 'Clear brand strategy and positioning that differentiates you in the market. Kyoto Creative builds frameworks that attract the right clients.',
+    h1: 'Brand Strategy & Positioning',
+    canonical: 'https://www.kyotocreative.com/brand-strategy-positioning',
+  }],
+  ['/service/brand-strategy-positioning', {
+    title: 'Brand Strategy & Positioning Services | Kyoto Creative',
+    description: 'Clear brand strategy and positioning that differentiates you in the market. Kyoto Creative builds frameworks that attract the right clients.',
+    h1: 'Brand Strategy & Positioning',
+    canonical: 'https://www.kyotocreative.com/brand-strategy-positioning',
+  }],
+  ['/content-campaigns-pr', {
+    title: 'Content Campaigns & PR Services | Kyoto Creative',
+    description: 'Strategic content campaigns and PR that build authority and visibility. Kyoto Creative creates stories that earn attention and trust.',
+    h1: 'Content Campaigns & PR',
+    canonical: 'https://www.kyotocreative.com/content-campaigns-pr',
+  }],
+  ['/service/content-campaigns-pr', {
+    title: 'Content Campaigns & PR Services | Kyoto Creative',
+    description: 'Strategic content campaigns and PR that build authority and visibility. Kyoto Creative creates stories that earn attention and trust.',
+    h1: 'Content Campaigns & PR',
+    canonical: 'https://www.kyotocreative.com/content-campaigns-pr',
+  }],
+  ['/paid-media-performance', {
+    title: 'Paid Media & Performance Marketing | Kyoto Creative',
+    description: 'High-ROI paid media and performance marketing. Google Ads, Meta, LinkedIn and more — managed for measurable results by Kyoto Creative.',
+    h1: 'Paid Media & Performance Marketing',
+    canonical: 'https://www.kyotocreative.com/paid-media-performance',
+  }],
+  ['/service/paid-media-performance', {
+    title: 'Paid Media & Performance Marketing | Kyoto Creative',
+    description: 'High-ROI paid media and performance marketing. Google Ads, Meta, LinkedIn and more — managed for measurable results by Kyoto Creative.',
+    h1: 'Paid Media & Performance Marketing',
+    canonical: 'https://www.kyotocreative.com/paid-media-performance',
+  }],
+  ['/brand-identity-creative', {
+    title: 'Brand Identity & Creative Design | Kyoto Creative',
+    description: 'Complete brand identity and creative systems — logo, visual language, guidelines. Distinctive creative that makes your brand unforgettable.',
+    h1: 'Brand Identity & Creative',
+    canonical: 'https://www.kyotocreative.com/brand-identity-creative',
+  }],
+  ['/service/branding', {
+    title: 'Brand Identity & Creative Design | Kyoto Creative',
+    description: 'Complete brand identity and creative systems — logo, visual language, guidelines. Distinctive creative that makes your brand unforgettable.',
+    h1: 'Brand Identity & Creative',
+    canonical: 'https://www.kyotocreative.com/brand-identity-creative',
+  }],
+  ['/web-app', {
+    title: 'Web & App Design and Development Agency | Kyoto Creative',
+    description: 'Website design & development, product design & UX, and app design & development from Kyoto Creative. Beautiful, high-performing digital products.',
+    h1: 'Web & App Design and Development',
+    canonical: 'https://www.kyotocreative.com/web-app',
+  }],
+  ['/service/web-app', {
+    title: 'Web & App Design and Development Agency | Kyoto Creative',
+    description: 'Website design & development, product design & UX, and app design & development from Kyoto Creative. Beautiful, high-performing digital products.',
+    h1: 'Web & App Design and Development',
+    canonical: 'https://www.kyotocreative.com/web-app',
+  }],
+  ['/website-design-development', {
+    title: 'Website Design & Development Agency | Kyoto Creative',
+    description: 'Conversion-focused website design and development. Fast, modern, SEO-ready sites built to grow your business by Kyoto Creative.',
+    h1: 'Website Design & Development',
+    canonical: 'https://www.kyotocreative.com/website-design-development',
+  }],
+  ['/service/website-design-development', {
+    title: 'Website Design & Development Agency | Kyoto Creative',
+    description: 'Conversion-focused website design and development. Fast, modern, SEO-ready sites built to grow your business by Kyoto Creative.',
+    h1: 'Website Design & Development',
+    canonical: 'https://www.kyotocreative.com/website-design-development',
+  }],
+  ['/product-design-ux', {
+    title: 'Product Design & UX Services | Kyoto Creative',
+    description: 'User-centered product design and UX that improves activation, retention and conversion. Expert UX/UI for SaaS and digital products.',
+    h1: 'Product Design & UX',
+    canonical: 'https://www.kyotocreative.com/product-design-ux',
+  }],
+  ['/service/product-design-ux', {
+    title: 'Product Design & UX Services | Kyoto Creative',
+    description: 'User-centered product design and UX that improves activation, retention and conversion. Expert UX/UI for SaaS and digital products.',
+    h1: 'Product Design & UX',
+    canonical: 'https://www.kyotocreative.com/product-design-ux',
+  }],
+  ['/app-design-development', {
+    title: 'App Design & Development Services | Kyoto Creative',
+    description: 'End-to-end app design and development for iOS, Android and web. Beautiful, scalable mobile and web apps from Kyoto Creative.',
+    h1: 'App Design & Development',
+    canonical: 'https://www.kyotocreative.com/app-design-development',
+  }],
+  ['/service/app-design-development', {
+    title: 'App Design & Development Services | Kyoto Creative',
+    description: 'End-to-end app design and development for iOS, Android and web. Beautiful, scalable mobile and web apps from Kyoto Creative.',
+    h1: 'App Design & Development',
+    canonical: 'https://www.kyotocreative.com/app-design-development',
+  }],
+  ['/ai-automations', {
+    title: 'AI Automations & Intelligent Agents | Kyoto Creative',
+    description: 'Practical AI automations: intelligent document processing, autonomous AI agents & copilots, and workflow orchestration. Scale smarter with Kyoto Creative.',
+    h1: 'AI Automations That Actually Work',
+    canonical: 'https://www.kyotocreative.com/ai-automations',
+  }],
+  ['/service/growth-marketing', {
+    title: 'AI Automations & Intelligent Agents | Kyoto Creative',
+    description: 'Practical AI automations: intelligent document processing, autonomous AI agents & copilots, and workflow orchestration. Scale smarter with Kyoto Creative.',
+    h1: 'AI Automations That Actually Work',
+    canonical: 'https://www.kyotocreative.com/ai-automations',
+  }],
+  ['/intelligent-document-data-processing', {
+    title: 'Intelligent Document & Data Processing | Kyoto Creative',
+    description: 'AI-powered document and data processing that extracts, validates and routes information automatically. Cut manual work with Kyoto Creative.',
+    h1: 'Intelligent Document & Data Processing',
+    canonical: 'https://www.kyotocreative.com/intelligent-document-data-processing',
+  }],
+  ['/service/intelligent-document-data-processing', {
+    title: 'Intelligent Document & Data Processing | Kyoto Creative',
+    description: 'AI-powered document and data processing that extracts, validates and routes information automatically. Cut manual work with Kyoto Creative.',
+    h1: 'Intelligent Document & Data Processing',
+    canonical: 'https://www.kyotocreative.com/intelligent-document-data-processing',
+  }],
+  ['/autonomous-ai-agents-copilots', {
+    title: 'Autonomous AI Agents & Copilots | Kyoto Creative',
+    description: 'Build autonomous AI agents and copilots that handle complex tasks, decisions and workflows. Practical agentic AI solutions from Kyoto Creative.',
+    h1: 'Autonomous AI Agents & Copilots',
+    canonical: 'https://www.kyotocreative.com/autonomous-ai-agents-copilots',
+  }],
+  ['/service/autonomous-ai-agents-copilots', {
+    title: 'Autonomous AI Agents & Copilots | Kyoto Creative',
+    description: 'Build autonomous AI agents and copilots that handle complex tasks, decisions and workflows. Practical agentic AI solutions from Kyoto Creative.',
+    h1: 'Autonomous AI Agents & Copilots',
+    canonical: 'https://www.kyotocreative.com/autonomous-ai-agents-copilots',
+  }],
+  ['/workflow-orchestration-api-integration', {
+    title: 'Workflow Orchestration & API Integration | Kyoto Creative',
+    description: 'Seamless workflow orchestration and API integrations powered by AI. Connect systems, automate processes and scale operations with Kyoto Creative.',
+    h1: 'Workflow Orchestration & API Integration',
+    canonical: 'https://www.kyotocreative.com/workflow-orchestration-api-integration',
+  }],
+  ['/service/workflow-orchestration-api-integration', {
+    title: 'Workflow Orchestration & API Integration | Kyoto Creative',
+    description: 'Seamless workflow orchestration and API integrations powered by AI. Connect systems, automate processes and scale operations with Kyoto Creative.',
+    h1: 'Workflow Orchestration & API Integration',
+    canonical: 'https://www.kyotocreative.com/workflow-orchestration-api-integration',
+  }],
+]);
+
+function getCanonicalServiceRoute(route) {
+  const mapping = {
+    '/marketing': '/service/marketing',
+    '/brand-strategy-positioning': '/service/brand-strategy-positioning',
+    '/content-campaigns-pr': '/service/content-campaigns-pr',
+    '/paid-media-performance': '/service/paid-media-performance',
+    '/brand-identity-creative': '/service/branding',
+    '/web-app': '/service/web-app',
+    '/website-design-development': '/service/website-design-development',
+    '/product-design-ux': '/service/product-design-ux',
+    '/app-design-development': '/service/app-design-development',
+    '/ai-automations': '/service/growth-marketing',
+    '/intelligent-document-data-processing': '/service/intelligent-document-data-processing',
+    '/autonomous-ai-agents-copilots': '/service/autonomous-ai-agents-copilots',
+    '/workflow-orchestration-api-integration': '/service/workflow-orchestration-api-integration',
+  };
+  return mapping[route] || route;
+}
+
+const servicePageNameReplacements = new Map([
+  ['/service/marketing', [
+    ['href="/service/marketing">Marketing &amp; Branding</a>', 'href="/service/marketing">Marketing</a>'],
+    ['href="/service/marketing">Marketing & Branding</a>', 'href="/service/marketing">Marketing</a>'],
+    ['<h1>Branding agency in London</h1>', '<h1>Marketing Services That Drive Growth</h1>'],
+    ['"children":"Branding agency in London"', '"children":"Marketing Services That Drive Growth"'],
+  ]],
+  ['/service/web-app', [
+    ['href="/service/web-app">Website &amp; App Development</a>', 'href="/service/web-app">Web &amp; App</a>'],
+    ['href="/service/web-app">Website & App Development</a>', 'href="/service/web-app">Web & App</a>'],
+    ['<h1>Web design and development services</h1>', '<h1>Web &amp; App Design and Development</h1>'],
+    ['"children":"Web design and development services"', '"children":"Web & App Design and Development"'],
+  ]],
+  ['/service/brand-strategy-positioning', [
+    ['Brand Strategy Agency | London &amp; NYC | Kyoto Creative', 'Brand Strategy &amp; Positioning Services | Kyoto Creative'],
+    ['Brand Strategy Agency | London & NYC | Kyoto Creative', 'Brand Strategy & Positioning Services | Kyoto Creative'],
+    ['<h1>Brand Strategy Services</h1>', '<h1>Brand Strategy &amp; Positioning</h1>'],
+    ['"children":"Brand Strategy Services"', '"children":"Brand Strategy & Positioning"'],
+  ]],
+  ['/service/content-campaigns-pr', [
+    ['Brand Identity Design Services | London &amp; NYC | Kyoto Creative', 'Content Campaigns &amp; PR Services | Kyoto Creative'],
+    ['Brand Identity Design Services | London & NYC | Kyoto Creative', 'Content Campaigns & PR Services | Kyoto Creative'],
+    ['<h1>Brand identity design services</h1>', '<h1>Content Campaigns &amp; PR</h1>'],
+    ['"children":"Brand identity design services"', '"children":"Content Campaigns & PR"'],
+  ]],
+  ['/service/paid-media-performance', [
+    ['Brand Tone of Voice Guidelines | London &amp; NYC | Kyoto Creative', 'Paid Media &amp; Performance Marketing | Kyoto Creative'],
+    ['Brand Tone of Voice Guidelines | London & NYC | Kyoto Creative', 'Paid Media & Performance Marketing | Kyoto Creative'],
+    ['<h1>Tone of voice development services</h1>', '<h1>Paid Media &amp; Performance Marketing</h1>'],
+    ['"children":"Tone of voice development services"', '"children":"Paid Media & Performance Marketing"'],
+  ]],
+  ['/service/branding', [
+    ['<h1>Branding agency in London</h1>', '<h1>Brand Identity &amp; Creative</h1>'],
+    ['"children":"Branding agency in London"', '"children":"Brand Identity & Creative"'],
+  ]],
+  ['/service/website-design-development', [
+    ['Creative Web Design Agency | London &amp; NYC | Kyoto Creative', 'Website Design &amp; Development Agency | Kyoto Creative'],
+    ['Creative Web Design Agency | London & NYC | Kyoto Creative', 'Website Design & Development Agency | Kyoto Creative'],
+    ['<h1>Award-winning creative web design agency</h1>', '<h1>Website Design &amp; Development</h1>'],
+    ['"children":"Award-winning creative web design agency"', '"children":"Website Design & Development"'],
+  ]],
+  ['/service/product-design-ux', [
+    ['Web Development Services | London &amp; NYC | Kyoto Creative', 'Product Design &amp; UX Services | Kyoto Creative'],
+    ['Web Development Services | London & NYC | Kyoto Creative', 'Product Design & UX Services | Kyoto Creative'],
+    ['<h1>Award-winning web development agency</h1>', '<h1>Product Design &amp; UX</h1>'],
+    ['"children":"Award-winning web development agency"', '"children":"Product Design & UX"'],
+  ]],
+  ['/service/app-design-development', [
+    ['WordPress Web Design &amp; Development | London &amp; NYC | Kyoto Creative', 'App Design &amp; Development Services | Kyoto Creative'],
+    ['WordPress Web Design & Development | London & NYC | Kyoto Creative', 'App Design & Development Services | Kyoto Creative'],
+    ['<h1>Award-winning WordPress and Sanity CMS agency</h1>', '<h1>App Design &amp; Development</h1>'],
+    ['"children":"Award-winning WordPress and Sanity CMS agency"', '"children":"App Design & Development"'],
+  ]],
+  ['/service/growth-marketing', [
+    ['<h1>Growth marketing services</h1>', '<h1>AI Automations That Actually Work</h1>'],
+    ['<h1>AI Automations services</h1>', '<h1>AI Automations That Actually Work</h1>'],
+    ['"children":"Growth marketing services"', '"children":"AI Automations That Actually Work"'],
+    ['"children":"AI Automations services"', '"children":"AI Automations That Actually Work"'],
+  ]],
+  ['/service/autonomous-ai-agents-copilots', [
+    ['SEO &amp; GEO Services | London &amp; NYC | Kyoto Creative', 'Autonomous AI Agents &amp; Copilots | Kyoto Creative'],
+    ['SEO & GEO Services | London & NYC | Kyoto Creative', 'Autonomous AI Agents & Copilots | Kyoto Creative'],
+    ['<h1>SEO &amp; GEO services</h1>', '<h1>Autonomous AI Agents &amp; Copilots</h1>'],
+    ['<h1>SEO & GEO services</h1>', '<h1>Autonomous AI Agents & Copilots</h1>'],
+    ['"children":"SEO &amp; GEO services"', '"children":"Autonomous AI Agents & Copilots"'],
+    ['"children":"SEO & GEO services"', '"children":"Autonomous AI Agents & Copilots"'],
+  ]],
+  ['/service/workflow-orchestration-api-integration', [
+    ['Copywriting services | London &amp; NYCC', 'Workflow Orchestration &amp; API Integration | Kyoto Creative'],
+    ['Copywriting services | London & NYCC', 'Workflow Orchestration & API Integration | Kyoto Creative'],
+    ['<h1>Professional copywriting services</h1>', '<h1>Workflow Orchestration &amp; API Integration</h1>'],
+    ['"children":"Professional copywriting services"', '"children":"Workflow Orchestration & API Integration"'],
+  ]],
+  ['/service/intelligent-document-data-processing', [
+    ['SiteCare | London &amp; NYC | Kyoto Creative', 'Intelligent Document &amp; Data Processing | Kyoto Creative'],
+    ['SiteCare | London & NYC | Kyoto Creative', 'Intelligent Document & Data Processing | Kyoto Creative'],
+    ['<h1>SiteCare </h1>', '<h1>Intelligent Document &amp; Data Processing</h1>'],
+    ['"children":"SiteCare "', '"children":"Intelligent Document & Data Processing"'],
+  ]],
+]);
+
+function replaceServicePageName(text, route) {
+  const canonicalRoute = getCanonicalServiceRoute(route);
+  for (const [source, replacement] of servicePageNameReplacements.get(canonicalRoute) || []) {
+    text = text.replaceAll(source, replacement);
+  }
+  return text;
+}
+
+const retiredServiceRoutes = new Set([
+  '/service/brand-strategy-and-identity',
+  '/service/web-design-development',
+  '/service/brand-strategy',
+  '/service/brand-identity-design',
+  '/service/tone-of-voice',
+  '/service/creative-web-design',
+  '/service/web-development',
+  '/service/wordpress-cms',
+  '/service/seo-geo',
+  '/service/copywriting',
+  '/service/sitecare',
+]);
 
 const rendered = new Map();
 async function readPage(file, temporary) {
@@ -1860,6 +2179,75 @@ const boot = `<script data-replica-runtime>
 })();
 </script>`;
 
+function updateFlightAstMetadata(node, seo) {
+  if (!node || typeof node !== "object") return;
+  if (Array.isArray(node)) {
+    if (node[0] === "$") {
+      const tag = node[1];
+      const props = node[3];
+      if (props) {
+        if (tag === "title") {
+          props.children = seo.title;
+        } else if (tag === "meta") {
+          if (props.name === "description") props.content = seo.description;
+          if (props.property === "og:title") props.content = seo.title;
+          if (props.property === "og:description") props.content = seo.description;
+          if (props.property === "og:url") props.content = seo.canonical;
+        } else if (tag === "link" && props.rel === "canonical") {
+          props.href = seo.canonical;
+        }
+      }
+    }
+    for (let i = 0; i < node.length; i++) {
+      updateFlightAstMetadata(node[i], seo);
+    }
+  } else {
+    for (const key of Object.keys(node)) {
+      updateFlightAstMetadata(node[key], seo);
+    }
+  }
+}
+
+function replaceFlightMetadataRow(line, route) {
+  const seo = pageSEOMap.get(route);
+  if (!seo) return line;
+
+  const tMatch = line.match(/^([a-f\d]+):T([a-f\d]+),(.*)$/i);
+  if (tMatch && tMatch[3].includes("@context") && tMatch[3].includes("schema.org")) {
+    try {
+      const data = JSON.parse(tMatch[3]);
+      if (data["@graph"]) {
+        for (const item of data["@graph"]) {
+          if (item["@type"] === "WebPage") {
+            item.name = seo.title;
+            item.description = seo.description;
+            item.url = seo.canonical;
+            if (item["@id"]) item["@id"] = seo.canonical;
+          }
+        }
+      }
+      const newJson = JSON.stringify(data);
+      const newHex = Buffer.byteLength(newJson).toString(16);
+      return tMatch[1] + ":T" + newHex + "," + newJson;
+    } catch (_) {}
+  }
+
+  if (line.includes('["$","title"') || line.includes('"og:title"')) {
+    const prefixMatch = line.match(/^([a-f\d]+:)/i);
+    if (prefixMatch) {
+      const prefix = prefixMatch[1];
+      const newline = line.endsWith("\r\n") ? "\r\n" : (line.endsWith("\n") ? "\n" : "");
+      try {
+        const doc = JSON.parse(line.slice(prefix.length).trimEnd());
+        updateFlightAstMetadata(doc, seo);
+        return prefix + JSON.stringify(doc) + newline;
+      } catch (_) {}
+    }
+  }
+
+  return line;
+}
+
 function configureDocumentMetadata(html, route) {
   const faviconLinks = [
     '<link rel="icon" href="/favicon.ico" sizes="any">',
@@ -1869,6 +2257,57 @@ function configureDocumentMetadata(html, route) {
     '<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">',
     '<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">',
   ].join('');
+
+  const seo = pageSEOMap.get(route);
+  if (seo) {
+    // Strip any existing title, description, og:title, og:description, canonical
+    html = html.replace(/<title[^>]*>[\s\S]*?<\/title>/gi, '');
+    html = html.replace(/<meta\b[^>]*name=["']description["'][^>]*>/gi, '');
+    html = html.replace(/<meta\b[^>]*property=["']og:title["'][^>]*>/gi, '');
+    html = html.replace(/<meta\b[^>]*property=["']og:description["'][^>]*>/gi, '');
+    html = html.replace(/<link\b[^>]*rel=["']canonical["'][^>]*>/gi, '');
+
+    // Strip legacy favicon links from original markup
+    html = html.replace(/<link\b[^>]*>/gi, link => {
+      const rel = link.match(/\brel\s*=\s*["']([^"']+)["']/i)?.[1].toLowerCase().split(/\s+/) || [];
+      if (rel.some(value => ['icon', 'shortcut', 'apple-touch-icon', 'apple-touch-icon-precomposed'].includes(value))) return '';
+      return link;
+    });
+
+    // Update Yoast schema graph in HTML if present
+    html = html.replace(/<script\b[^>]*class=["']yoast-schema-graph["'][^>]*>([\s\S]*?)<\/script>/gi, (match, jsonStr) => {
+      try {
+        const data = JSON.parse(jsonStr);
+        if (data['@graph']) {
+          for (const item of data['@graph']) {
+            if (item['@type'] === 'WebPage') {
+              item.name = seo.title;
+              item.description = seo.description;
+              item.url = seo.canonical;
+              if (item['@id']) item['@id'] = seo.canonical;
+            }
+          }
+        }
+        return '<script type="application/ld+json" class="yoast-schema-graph">' + JSON.stringify(data) + '</script>';
+      } catch (_) {
+        return match;
+      }
+    });
+
+    const escapedTitle = escapeHtml(seo.title);
+    const escapedDesc = escapeHtml(seo.description);
+    const seoTags = [
+      `<title>${escapedTitle}</title>`,
+      `<meta name="description" content="${escapedDesc}">`,
+      `<link rel="canonical" href="${seo.canonical}">`,
+      `<meta property="og:title" content="${escapedTitle}">`,
+      `<meta property="og:description" content="${escapedDesc}">`,
+    ].join('\n');
+
+    if (!/<\/head>/i.test(html)) throw new Error('Cannot add site metadata: document head is missing');
+    return html.replace(/<\/head>/i, `${seoTags}\n${faviconLinks}</head>`);
+  }
+
   let hasCanonical = false;
   html = html.replace(/<link\b[^>]*>/gi, link => {
     const rel = link.match(/\brel\s*=\s*["']([^"']+)["']/i)?.[1].toLowerCase().split(/\s+/) || [];
@@ -1916,6 +2355,7 @@ function adjustJohnRuggieriQuote(content, route) {
 export async function documentResponse(request, route) {
   const routes = await readIndex('routes.json');
   route = route.replace(/\/index\.html$/, '').replace(/\.html$/, '').replace(/\/$/, '') || '/';
+  if (retiredServiceRoutes.has(route)) return new Response('Page not found.', { status: 404 });
   const key = pageKey(route, new URL(request.url).search);
   const redirects = await readIndex('redirects.json');
   if (redirects[key]) return Response.redirect(new URL(redirects[key], request.url), 307);
@@ -1989,10 +2429,11 @@ export async function documentResponse(request, route) {
       '}' +
       '</style>'
     : '';
-  const serviceHeroLabelStyle = route.startsWith('/service/')
+  const serviceHeroLabelStyle = (route.startsWith('/service/') || (Boolean(pageSEOMap.get(route)) && route !== '/' && route !== '/work' && route !== '/contact'))
     ? '<style>.Hero_hero__18Xqo h1{opacity:0!important}</style>'
     : '';
-  const processStyle = route === '/service/growth-marketing' || route === '/service/web-design-development'
+  const cRoute = getCanonicalServiceRoute(route);
+  const processStyle = cRoute === '/service/growth-marketing' || cRoute === '/service/web-app'
     ? '<style>.growth-marketing-process-timeline [class^="Timeline_workInvolved__"],.growth-marketing-process-timeline [class*=" Timeline_workInvolved__"],.growth-marketing-process-timeline [class^="Timeline_duration__"],.growth-marketing-process-timeline [class*=" Timeline_duration__"],.growth-marketing-process-timeline [class^="Timeline_bottomTimeline__"],.growth-marketing-process-timeline [class*=" Timeline_bottomTimeline__"],.web-design-process-timeline [class^="Timeline_workInvolved__"],.web-design-process-timeline [class*=" Timeline_workInvolved__"],.web-design-process-timeline [class^="Timeline_duration__"],.web-design-process-timeline [class*=" Timeline_duration__"],.web-design-process-timeline [class^="Timeline_bottomTimeline__"],.web-design-process-timeline [class*=" Timeline_bottomTimeline__"]{display:none!important}</style>'
     : '';
   const contactEmailStyle = route === '/contact'
@@ -2001,26 +2442,32 @@ export async function documentResponse(request, route) {
   const agencyEmailStyle = route === '/agency'
     ? '<style>.LargeCta_subHeading__Cs6d8 a{font-size:clamp(1.25rem,3vw,2.5rem)!important}</style>'
     : '';
-  const toneHeadlineStyle = toneOfVoiceHeadlineStyle(route);
-  const brandIdentityHeadlineStyle = route === '/service/brand-identity-design'
+  const brandStrategyResultsStyle = cRoute === '/service/marketing'
+    ? '<style>.Statistics_statistics__GKCxB{display:none!important}</style>'
+    : '';
+  const brandStrategyTestimonialsStyle = cRoute === '/service/marketing'
+    ? '<style>.Testimonials_testimonials__J0bdm{display:none!important}</style>'
+    : '';
+  const toneHeadlineStyle = toneOfVoiceHeadlineStyle(cRoute);
+  const brandIdentityHeadlineStyle = cRoute === '/service/content-campaigns-pr'
     ? '<style>.Hero_hero__18Xqo h2{font-size:clamp(2.25rem,6.4vw,6.75rem)!important}.Hero_hero__18Xqo .Hero_introText__HLM02{font-size:clamp(1.125rem,1.35vw,1.35rem)!important}@media (min-width:769px){.Hero_hero__18Xqo .Hero_introText__HLM02{max-width:40ch!important;grid-column:5/span 8!important}}</style>'
     : '';
-  const creativeWebDesignHeadlineStyle = route === '/service/creative-web-design'
+  const creativeWebDesignHeadlineStyle = cRoute === '/service/website-design-development'
     ? '<style>.Hero_hero__18Xqo h2{font-size:clamp(2.25rem,5vw,4.5rem)!important}</style>'
     : '';
-  const webDevelopmentHeadlineStyle = route === '/service/web-development'
+  const webDevelopmentHeadlineStyle = cRoute === '/service/product-design-ux'
     ? '<style>.Hero_hero__18Xqo h2{font-size:clamp(2.25rem,5vw,4.5rem)!important;width:44%!important}</style>'
     : '';
-  const wordPressCmsHeadlineStyle = route === '/service/wordpress-cms'
+  const wordPressCmsHeadlineStyle = cRoute === '/service/app-design-development'
     ? '<style>@media (min-width:769px){.Hero_hero__18Xqo h2{font-size:clamp(2rem,4.5vw,4rem)!important;width:38%!important}}</style>'
     : '';
-  const seoGeoHeadlineStyle = route === '/service/seo-geo'
+  const seoGeoHeadlineStyle = cRoute === '/service/autonomous-ai-agents-copilots'
     ? '<style>.Hero_hero__18Xqo h2{font-size:clamp(2.15rem,4.4vw,4.4rem)!important}</style>'
     : '';
-  const copywritingHeadlineStyle = route === '/service/copywriting'
+  const copywritingHeadlineStyle = cRoute === '/service/workflow-orchestration-api-integration'
     ? '<style>.Hero_hero__18Xqo h2{font-size:clamp(1.95rem,3.85vw,3.85rem)!important}@media (min-width:769px){.Hero_hero__18Xqo .Hero_introText__HLM02{grid-column:6/span 7!important;max-width:427px!important}}</style>'
     : '';
-  const sitecareHeadlineStyle = route === '/service/sitecare'
+  const sitecareHeadlineStyle = cRoute === '/service/intelligent-document-data-processing'
     ? '<style>.Hero_hero__18Xqo h2{font-size:clamp(2.5rem,6.6vw,6rem)!important}</style>'
     : '';
     const leadcourtQuoteStyle = (route === '/work/leadcourt' || route === '/work/interactfinancial.ca' || route === '/work/interactfinancial.ca/' || route === '/work/green-square-infra' || route === '/work/green-square-infra/' || route === '/work/seven-gate-holdings' || route === '/work/seven-gate-holdings/')
@@ -2031,7 +2478,7 @@ export async function documentResponse(request, route) {
       '.Quote_quote__8BTRS svg { width: clamp(1.5rem, 2.5vw, 2rem) !important; margin-bottom: 1rem !important; }' +
       '</style>'
     : '';
-  html = html.replace('<head>', '<head>' + partnersStyle + homepageFooterStyle + serviceHeroLabelStyle + processStyle + contactEmailStyle + agencyEmailStyle + toneHeadlineStyle + brandIdentityHeadlineStyle + creativeWebDesignHeadlineStyle + webDevelopmentHeadlineStyle + wordPressCmsHeadlineStyle + seoGeoHeadlineStyle + copywritingHeadlineStyle + sitecareHeadlineStyle + leadcourtQuoteStyle + lazyImageLayoutStyle + '<base href="' + base + '">' + boot);
+  html = html.replace('<head>', '<head>' + partnersStyle + homepageFooterStyle + serviceHeroLabelStyle + processStyle + contactEmailStyle + agencyEmailStyle + brandStrategyResultsStyle + brandStrategyTestimonialsStyle + toneHeadlineStyle + brandIdentityHeadlineStyle + creativeWebDesignHeadlineStyle + webDevelopmentHeadlineStyle + wordPressCmsHeadlineStyle + seoGeoHeadlineStyle + copywritingHeadlineStyle + sitecareHeadlineStyle + leadcourtQuoteStyle + lazyImageLayoutStyle + '<base href="' + base + '">' + boot);
   html = html.replace(/<script[^>]*src="https:\/\/(?:www\.)?(?:googletagmanager\.com|vercel\.live)[^>]*><\/script>/g, '');
   return html;
   });

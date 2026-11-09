@@ -1,5 +1,39 @@
 import { optimizeBackgroundRuntime } from './runtime-performance.mjs';
 const hosts = new Set(['kota.co.uk', 'content.kota.co.uk', 'kota-content.b-cdn.net', 'prod.spline.design', 'unpkg.com']);
+const serviceRouteReplacements = [
+  ['/service/brand-strategy-and-identity', '/service/marketing'],
+  ['/service/web-design-development', '/service/web-app'],
+  ['/service/brand-strategy', '/service/brand-strategy-positioning'],
+  ['/service/brand-identity-design', '/service/content-campaigns-pr'],
+  ['/service/tone-of-voice', '/service/paid-media-performance'],
+  ['/service/creative-web-design', '/service/website-design-development'],
+  ['/service/web-development', '/service/product-design-ux'],
+  ['/service/wordpress-cms', '/service/app-design-development'],
+  ['/service/seo-geo', '/service/autonomous-ai-agents-copilots'],
+  ['/service/copywriting', '/service/workflow-orchestration-api-integration'],
+  ['/service/sitecare', '/service/intelligent-document-data-processing'],
+];
+const serviceNavigationReplacements = [
+  ['brand-strategy-and-identity', 'Marketing & Branding', 'marketing', 'Marketing'],
+  ['brand-strategy-and-identity', 'Brand strategy & identity', 'marketing', 'Marketing'],
+  ['web-design-development', 'Web design & development', 'web-app', 'Web & App'],
+  ['web-design-development', 'Website & App Development', 'web-app', 'Web & App'],
+  ['brand-strategy', 'Brand strategy', 'brand-strategy-positioning', 'Brand Strategy & Positioning'],
+  ['brand-identity-design', 'Brand identity design', 'content-campaigns-pr', 'Content Campaigns & PR'],
+  ['tone-of-voice', 'Tone of voice', 'paid-media-performance', 'Paid Media & Performance'],
+  ['creative-web-design', 'Creative web design', 'website-design-development', 'Website Design & Development'],
+  ['web-development', 'Web development', 'product-design-ux', 'Product Design & UX'],
+  ['wordpress-cms', 'WordPress & CMS', 'app-design-development', 'App Design & Development'],
+  ['seo-geo', 'SEO & GEO', 'autonomous-ai-agents-copilots', 'Autonomous AI Agents & Copilots'],
+  ['copywriting', 'Copywriting', 'workflow-orchestration-api-integration', 'Workflow Orchestration & API Integration'],
+  ['sitecare', 'SiteCare', 'intelligent-document-data-processing', 'Intelligent Document & Data Processing'],
+];
+
+function replaceServiceRoute(text, oldRoute, newRoute) {
+  const escapedRoute = oldRoute.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  return text.replace(new RegExp(`${escapedRoute}(?=$|[/\\?#"'\\\\\\s])`, 'g'), newRoute);
+}
+
 export function localize(text) {
   text = optimizeBackgroundRuntime(text);
   // Keep SSR, Flight and client JSX in agreement. Autoplay overrides preload=none
@@ -35,8 +69,8 @@ export function localize(text) {
   text = text.replaceAll('children:"Development"', 'children:"App Development"');
   text = text.replace(/Keep the momentum(?: <em>| \\u003cem\\u003e)going\.(?:<\/em>|\\u003c\/em\\u003e)\s*/g, "<span style='font-size:.9em'>Put repetitive work on autopilot. Keep momentum <em>going.</em></span>");
   text = text.replaceAll('Growth built around your brand.', 'Automation engineered around your actual workflows.');
-  text = text.replaceAll('SEO & GEO.', 'Workflow Orchestration & API Integration');
-  text = text.replaceAll('Copywriting.', 'Autonomous AI Agents & Copilots');
+  text = text.replaceAll('SEO & GEO.', 'Autonomous AI Agents & Copilots');
+  text = text.replaceAll('Copywriting.', 'Workflow Orchestration & API Integration');
   text = text.replaceAll('SiteCare (our growth retainer).', 'Intelligent Document & Data Processing (IDP)');
   text = text.replaceAll('A website needs care after launch. Our SiteCare growth retainer keeps your site secure, stable and performing properly, with ongoing technical support, updates, monitoring and improvements handled by the team who know it best.', 'Stop paying knowledge workers to extract unstructured data. We deploy vision and language models to read PDFs, invoices, contracts, and receipts—validating and structuring the output directly into your operational databases.');
   text = text.replaceAll('Our growth marketing process.', 'Our AI Automation Process');
@@ -73,9 +107,9 @@ export function localize(text) {
   text = text.replaceAll('Making brands a damn site better.', 'From bold marketing campaigns to powerful tech solutions.');
   text = text.replaceAll('Dive into our projects and the decisions that shaped them.', 'Explore the work we build to help businesses grow.');
   text = text.replaceAll('Creative web design and development, combining brand clarity, craft and commercial momentum to create distinctive digital experiences that help ambitious brands grow.', 'We design and build world class websites and apps that look sharp, feel intuitive, and drive real business results — not just digital decoration.');
-  text = text.replaceAll('Creative web design.', 'Web Design & Development');
-  text = text.replaceAll('Web development.', 'App Design & Development');
-  text = text.replaceAll('Wordpress & CMS.', 'Product Design & UX');
+  text = text.replaceAll('Creative web design.', 'Website Design & Development');
+  text = text.replaceAll('Web development.', 'Product Design & UX');
+  text = text.replaceAll('Wordpress & CMS.', 'App Design & Development');
   text = text.replace(/Translate your brand into a digital experience with its own rhythm, personality and point of view\. Creative thinking\s+and intuitive UX come together to create experiences that feel effortless to use and impossible to confuse with anyone else\./g, 'We design and build fast, conversion-focused websites that reflect your brand and turn visitors into customers. Clean design, solid performance, and systems your team can actually manage.');
   text = text.replace(/We build fast, flexible websites that deliver on the creative idea, rather than compromising it\. Clean code, thoughtful interactions and robust technical foundations keep everything running beautifully behind the scenes\./g, 'From concept to launch, we design and develop apps that are simple to use and built for real user behaviour. Mobile-first thinking, clear flows, and technical foundations that scale.');
   text = text.replace(/Your team shouldn’t need a developer every time a sentence changes\. We create flexible, modular content systems that make pages easy to build, edit and evolve without letting the design descend into chaos\./g, 'Before a single screen is designed, we map the experience. User flows, information architecture, and interaction design — so your website or app feels effortless instead of complicated.');
@@ -87,11 +121,45 @@ export function localize(text) {
   text = text.replaceAll('Introducing the Brand Pulse Audit tool. See where your brand’s thriving—and where it needs a little CPR.', 'We plan and run paid advertising that stays rooted in your brand strategy. Creative, messaging, and targeting work together — so your spend actually drives results instead of noise.');
   text = text.replaceAll('Audit your brand in minutes', 'Paid Media & Performance');
   text = text.replaceAll('In a world overrun by AI-sameness, a unique brand voice is more important than ever. We’ll help you sound unmistakably like you, with a voice your team can write from confidently.', 'From campaign ideas to content systems and PR angles, we help you show up with clarity and presence. The goal isn’t just visibility — it’s the right kind of attention.');
-  text = text.replaceAll('Tone of voice.', 'Content, Campaigns & PR');
+  text = text.replaceAll('Tone of voice.', 'Paid Media & Performance');
   text = text.replaceAll('Everything earns its place. We create brand identity systems with intent behind every decision, built to be recognisable, flexible, and credible wherever you show up.', 'We build the visual system and creative assets that make your brand recognisable and consistent — across your website, ads, content, and campaigns.');
-  text = text.replaceAll('Brand identity design.', 'Brand Identity & Creative');
+  text = text.replaceAll('Brand identity design.', 'Content Campaigns & PR');
   text = text.replaceAll('Strong brands start with clear decisions. We find what makes your brand worth choosing, then turn it into positioning, messaging and strategic direction your team can actually use.', 'We define what makes your business worth choosing — then turn it into clear positioning and messaging your marketing, sales, and content can all run on.');
   text = text.replaceAll('Brand strategy.', 'Brand Strategy & Positioning');
+  text = text.replaceAll('>Brand strategy</a>', '>Brand Strategy & Positioning</a>');
+  text = text.replaceAll('"children":"Brand strategy"', '"children":"Brand Strategy & Positioning"');
+  text = text.replaceAll('>Brand identity design</a>', '>Content Campaigns & PR</a>');
+  text = text.replaceAll('"children":"Brand identity design"', '"children":"Content Campaigns & PR"');
+  text = text.replaceAll('>Tone of voice</a>', '>Paid Media & Performance</a>');
+  text = text.replaceAll('"children":"Tone of voice"', '"children":"Paid Media & Performance"');
+  text = text.replaceAll('>Creative web design</a>', '>Website Design & Development</a>');
+  text = text.replaceAll('"children":"Creative web design"', '"children":"Website Design & Development"');
+  text = text.replaceAll('>Web development</a>', '>Product Design & UX</a>');
+  text = text.replaceAll('"children":"Web development"', '"children":"Product Design & UX"');
+  text = text.replaceAll('>WordPress &amp; CMS</a>', '>App Design & Development</a>');
+  text = text.replaceAll('"children":"WordPress & CMS"', '"children":"App Design & Development"');
+  text = text.replaceAll('>SEO &amp; GEO</a>', '>Autonomous AI Agents &amp; Copilots</a>');
+  text = text.replaceAll('"children":"SEO & GEO"', '"children":"Autonomous AI Agents & Copilots"');
+  text = text.replaceAll('>Copywriting</a>', '>Workflow Orchestration &amp; API Integration</a>');
+  text = text.replaceAll('"children":"Copywriting"', '"children":"Workflow Orchestration & API Integration"');
+  text = text.replaceAll('>SiteCare</a>', '>Intelligent Document &amp; Data Processing</a>');
+  text = text.replaceAll('"children":"SiteCare"', '"children":"Intelligent Document & Data Processing"');
+  text = text.replaceAll('Brand strategy \\u0026 identity', 'Marketing');
+  text = text.replaceAll('Web design \\u0026 development', 'Web & App');
+  const escapedQuote = '\\' + '"';
+  for (const [oldSlug, oldTitle, newSlug, newTitle] of serviceNavigationReplacements) {
+    text = text.replaceAll(
+      `"slug":"${oldSlug}","title":"${oldTitle}"`,
+      `"slug":"${newSlug}","title":"${newTitle}"`,
+    );
+    text = text.replaceAll(
+      `${escapedQuote}slug${escapedQuote}:${escapedQuote}${oldSlug}${escapedQuote},${escapedQuote}title${escapedQuote}:${escapedQuote}${oldTitle}${escapedQuote}`,
+      `${escapedQuote}slug${escapedQuote}:${escapedQuote}${newSlug}${escapedQuote},${escapedQuote}title${escapedQuote}:${escapedQuote}${newTitle}${escapedQuote}`,
+    );
+  }
+  for (const [oldRoute, newRoute] of serviceRouteReplacements) {
+    text = replaceServiceRoute(text, oldRoute, newRoute);
+  }
   text = text.replaceAll('As Dolly Parton once said: “Find out who you are and do it on purpose.” We’ll give your brand the clarity, conviction, and creativity to do exactly that, then build the identity to prove it.', 'Most brands look and sound the same, and most marketing feels generic. We help you find what actually makes you different, then build the positioning, messaging, creative, and campaigns that turn attention into results.');
   text = text.replaceAll('Brand foundations for businesses ready to grow.', 'Four ways we help you show up and grow.');
   text = text.replaceAll('Strategic branding, brand identity design and tone of voice for businesses ready to define what makes them different and show up with confidence. Based in London, operating globally.', 'Strategic marketing and branding for businesses ready to define what makes them different — and turn that clarity into campaigns, content, and growth that actually perform.');
@@ -283,6 +351,19 @@ export function localize(text) {
       '</style><script src="/js/web3forms-client.js" defer></script></head>';
     text = text.replace('</head>', customStyle);
   }
+
+  text = text.replace(/(href="\/service\/marketing\/?">)Marketing (?:&amp;|&) Branding(<\/a>)/g, '$1Marketing$2');
+  text = text.replace(/(href="\/service\/web-app\/?">)Website (?:&amp;|&) App Development(<\/a>)/g, '$1Web &amp; App$2');
+  text = text.replaceAll('"label":"Marketing & Branding"', '"label":"Marketing"');
+  text = text.replaceAll('"label":"Website & App Development"', '"label":"Web & App"');
+  text = text.replaceAll(
+    `${escapedQuote}label${escapedQuote}:${escapedQuote}Marketing & Branding${escapedQuote}`,
+    `${escapedQuote}label${escapedQuote}:${escapedQuote}Marketing${escapedQuote}`,
+  );
+  text = text.replaceAll(
+    `${escapedQuote}label${escapedQuote}:${escapedQuote}Website & App Development${escapedQuote}`,
+    `${escapedQuote}label${escapedQuote}:${escapedQuote}Web & App${escapedQuote}`,
+  );
 
   return text;
 }
