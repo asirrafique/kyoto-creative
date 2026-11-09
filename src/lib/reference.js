@@ -1028,6 +1028,7 @@ const lazyImageDimensions = new Map([
   ['/app/uploads/2023/11/Bellsant-Logo-Black.svg', [300, 52]],
   ['/app/uploads/2025/05/Florence-Logo-White.svg', [230, 68]],
   ['/app/uploads/2025/08/UPP-logo.svg', [65, 65]],
+  ['/images/john-ruggieri-logo.png', [986, 234]],
   ['/images/interact-financial-logo.png', [308, 52]],
   ['/images/sevengate-logo.png', [253, 226]],
   ['/images/green-square-logo.png', [456, 234]],
@@ -1789,6 +1790,9 @@ function localizeDocument(html, route) {
     html = removeCareersEmailHtml(html);
     html = html.replace('<section class="Hero_hero___ImMv">', '<section class="Hero_hero___ImMv"><h1 class="visually-hidden">Let’s Talk About Your Next Project</h1>');
   }
+  if (route === '/our-agency' || route === '/agency') {
+    html = html.replace('<h1><span class="MaskInUp_container__0AW5i" data-fill="false"><div><span><i></i>Agency</span></div></span></h1>', '<h1><span class="MaskInUp_container__0AW5i" data-fill="false"><div><span><i></i>The Agency Behind the Work</span></div></span></h1>');
+  }
   if (route === '/work') {
     html = replaceWorkArchiveHtml(html);
     html = html.replace('<h1><span class="MaskInUp_container__0AW5i" data-fill="false"><div><span><i></i>Work</span></div></span></h1>', '<h1><span class="MaskInUp_container__0AW5i" data-fill="false"><div><span><i></i>Selected Work &amp; Client Results</span></div></span></h1>');
@@ -1857,6 +1861,24 @@ const pageSEOMap = new Map([
     description: 'Ready to grow? Contact Kyoto Creative to discuss brand strategy, website development or AI automation. Let’s start your next project.',
     h1: 'Let’s Talk About Your Next Project',
     canonical: 'https://www.kyotocreative.com/contact',
+  }],
+  ['/faqs', {
+    title: 'FAQs - Frequently Asked Questions',
+    description: 'Got questions on web design, branding, or digital marketing? Our FAQ page is your go-to guide for clear, jargon-free answers.',
+    h1: 'FAQs',
+    canonical: 'https://www.kyotocreative.com/faqs',
+  }],
+  ['/our-agency', {
+    title: 'About Our Agency | Team, Story & Values | Kyoto Creative',
+    description: 'Meet the team behind Kyoto Creative. Our story, values and process for delivering brand strategy, high-converting websites and practical AI automations.',
+    h1: 'The Agency Behind the Work',
+    canonical: 'https://www.kyotocreative.com/our-agency',
+  }],
+  ['/agency', {
+    title: 'About Our Agency | Team, Story & Values | Kyoto Creative',
+    description: 'Meet the team behind Kyoto Creative. Our story, values and process for delivering brand strategy, high-converting websites and practical AI automations.',
+    h1: 'The Agency Behind the Work',
+    canonical: 'https://www.kyotocreative.com/our-agency',
   }],
   ['/marketing', {
     title: 'Marketing Agency | Brand Strategy & Performance | Kyoto Creative',
@@ -2439,7 +2461,7 @@ export async function documentResponse(request, route) {
   const contactEmailStyle = route === '/contact'
     ? '<style>.ContactDetails_contactDetails__KiaCK .ContactDetails_right__D3SFA>div:first-child>.ContactDetails_email__X5toE:nth-child(-n+2) .CopyText_copyText__OtWNq{font-size:.8em}</style>'
     : '';
-  const agencyEmailStyle = route === '/agency'
+  const agencyEmailStyle = (route === '/agency' || route === '/our-agency')
     ? '<style>.LargeCta_subHeading__Cs6d8 a{font-size:clamp(1.25rem,3vw,2.5rem)!important}</style>'
     : '';
   const brandStrategyResultsStyle = cRoute === '/service/marketing'
