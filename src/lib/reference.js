@@ -1512,9 +1512,6 @@ function replaceBrandIdentityCreativeCopy(text) {
   ).replace(
     'Performance Tracking & Analytics',
     'Packaging & Product Design',
-  ).replace(
-    'Paid Media & Performance',
-    'Packaging & Product Design',
   );
 }
 
@@ -1938,7 +1935,6 @@ function localizeDocument(html, route) {
     html = html.replace('<h1><span class="MaskInUp_container__0AW5i" data-fill="false"><div><span><i></i>Work</span></div></span></h1>', '<h1><span class="MaskInUp_container__0AW5i" data-fill="false"><div><span><i></i>Selected Work &amp; Client Results</span></div></span></h1>');
   }
   if (route === '/') {
-    html = html.replace('<h1 class="kyoto-hero-title"><span class="kyoto-hero-line">Marketing that works.</span><span class="kyoto-hero-line">Websites that convert.</span><span class="kyoto-hero-line">AI that delivers.</span></h1>', '<h1 class="kyoto-hero-title">Marketing, Websites &amp; AI Automations That Drive Growth</h1>');
     html = html.replace('<h1 class="Hero_introText__wboFn">', '<p class="Hero_introText__wboFn">');
     const introPIdx = html.indexOf('<p class="Hero_introText__wboFn">');
     if (introPIdx !== -1) {
@@ -1988,7 +1984,7 @@ const pageSEOMap = new Map([
   ['/', {
     title: 'Kyoto Creative | Marketing, Web & AI Automation Agency',
     description: 'Kyoto Creative is a marketing, web & AI automation agency. Brand strategy, high-converting websites and practical AI systems that drive real growth.',
-    h1: 'Marketing, Websites & AI Automations That Drive Growth',
+    h1: 'Marketing that works. Websites that convert. AI that delivers.',
     canonical: 'https://www.kyotocreative.com/',
   }],
   ['/work', {
@@ -2070,10 +2066,10 @@ const pageSEOMap = new Map([
     canonical: 'https://www.kyotocreative.com/paid-media-performance',
   }],
   ['/service/brand-identity-creative', {
-    title: 'Brand Identity & Creative | Kyoto Creative',
-    description: 'Distinctive creative systems and brand identity for businesses ready to stand out.',
+    title: 'Brand Identity & Creative Design | Kyoto Creative',
+    description: 'Complete brand identity and creative systems — logo, visual language, guidelines. Distinctive creative that makes your brand unforgettable.',
     h1: 'Brand Identity & Creative',
-    canonical: 'https://www.kyotocreative.com/service/brand-identity-creative',
+    canonical: 'https://www.kyotocreative.com/brand-identity-creative',
   }],
   ['/brand-identity-creative', {
     title: 'Brand Identity & Creative Design | Kyoto Creative',
@@ -2231,14 +2227,16 @@ const servicePageNameReplacements = new Map([
     ['"children":"Brand identity design services"', '"children":"Content Campaigns & PR"'],
   ]],
   ['/service/brand-identity-creative', [
-    ['Brand Tone of Voice Guidelines | London &amp; NYC | Kyoto Creative', 'Brand Identity &amp; Creative | Kyoto Creative'],
-    ['Brand Tone of Voice Guidelines | London & NYC | Kyoto Creative', 'Brand Identity & Creative | Kyoto Creative'],
-    ['Paid Media &amp; Performance Marketing | Kyoto Creative', 'Brand Identity &amp; Creative | Kyoto Creative'],
-    ['Paid Media & Performance Marketing | Kyoto Creative', 'Brand Identity & Creative | Kyoto Creative'],
+    ['Brand Tone of Voice Guidelines | London &amp; NYC | Kyoto Creative', 'Brand Identity &amp; Creative Design | Kyoto Creative'],
+    ['Brand Tone of Voice Guidelines | London & NYC | Kyoto Creative', 'Brand Identity & Creative Design | Kyoto Creative'],
+    ['Paid Media &amp; Performance Marketing | Kyoto Creative', 'Brand Identity &amp; Creative Design | Kyoto Creative'],
+    ['Paid Media & Performance Marketing | Kyoto Creative', 'Brand Identity & Creative Design | Kyoto Creative'],
     ['<h1>Tone of voice development services</h1>', '<h1>Brand Identity &amp; Creative</h1>'],
     ['"children":"Tone of voice development services"', '"children":"Brand Identity & Creative"'],
     ['<h1>Paid Media &amp; Performance Marketing</h1>', '<h1>Brand Identity &amp; Creative</h1>'],
     ['"children":"Paid Media & Performance Marketing"', '"children":"Brand Identity & Creative"'],
+    ['<h1>Branding agency in London</h1>', '<h1>Brand Identity &amp; Creative</h1>'],
+    ['"children":"Branding agency in London"', '"children":"Brand Identity & Creative"'],
   ]],
   ['/service/paid-media-performance', [
     ['Brand Tone of Voice Guidelines | London &amp; NYC | Kyoto Creative', 'Paid Media &amp; Performance Marketing | Kyoto Creative'],
