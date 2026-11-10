@@ -1,16 +1,27 @@
 import { optimizeBackgroundRuntime } from './runtime-performance.mjs';
 const hosts = new Set(['kota.co.uk', 'content.kota.co.uk', 'kota-content.b-cdn.net', 'prod.spline.design', 'unpkg.com']);
 const serviceRouteReplacements = [
+  ['service/brand-strategy-and-identity', 'service/marketing'],
   ['/service/brand-strategy-and-identity', '/service/marketing'],
+  ['service/web-design-development', 'service/web-app'],
   ['/service/web-design-development', '/service/web-app'],
+  ['service/brand-strategy', 'service/brand-strategy-positioning'],
   ['/service/brand-strategy', '/service/brand-strategy-positioning'],
+  ['service/brand-identity-design', 'service/content-campaigns-pr'],
   ['/service/brand-identity-design', '/service/content-campaigns-pr'],
+  ['service/tone-of-voice', 'service/paid-media-performance'],
   ['/service/tone-of-voice', '/service/paid-media-performance'],
+  ['service/creative-web-design', 'service/website-design-development'],
   ['/service/creative-web-design', '/service/website-design-development'],
+  ['service/web-development', 'service/product-design-ux'],
   ['/service/web-development', '/service/product-design-ux'],
+  ['service/wordpress-cms', 'service/app-design-development'],
   ['/service/wordpress-cms', '/service/app-design-development'],
+  ['service/seo-geo', 'service/autonomous-ai-agents-copilots'],
   ['/service/seo-geo', '/service/autonomous-ai-agents-copilots'],
+  ['service/copywriting', 'service/workflow-orchestration-api-integration'],
   ['/service/copywriting', '/service/workflow-orchestration-api-integration'],
+  ['service/sitecare', 'service/intelligent-document-data-processing'],
   ['/service/sitecare', '/service/intelligent-document-data-processing'],
 ];
 const serviceNavigationReplacements = [
@@ -185,11 +196,11 @@ export function localize(text) {
   text = text.replaceAll('We sweat the small stuff. That means from brand visuals to SEO and UX flow, every creative decision is designed to boost engagement, drive conversions, and build brand equity.', 'No guesswork. No wasted effort. We dig deep into your business, audience, and goals — then lock in clear direction before a single design, website, or automation is built.');
   text = text.replaceAll('We\u2019re collaborative, decisive, and clear from day one. You\u2019ll feel the momentum. You\u2019ll know where you stand. You\u2019ll have a team that knows when to lead, and when to listen.', 'Going live is just the beginning. We support the launch, track what\u2019s working, and keep refining your marketing, website, and automations so performance compounds over time.');
   text = text.replaceAll('We\u2019ll push you creatively, but we\u2019ll always ground our ideas in strategy. From brand identity design to website interactions and immersion, every detail earns its place.', 'We find the repetitive work slowing you down and replace it with smart AI systems. Lead follow-ups, onboarding, reporting, internal processes — handled so your team can focus on growth.');
-  text = text.replaceAll('Brand strategy &amp; identity', 'Marketing & Branding');
-  text = text.replaceAll('Brand strategy & identity', 'Marketing & Branding');
+  text = text.replaceAll('Brand strategy &amp; identity', 'Marketing');
+  text = text.replaceAll('Brand strategy & identity', 'Marketing');
   text = text.replace(/Enabling (?:<em>|\\u003cem\\u003e)brand(?:<\/em>|\\u003c\/em\\u003e)\s*(?:<br \/>|\\u003cbr \/>|\\u003cbr \/\\u003e)(?:\\\\r\\\\n|\\r\\n|\r?\n)\s*(?:<span>|\\u003cspan\\u003e)(?:<em>|\\u003cem\\u003e)mavericks(?:<\/em>|\\u003c\/em\\u003e)(?:<\/span>|\\u003c\/span\\u003e)?\s*(?:<br \/>|\\u003cbr \/>|\\u003cbr \/\\u003e)(?:\\\\r\\\\n|\\r\\n|\r?\n)\s*(?:<span>|\\u003cspan\\u003e)since 2013\.(?:<\/span>|\\u003c\/span\\u003e)?/g, 'Building brands that stand out and sell.');
-  text = text.replaceAll('Web design &amp; development', 'Website & App Development');
-  text = text.replaceAll('Web design & development', 'Website & App Development');
+  text = text.replaceAll('Web design &amp; development', 'Web & App');
+  text = text.replaceAll('Web design & development', 'Web & App');
   text = text.replaceAll('Growth marketing', 'AI Automations');
   text = text.replaceAll('SEO &amp; AI search, content creation, copywriting, and ongoing support. Whatever you need, get seen and make it count with work that moves, connects and performs.', 'We implement practical AI systems that reduce manual work — lead follow-ups, client onboarding, reporting, internal workflows, and more. Real automation that actually saves time.');
   text = text.replaceAll('SEO & AI search, content creation, copywriting, and ongoing support. Whatever you need, get seen and make it count with work that moves, connects and performs.', 'We implement practical AI systems that reduce manual work — lead follow-ups, client onboarding, reporting, internal workflows, and more. Real automation that actually saves time.');
@@ -200,13 +211,16 @@ export function localize(text) {
   text = text.replaceAll('There are moments of change for every brand, whether it’s rapid growth, new goals, or new expectations. That’s where our work begins.', 'Most agencies overcomplicate things. We focus on clarity, strong systems, and measurable outcomes — whether we’re building your brand, launching a website, or automating key parts of your business.');
   text = text.replaceAll('When growth pulls at it, new audiences dilute it, and good intentions blur it, we’ll strengthen your brand with clear decisions that feel inevitable.', 'We help you define how your brand shows up in the market. From strategy and positioning to messaging and visual identity — everything is built to be clear, consistent, and commercially effective.');
   // Approach item 01 heading: Marketing on line 1, and & Branding together on line 2
-  text = text.replaceAll('>Brand Clarity<', '>Marketing &amp;&nbsp;Branding<');
+  text = text.replaceAll('>Brand Clarity<', '>Marketing<');
   text = text.replaceAll('\\"children\\\":\\\"Brand Clarity\\\"', '\\"children\\\":\\\"Marketing &\\u00A0Branding\\\"');
-  text = text.replaceAll('"children":"Brand Clarity"', '"children":"Marketing &\u00A0Branding"');
-  text = text.replaceAll('Brand Clarity', 'Marketing & Branding');
+  text = text.replaceAll('"children":"Brand Clarity"', '"children":"Marketing"');
+  text = text.replaceAll('Brand Clarity', 'Marketing');
   text = text.replaceAll('Decisions that help brands re-position and commit.', 'Positioning, messaging, and brand systems that cut through the noise and convert.');
   text = text.replace(/Build for(?:\\+r\\+n|\s)+scale\.?/gi, 'Brand Clarity');
-  text = text.replaceAll('Creative Craft', 'Websites & Apps');
+  text = text.replaceAll('>Creative Craft<', '>Web &amp;&nbsp;<br />App<');
+  text = text.replaceAll('\\"children\\":\\"Creative Craft\\"', '\\"children\\":\\"Web &\\u00A0App\\"');
+  text = text.replaceAll('"children":"Creative Craft"', '"children":"Web &\u00A0App"');
+  text = text.replaceAll('Creative Craft', 'Web &\u00A0App');
   text = text.replaceAll('Visually confident design built to stand out.', 'Fast, clean, conversion-focused digital products built for real business goals.');
   text = text.replaceAll('Commercial Momentum', 'AI Automations');
   text = text.replace(/Scalable systems with(?:\\r?\\n|\s)+growth in mind\./g, 'Practical systems that handle repetitive work so your team can focus on growth.');

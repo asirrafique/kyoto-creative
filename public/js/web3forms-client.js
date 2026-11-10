@@ -214,11 +214,110 @@
         let successView = contactSection ? contactSection.querySelector('.Form_successMessage__s5YQz, [class*="successMessage"]') : null;
         if (!successView && formOuter) {
           successView = document.createElement('div');
-          successView.className = 'Form_successMessage__s5YQz';
+          successView.className = 'Form_successMessage__s5YQz kyoto-success-wrapper';
           successView.innerHTML = `
-            <h2 class="Form_successTitle__i_e7P" style="font-size:clamp(2rem,4vw,3.5rem);font-weight:400;margin-bottom:1rem;color:#000;">Thanks for getting in touch!</h2>
-            <p class="Form_successText__j47jL" style="font-size:1.25rem;line-height:1.4;margin-bottom:2rem;color:#555;">Someone from the Kyoto Creative team will be contacting you shortly. In the meantime, explore some of our latest projects.</p>
-            <div style="margin-top:2rem;"><a href="/work" style="display:inline-block;padding:0.75rem 1.75rem;border-radius:9999px;background:#000;color:#fff;text-decoration:none;font-weight:500;">View all our projects &rarr;</a></div>
+          <div class="kyoto-success-card" style="
+            position: relative;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 249, 252, 0.9) 100%);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            border-radius: 28px;
+            padding: clamp(2.5rem, 5vw, 4.5rem) clamp(2rem, 4vw, 4rem);
+            box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(255, 255, 255, 0.8) inset;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            width: 100%; max-width: 1100px;
+            margin: 0 auto;
+            text-align: left;
+            overflow: hidden;
+            animation: kyotoFadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+          ">
+            <!-- Subtle accent top pill -->
+            <div style="
+              display: inline-flex;
+              align-items: center;
+              gap: 8px;
+              padding: 6px 14px;
+              border-radius: 9999px;
+              background: rgba(0, 0, 0, 0.04);
+              border: 1px solid rgba(0, 0, 0, 0.06);
+              margin-bottom: 1.75rem;
+            ">
+              <span style="width: 8px; height: 8px; border-radius: 50%; background: #10b981; display: inline-block; box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);"></span>
+              <span style="font-size: 0.8rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: #111;">Message Sent</span>
+            </div>
+
+            <!-- Main Heading with clean premium typography -->
+            <h2 style="
+              font-size: clamp(2.25rem, 4.8vw, 3.75rem);
+              font-weight: 400;
+              line-height: 1.08;
+              letter-spacing: -0.03em;
+              color: #050505;
+              margin: 0 0 1.25rem 0;
+            ">
+              Thanks for getting in touch!
+            </h2>
+
+            <!-- Supporting subtext -->
+            <p style="
+              font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+              line-height: 1.55;
+              color: #555;
+              max-width: 75ch;
+              margin: 0 0 2.5rem 0;
+            ">
+              Someone from the <strong style="color: #000; font-weight: 500;">Kyoto Creative</strong> team will review your project details and get back to you shortly. In the meantime, explore our latest work.
+            </p>
+
+            <!-- Action buttons row -->
+            <div style="
+              display: flex;
+              flex-wrap: wrap;
+              align-items: center;
+              gap: 1rem;
+            ">
+              <a href="/work" style="
+                display: inline-flex;
+                align-items: center;
+                gap: 10px;
+                padding: 0.95rem 2rem;
+                border-radius: 9999px;
+                background: #000;
+                color: #fff;
+                text-decoration: none;
+                font-weight: 500;
+                font-size: 0.95rem;
+                letter-spacing: -0.01em;
+                transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+                box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+              " onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 14px 30px -5px rgba(0,0,0,0.4)'" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 10px 25px -5px rgba(0,0,0,0.3)'">
+                <span>View all our projects</span>
+                <span style="display:inline-block;transition:transform 0.2s ease;">&rarr;</span>
+              </a>
+
+              <a href="/" style="
+                display: inline-flex;
+                align-items: center;
+                padding: 0.95rem 1.75rem;
+                border-radius: 9999px;
+                background: transparent;
+                color: #111;
+                border: 1px solid rgba(0, 0, 0, 0.15);
+                text-decoration: none;
+                font-weight: 500;
+                font-size: 0.95rem;
+                transition: all 0.2s ease;
+              " onmouseover="this.style.borderColor='#000';this.style.background='rgba(0,0,0,0.03)'" onmouseout="this.style.borderColor='rgba(0,0,0,0.15)';this.style.background='transparent'">
+                Back to Home
+              </a>
+            </div>
+          </div>
+          <style>
+            @keyframes kyotoFadeUp {
+              0% { opacity: 0; transform: translateY(24px) scale(0.98); }
+              100% { opacity: 1; transform: translateY(0) scale(1); }
+            }
+          </style>
           `;
           formOuter.parentElement.appendChild(successView);
         }

@@ -982,6 +982,37 @@ function replaceWorkArchiveHtml(html) {
   return html;
 }
 
+
+function replaceHomepageServicesHtml(html) {
+  const panel1Tags = '<div class="ServicesPanel_tags__6NQOl">' +
+    '<a class="ServicesPanel_tag__JYwRk" href="service/brand-strategy-positioning">Brand Strategy & Positioning</a>' +
+    '<a class="ServicesPanel_tag__JYwRk" href="service/content-campaigns-pr">Content Campaigns & PR</a>' +
+    '<a class="ServicesPanel_tag__JYwRk" href="service/paid-media-performance">Paid Media & Performance</a>' +
+    '<a class="ServicesPanel_tag__JYwRk" href="service/brand-identity-creative">Brand Identity & Creative</a>' +
+    '</div>';
+
+  const panel2Tags = '<div class="ServicesPanel_tags__6NQOl">' +
+    '<a class="ServicesPanel_tag__JYwRk" href="service/website-design-development">Website Design & Development</a>' +
+    '<a class="ServicesPanel_tag__JYwRk" href="service/product-design-ux">Product Design & UX</a>' +
+    '<a class="ServicesPanel_tag__JYwRk" href="service/app-design-development">App Design & Development</a>' +
+    '</div>';
+
+  const panel3Tags = '<div class="ServicesPanel_tags__6NQOl">' +
+    '<a class="ServicesPanel_tag__JYwRk" href="service/autonomous-ai-agents-copilots">Autonomous AI Agents &amp; Copilots</a>' +
+    '<a class="ServicesPanel_tag__JYwRk" href="service/workflow-orchestration-api-integration">Workflow Orchestration &amp; API Integration</a>' +
+    '<a class="ServicesPanel_tag__JYwRk" href="service/intelligent-document-data-processing">Intelligent Document &amp; Data Processing</a>' +
+    '</div>';
+
+  let count = 0;
+  return html.replace(new RegExp('<div class="ServicesPanel_tags__6NQOl">[\\s\\S]*?</div>', 'g'), match => {
+    count++;
+    if (count === 1) return panel1Tags;
+    if (count === 2) return panel2Tags;
+    if (count === 3) return panel3Tags;
+    return match;
+  });
+}
+
 function replaceHomepageFaqHtml(html) {
   const section = /<section class="FaqsList_faqsList__[^"]*"[\s\S]*?<\/section>/;
   if (!section.test(html)) throw new Error('Homepage FAQ section was not found in HTML');
@@ -1157,6 +1188,49 @@ function parseFlightModelRow(row) {
   return { prefix, suffix, model: JSON.parse(payload) };
 }
 
+
+function replaceHomepageServicesFlightRow(row) {
+  if (!row.includes('"Services_services__YnZAs"')) return row;
+  const parsed = parseFlightModelRow(row);
+  if (!parsed) return row;
+
+  const visit = value => {
+    if (Array.isArray(value)) {
+      for (const child of value) visit(child);
+    } else if (value && typeof value === 'object') {
+      if (Array.isArray(value.services) && value.services.length === 3) {
+        value.services[0].heading = 'Marketing';
+        value.services[0].link = { slug: "marketing", parent: null };
+        value.services[0].tags = [
+          { id: "cG9zdDo4ODg=", slug: "brand-strategy-positioning", title: "Brand Strategy & Positioning" },
+          { id: "cG9zdDo4ODY=", slug: "content-campaigns-pr", title: "Content Campaigns & PR" },
+          { id: "cG9zdDo4ODc=", slug: "paid-media-performance", title: "Paid Media & Performance" },
+          { id: "cG9zdDo4ODk=", slug: "brand-identity-creative", title: "Brand Identity & Creative" }
+        ];
+
+        value.services[1].heading = 'Web & App';
+        value.services[1].link = { slug: "web-app", parent: null };
+        value.services[1].tags = [
+          { id: "cG9zdDoxMzM1", slug: "website-design-development", title: "Website Design & Development" },
+          { id: "cG9zdDo4NzA=", slug: "product-design-ux", title: "Product Design & UX" },
+          { id: "cG9zdDo4NzE=", slug: "app-design-development", title: "App Design & Development" }
+        ];
+
+        value.services[2].heading = 'AI Automations';
+        value.services[2].tags = [
+          { id: "cG9zdDo4OTQ=", slug: "autonomous-ai-agents-copilots", title: "Autonomous AI Agents & Copilots" },
+          { id: "cG9zdDo4OTA=", slug: "workflow-orchestration-api-integration", title: "Workflow Orchestration & API Integration" },
+          { id: "cG9zdDo4OTM=", slug: "intelligent-document-data-processing", title: "Intelligent Document & Data Processing" }
+        ];
+      }
+      for (const child of Object.values(value)) visit(child);
+    }
+  };
+
+  visit(parsed.model);
+  return parsed.prefix + JSON.stringify(parsed.model) + parsed.suffix;
+}
+
 function replaceHomepageStatisticsFlightRow(row) {
   const statistic = '"mainStatistic":"104.9% "';
   const description = '"description":"increase in organic visits after 1 month"';
@@ -1242,6 +1316,7 @@ export function localizeFlight(text, route) {
         if (route === '/service/brand-strategy-positioning') value = replaceBrandStrategyCopy(value);
         if (route === '/service/content-campaigns-pr') value = replaceBrandIdentityDesignCopy(value);
         if (route === '/service/paid-media-performance') value = replaceToneOfVoiceCopy(value);
+        if (route === '/service/brand-identity-creative') value = replaceBrandIdentityCreativeCopy(value);
         if (route === '/service/website-design-development') value = replaceCreativeWebDesignCopy(value);
         if (route === '/service/product-design-ux') value = replaceWebDevelopmentCopy(value);
         if (route === '/service/app-design-development') value = replaceWordPressCmsCopy(value);
@@ -1262,6 +1337,7 @@ export function localizeFlight(text, route) {
     if (route === '/service/brand-strategy-positioning') row = replaceBrandStrategyCopy(row);
     if (route === '/service/content-campaigns-pr') row = replaceBrandIdentityDesignCopy(row);
     if (route === '/service/paid-media-performance') row = replaceToneOfVoiceCopy(row);
+    if (route === '/service/brand-identity-creative') row = replaceBrandIdentityCreativeCopy(row);
     if (route === '/service/website-design-development') row = replaceCreativeWebDesignCopy(row);
     if (route === '/service/product-design-ux') row = replaceWebDevelopmentCopy(row);
     if (route === '/service/app-design-development') row = replaceWordPressCmsCopy(row);
@@ -1271,6 +1347,7 @@ export function localizeFlight(text, route) {
     if (route === '/') {
       row = replaceHomepageFaqFlightRow(row);
       row = replaceHomepageStatisticsFlightRow(row);
+      row = replaceHomepageServicesFlightRow(row);
     }
     row = replaceWebDesignProcessFlightRow(row);
     row = replaceGrowthMarketingProcessFlightRow(row);
@@ -1307,6 +1384,7 @@ export function localizeFlight(text, route) {
     if (route === '/service/brand-strategy-positioning') row = replaceBrandStrategyCopy(row);
     if (route === '/service/content-campaigns-pr') row = replaceBrandIdentityDesignCopy(row);
     if (route === '/service/paid-media-performance') row = replaceToneOfVoiceCopy(row);
+    if (route === '/service/brand-identity-creative') row = replaceBrandIdentityCreativeCopy(row);
     if (route === '/service/website-design-development') row = replaceCreativeWebDesignCopy(row);
     if (route === '/service/product-design-ux') row = replaceWebDevelopmentCopy(row);
     if (route === '/service/app-design-development') row = replaceWordPressCmsCopy(row);
@@ -1371,11 +1449,72 @@ function replaceToneOfVoiceCopy(text) {
     'Know what sounds right. Spot what doesn’t. We create straightforward guidance with side-by-side examples, preferred language and phrases to avoid. No cryptic brand theory. No ‘bold yet approachable’. Just practical direction that helps people write better.',
     'We analyse landing pages, website experiences and customer journeys to identify conversion barriers and turn more visitors into leads and customers.',
   ).replace(
-    'Paid Media & Performance',
+    'Audit your brand in minutes',
     'Performance Tracking & Analytics',
   ).replace(
-    'We plan and run paid advertising that stays rooted in your brand strategy. Creative, messaging, and targeting work together — so your spend actually drives results instead of noise.',
+    'Introducing the Brand Pulse Audit tool. See where your brand’s thriving—and where it needs a little CPR.',
     'We implement conversion tracking, monitor campaign metrics and translate performance data into actionable insights that help improve advertising results.',
+  );
+}
+
+function replaceBrandIdentityCreativeCopy(text) {
+  return replaceToneOfVoiceCopy(text).replace(
+    'Turn marketing spend into measurable growth.',
+    'Creative fuel for brands that refuse to look ordinary.',
+  ).replace(
+    'We help businesses reach the right audiences, generate qualified leads and drive conversions through strategic paid advertising. By combining compelling creatives, precise targeting and continuous optimisation, we make every campaign work harder towards your business goals.',
+    "Your brand deserves more than just a good-looking logo. We build distinctive visual identities and creative experiences that bring your brand's personality to life, create recognition and leave a lasting impression across every customer touchpoint.",
+  ).replace(
+    "Stop spending on clicks that don't convert.",
+    'Turn inconsistent visuals into a recognisable brand identity.',
+  ).replace(
+    "High advertising costs, inconsistent leads and campaigns that fail to deliver measurable returns can hold your business back. At Kyoto Creative, we identify what's holding your campaigns back, optimise your advertising strategy and build performance-driven campaigns that turn your budget into meaningful business results.",
+    "Does your brand look different across platforms? Are your visuals failing to communicate the quality of your business? At Kyoto Creative, we bring your brand together through cohesive design systems, distinctive creative assets and thoughtful visual storytelling that make your business instantly recognisable.",
+  ).replace(
+    'Google Ads Management',
+    'Logo Design & Visual Identity',
+  ).replace(
+    'We plan, launch and optimise Google Search, Display and Shopping campaigns to connect your business with high-intent customers and generate qualified leads.',
+    "We create distinctive logos and visual identity systems that capture your brand's personality. From typography and colours to visual elements, we make your brand instantly recognisable.",
+  ).replace(
+    'Meta Ads Management',
+    'Brand Guidelines & Design Systems',
+  ).replace(
+    'We manage Facebook and Instagram advertising campaigns through audience targeting, creative testing and continuous optimisation to drive engagement, leads and conversions.',
+    'We establish comprehensive brand guidelines covering typography, colours, visual elements and usage standards. This ensures consistency across every platform, campaign and customer interaction.',
+  ).replace(
+    'LinkedIn Advertising',
+    'Creative Direction & Art Direction',
+  ).replace(
+    'We develop targeted LinkedIn campaigns that put your business in front of decision-makers, generate B2B leads and create meaningful business opportunities.',
+    "We define the creative vision behind your brand's visual communication. Our art direction ensures every design, campaign and visual asset works together to tell a cohesive brand story.",
+  ).replace(
+    'YouTube & Video Advertising',
+    'Graphic Design & Marketing Collateral',
+  ).replace(
+    'We create and manage video advertising campaigns that capture attention, increase brand awareness and move viewers towards meaningful action.',
+    'We design compelling presentations, advertisements, brochures, business stationery and other marketing materials that communicate your value and strengthen your brand presence.',
+  ).replace(
+    'Paid Media Strategy & Planning',
+    'Social Media Creatives',
+  ).replace(
+    'We develop data-backed advertising strategies, identify the right platforms and allocate budgets effectively to maximise campaign performance and return on investment.',
+    'We create engaging, on-brand social media graphics and campaign visuals that capture attention, maintain consistency and make your business stand out across social platforms.',
+  ).replace(
+    'Conversion Rate Optimisation',
+    'Video & Motion Graphics',
+  ).replace(
+    'We analyse landing pages, website experiences and customer journeys to identify conversion barriers and turn more visitors into leads and customers.',
+    'We bring your ideas to life through engaging videos, animations and motion graphics. Our creative approach helps communicate complex messages, capture attention and make your brand more memorable.',
+  ).replace(
+    'We plan and run paid advertising that stays rooted in your brand strategy. Creative, messaging, and targeting work together — so your spend actually drives results instead of noise.',
+    "We design thoughtful packaging and product visuals that reflect your brand's quality and personality. From shelf appeal to the unboxing experience, we help create stronger connections with customers.",
+  ).replace(
+    'Performance Tracking & Analytics',
+    'Packaging & Product Design',
+  ).replace(
+    'Paid Media & Performance',
+    'Packaging & Product Design',
   );
 }
 
@@ -1653,7 +1792,7 @@ function replaceSitecareCopy(text) {
 }
 
 function toneOfVoiceHeadlineStyle(route) {
-  return route === '/service/paid-media-performance'
+  return (route === '/service/paid-media-performance' || route === '/service/brand-identity-creative')
     ? '<style>@media (min-width:769px){.Hero_hero__18Xqo h2{font-size:clamp(2.25rem,5vw,4.5rem)!important;width:65%!important}.Hero_hero__18Xqo div.Hero_video__IHL3y{width:30%!important;aspect-ratio:1/1!important;clip-path:circle(50% at 50% 50%)}.Hero_hero__18Xqo div.Hero_video__IHL3y>span{width:100%!important;height:100%!important;border-radius:50%;overflow:hidden}.Hero_hero__18Xqo div.Hero_video__IHL3y video,.Hero_hero__18Xqo div.Hero_video__IHL3y img{width:100%!important;height:100%!important;border-radius:50%;object-fit:cover}}</style>'
     : '';
 }
@@ -1696,10 +1835,10 @@ function replaceBrandIdentityDesignCopy(text) {
     'Modern brands don’t sit still. We design identity systems with motion, interaction and digital experiences in mind from the start.',
     'We connect your brand with relevant publications, journalists and media opportunities. Through strategic PR campaigns, we help build credibility, expand visibility and strengthen your industry presence.',
   ).replace(
-    'Paid Media & Performance',
+    'Audit your brand in minutes',
     'Influencer, Podcast & Partnership Outreach',
   ).replace(
-    'We plan and run paid advertising that stays rooted in your brand strategy. Creative, messaging, and targeting work together — so your spend actually drives results instead of noise.',
+    'Introducing the Brand Pulse Audit tool. See where your brand’s thriving—and where it needs a little CPR.',
     'We identify and connect your business with relevant influencers, podcast hosts and strategic partners to expand your reach, build credibility and create valuable business relationships.',
   );
 }
@@ -1771,6 +1910,7 @@ function localizeDocument(html, route) {
   if (route === '/service/brand-strategy-positioning') html = replaceBrandStrategyCopy(html);
   if (route === '/service/content-campaigns-pr') html = replaceBrandIdentityDesignCopy(html);
   if (route === '/service/paid-media-performance') html = replaceToneOfVoiceCopy(html);
+  if (route === '/service/brand-identity-creative') html = replaceBrandIdentityCreativeCopy(html);
   if (route === '/service/website-design-development') html = replaceCreativeWebDesignCopy(html);
   if (route === '/service/product-design-ux') html = replaceWebDevelopmentCopy(html);
   if (route === '/service/app-design-development') html = replaceWordPressCmsCopy(html);
@@ -1808,6 +1948,7 @@ function localizeDocument(html, route) {
       }
     }
     html = replaceHomepageFaqHtml(html);
+    html = replaceHomepageServicesHtml(html);
     html = html
       .replace(
         '<svg class="Footer_logo__fUEOF" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 618 237" ><image href="/images/kyoto-creative-footer-white.png" width="618" height="237" preserveAspectRatio="xMidYMid meet"></image></svg>',
@@ -1928,6 +2069,12 @@ const pageSEOMap = new Map([
     h1: 'Paid Media & Performance Marketing',
     canonical: 'https://www.kyotocreative.com/paid-media-performance',
   }],
+  ['/service/brand-identity-creative', {
+    title: 'Brand Identity & Creative | Kyoto Creative',
+    description: 'Distinctive creative systems and brand identity for businesses ready to stand out.',
+    h1: 'Brand Identity & Creative',
+    canonical: 'https://www.kyotocreative.com/service/brand-identity-creative',
+  }],
   ['/brand-identity-creative', {
     title: 'Brand Identity & Creative Design | Kyoto Creative',
     description: 'Complete brand identity and creative systems — logo, visual language, guidelines. Distinctive creative that makes your brand unforgettable.',
@@ -2044,7 +2191,8 @@ function getCanonicalServiceRoute(route) {
     '/brand-strategy-positioning': '/service/brand-strategy-positioning',
     '/content-campaigns-pr': '/service/content-campaigns-pr',
     '/paid-media-performance': '/service/paid-media-performance',
-    '/brand-identity-creative': '/service/branding',
+    '/brand-identity-creative': '/service/brand-identity-creative',
+    '/service/brand-identity-creative': '/service/brand-identity-creative',
     '/web-app': '/service/web-app',
     '/website-design-development': '/service/website-design-development',
     '/product-design-ux': '/service/product-design-ux',
@@ -2081,6 +2229,16 @@ const servicePageNameReplacements = new Map([
     ['Brand Identity Design Services | London & NYC | Kyoto Creative', 'Content Campaigns & PR Services | Kyoto Creative'],
     ['<h1>Brand identity design services</h1>', '<h1>Content Campaigns &amp; PR</h1>'],
     ['"children":"Brand identity design services"', '"children":"Content Campaigns & PR"'],
+  ]],
+  ['/service/brand-identity-creative', [
+    ['Brand Tone of Voice Guidelines | London &amp; NYC | Kyoto Creative', 'Brand Identity &amp; Creative | Kyoto Creative'],
+    ['Brand Tone of Voice Guidelines | London & NYC | Kyoto Creative', 'Brand Identity & Creative | Kyoto Creative'],
+    ['Paid Media &amp; Performance Marketing | Kyoto Creative', 'Brand Identity &amp; Creative | Kyoto Creative'],
+    ['Paid Media & Performance Marketing | Kyoto Creative', 'Brand Identity & Creative | Kyoto Creative'],
+    ['<h1>Tone of voice development services</h1>', '<h1>Brand Identity &amp; Creative</h1>'],
+    ['"children":"Tone of voice development services"', '"children":"Brand Identity & Creative"'],
+    ['<h1>Paid Media &amp; Performance Marketing</h1>', '<h1>Brand Identity &amp; Creative</h1>'],
+    ['"children":"Paid Media & Performance Marketing"', '"children":"Brand Identity & Creative"'],
   ]],
   ['/service/paid-media-performance', [
     ['Brand Tone of Voice Guidelines | London &amp; NYC | Kyoto Creative', 'Paid Media &amp; Performance Marketing | Kyoto Creative'],
@@ -2458,9 +2616,74 @@ export async function documentResponse(request, route) {
   const processStyle = cRoute === '/service/growth-marketing' || cRoute === '/service/web-app'
     ? '<style>.growth-marketing-process-timeline [class^="Timeline_workInvolved__"],.growth-marketing-process-timeline [class*=" Timeline_workInvolved__"],.growth-marketing-process-timeline [class^="Timeline_duration__"],.growth-marketing-process-timeline [class*=" Timeline_duration__"],.growth-marketing-process-timeline [class^="Timeline_bottomTimeline__"],.growth-marketing-process-timeline [class*=" Timeline_bottomTimeline__"],.web-design-process-timeline [class^="Timeline_workInvolved__"],.web-design-process-timeline [class*=" Timeline_workInvolved__"],.web-design-process-timeline [class^="Timeline_duration__"],.web-design-process-timeline [class*=" Timeline_duration__"],.web-design-process-timeline [class^="Timeline_bottomTimeline__"],.web-design-process-timeline [class*=" Timeline_bottomTimeline__"]{display:none!important}</style>'
     : '';
-  const contactEmailStyle = route === '/contact'
-    ? '<style>.ContactDetails_contactDetails__KiaCK .ContactDetails_right__D3SFA>div:first-child>.ContactDetails_email__X5toE:nth-child(-n+2) .CopyText_copyText__OtWNq{font-size:.8em}</style>'
-    : '';
+  const contactEmailStyle = (route === '/contact' || route === '/contact/')
+    ? '<style>' +
+      '.ContactDetails_contactDetails__KiaCK .ContactDetails_right__D3SFA>div:first-child>.ContactDetails_email__X5toE:nth-child(-n+2) .CopyText_copyText__OtWNq{font-size:.8em}' +
+      /* Premium styling for contact Thanks / Success state */
+      '.Form_successMessage__nGL57, .Form_successMessage__s5YQz {' +
+      '  position: relative !important;' +
+      '  background: linear-gradient(135deg, rgba(255, 255, 255, 0.96) 0%, rgba(248, 249, 252, 0.92) 100%) !important;' +
+      '  border: 1px solid rgba(0, 0, 0, 0.08) !important;' +
+      '  border-radius: 28px !important;' +
+      '  padding: clamp(2.5rem, 5vw, 4.5rem) clamp(2rem, 4vw, 4rem) !important;' +
+      '  box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(255, 255, 255, 0.8) inset !important;' +
+      '  backdrop-filter: blur(20px) !important;' +
+      '  -webkit-backdrop-filter: blur(20px) !important;' +
+      '  width: 100% !important;' +
+      '  max-width: 1100px !important;' +
+      '  grid-column: span 12 !important;' +
+      '  margin: 2rem auto 5rem auto !important;' +
+      '  text-align: left !important;' +
+      '  animation: kyotoThanksFadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;' +
+      '}' +
+      '.Form_successTitle__gqNPY, .Form_successTitle__i_e7P {' +
+      '  font-size: clamp(2.5rem, 5vw, 4.25rem) !important;' +
+      '  font-weight: 400 !important;' +
+      '  line-height: 1.06 !important;' +
+      '  letter-spacing: -0.03em !important;' +
+      '  color: #050505 !important;' +
+      '  margin: 0 0 1.25rem 0 !important;' +
+      '  max-width: 32ch !important;' +
+      '}' +
+      '.Form_successText__oDeUM, .Form_successText__j47jL {' +
+      '  font-size: clamp(1.1rem, 1.4vw, 1.3rem) !important;' +
+      '  line-height: 1.55 !important;' +
+      '  color: #555 !important;' +
+      '  max-width: 75ch !important;' +
+      '  margin: 0 0 2.5rem 0 !important;' +
+      '}' +
+      '.Form_buttonWrap__iVNPZ, .kyoto-success-actions {' +
+      '  text-align: left !important;' +
+      '  margin-top: 2rem !important;' +
+      '  display: flex !important;' +
+      '  flex-wrap: wrap !important;' +
+      '  gap: 1rem !important;' +
+      '  align-items: center !important;' +
+      '}' +
+      '.Form_buttonWrap__iVNPZ a, .kyoto-success-btn-primary {' +
+      '  display: inline-flex !important;' +
+      '  align-items: center !important;' +
+      '  gap: 10px !important;' +
+      '  padding: 0.95rem 2.2rem !important;' +
+      '  border-radius: 9999px !important;' +
+      '  background: #000 !important;' +
+      '  color: #fff !important;' +
+      '  text-decoration: none !important;' +
+      '  font-weight: 500 !important;' +
+      '  font-size: 0.95rem !important;' +
+      '  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3) !important;' +
+      '  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease !important;' +
+      '}' +
+      '.Form_buttonWrap__iVNPZ a:hover, .kyoto-success-btn-primary:hover {' +
+      '  transform: translateY(-2px) !important;' +
+      '  box-shadow: 0 14px 30px -5px rgba(0, 0, 0, 0.4) !important;' +
+      '}' +
+      '@keyframes kyotoThanksFadeUp {' +
+      '  0% { opacity: 0; transform: translateY(24px) scale(0.98); }' +
+      '  100% { opacity: 1; transform: translateY(0) scale(1); }' +
+      '}' +
+      '</style>'
+    : ''
   const agencyEmailStyle = (route === '/agency' || route === '/our-agency')
     ? '<style>.LargeCta_subHeading__Cs6d8 a{font-size:clamp(1.25rem,3vw,2.5rem)!important}</style>'
     : '';
