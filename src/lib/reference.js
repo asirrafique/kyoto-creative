@@ -2386,41 +2386,274 @@ function updateFlightAstMetadata(node, seo) {
   }
 }
 
+const pageBreadcrumbsMap = new Map([
+  ['/', [
+    { name: 'Home' }
+  ]],
+  ['/work', [
+    { name: 'Home', item: 'https://www.kyotocreative.com/' },
+    { name: 'Work' }
+  ]],
+  ['/contact', [
+    { name: 'Home', item: 'https://www.kyotocreative.com/' },
+    { name: 'Contact' }
+  ]],
+  ['/faqs', [
+    { name: 'Home', item: 'https://www.kyotocreative.com/' },
+    { name: 'FAQs' }
+  ]],
+  ['/our-agency', [
+    { name: 'Home', item: 'https://www.kyotocreative.com/' },
+    { name: 'About Our Agency' }
+  ]],
+  ['/agency', [
+    { name: 'Home', item: 'https://www.kyotocreative.com/' },
+    { name: 'About Our Agency' }
+  ]],
+  ['/marketing', [
+    { name: 'Home', item: 'https://www.kyotocreative.com/' },
+    { name: 'Marketing' }
+  ]],
+  ['/service/marketing', [
+    { name: 'Home', item: 'https://www.kyotocreative.com/' },
+    { name: 'Marketing' }
+  ]],
+  ['/brand-strategy-positioning', [
+    { name: 'Home', item: 'https://www.kyotocreative.com/' },
+    { name: 'Marketing', item: 'https://www.kyotocreative.com/marketing' },
+    { name: 'Brand Strategy & Positioning' }
+  ]],
+  ['/service/brand-strategy-positioning', [
+    { name: 'Home', item: 'https://www.kyotocreative.com/' },
+    { name: 'Marketing', item: 'https://www.kyotocreative.com/marketing' },
+    { name: 'Brand Strategy & Positioning' }
+  ]],
+  ['/content-campaigns-pr', [
+    { name: 'Home', item: 'https://www.kyotocreative.com/' },
+    { name: 'Marketing', item: 'https://www.kyotocreative.com/marketing' },
+    { name: 'Content Campaigns & PR' }
+  ]],
+  ['/service/content-campaigns-pr', [
+    { name: 'Home', item: 'https://www.kyotocreative.com/' },
+    { name: 'Marketing', item: 'https://www.kyotocreative.com/marketing' },
+    { name: 'Content Campaigns & PR' }
+  ]],
+  ['/paid-media-performance', [
+    { name: 'Home', item: 'https://www.kyotocreative.com/' },
+    { name: 'Marketing', item: 'https://www.kyotocreative.com/marketing' },
+    { name: 'Paid Media & Performance' }
+  ]],
+  ['/service/paid-media-performance', [
+    { name: 'Home', item: 'https://www.kyotocreative.com/' },
+    { name: 'Marketing', item: 'https://www.kyotocreative.com/marketing' },
+    { name: 'Paid Media & Performance' }
+  ]],
+  ['/brand-identity-creative', [
+    { name: 'Home', item: 'https://www.kyotocreative.com/' },
+    { name: 'Marketing', item: 'https://www.kyotocreative.com/marketing' },
+    { name: 'Brand Identity & Creative' }
+  ]],
+  ['/service/brand-identity-creative', [
+    { name: 'Home', item: 'https://www.kyotocreative.com/' },
+    { name: 'Marketing', item: 'https://www.kyotocreative.com/marketing' },
+    { name: 'Brand Identity & Creative' }
+  ]],
+  ['/service/branding', [
+    { name: 'Home', item: 'https://www.kyotocreative.com/' },
+    { name: 'Marketing', item: 'https://www.kyotocreative.com/marketing' },
+    { name: 'Brand Identity & Creative' }
+  ]],
+  ['/web-app', [
+    { name: 'Home', item: 'https://www.kyotocreative.com/' },
+    { name: 'Web & App' }
+  ]],
+  ['/service/web-app', [
+    { name: 'Home', item: 'https://www.kyotocreative.com/' },
+    { name: 'Web & App' }
+  ]],
+  ['/website-design-development', [
+    { name: 'Home', item: 'https://www.kyotocreative.com/' },
+    { name: 'Web & App', item: 'https://www.kyotocreative.com/web-app' },
+    { name: 'Website Design & Development' }
+  ]],
+  ['/service/website-design-development', [
+    { name: 'Home', item: 'https://www.kyotocreative.com/' },
+    { name: 'Web & App', item: 'https://www.kyotocreative.com/web-app' },
+    { name: 'Website Design & Development' }
+  ]],
+  ['/product-design-ux', [
+    { name: 'Home', item: 'https://www.kyotocreative.com/' },
+    { name: 'Web & App', item: 'https://www.kyotocreative.com/web-app' },
+    { name: 'Product Design & UX' }
+  ]],
+  ['/service/product-design-ux', [
+    { name: 'Home', item: 'https://www.kyotocreative.com/' },
+    { name: 'Web & App', item: 'https://www.kyotocreative.com/web-app' },
+    { name: 'Product Design & UX' }
+  ]],
+  ['/app-design-development', [
+    { name: 'Home', item: 'https://www.kyotocreative.com/' },
+    { name: 'Web & App', item: 'https://www.kyotocreative.com/web-app' },
+    { name: 'App Design & Development' }
+  ]],
+  ['/service/app-design-development', [
+    { name: 'Home', item: 'https://www.kyotocreative.com/' },
+    { name: 'Web & App', item: 'https://www.kyotocreative.com/web-app' },
+    { name: 'App Design & Development' }
+  ]],
+  ['/ai-automations', [
+    { name: 'Home', item: 'https://www.kyotocreative.com/' },
+    { name: 'AI Automations' }
+  ]],
+  ['/service/growth-marketing', [
+    { name: 'Home', item: 'https://www.kyotocreative.com/' },
+    { name: 'AI Automations' }
+  ]],
+  ['/intelligent-document-data-processing', [
+    { name: 'Home', item: 'https://www.kyotocreative.com/' },
+    { name: 'AI Automations', item: 'https://www.kyotocreative.com/ai-automations' },
+    { name: 'Intelligent Document & Data Processing' }
+  ]],
+  ['/service/intelligent-document-data-processing', [
+    { name: 'Home', item: 'https://www.kyotocreative.com/' },
+    { name: 'AI Automations', item: 'https://www.kyotocreative.com/ai-automations' },
+    { name: 'Intelligent Document & Data Processing' }
+  ]],
+  ['/autonomous-ai-agents-copilots', [
+    { name: 'Home', item: 'https://www.kyotocreative.com/' },
+    { name: 'AI Automations', item: 'https://www.kyotocreative.com/ai-automations' },
+    { name: 'Autonomous AI Agents & Copilots' }
+  ]],
+  ['/service/autonomous-ai-agents-copilots', [
+    { name: 'Home', item: 'https://www.kyotocreative.com/' },
+    { name: 'AI Automations', item: 'https://www.kyotocreative.com/ai-automations' },
+    { name: 'Autonomous AI Agents & Copilots' }
+  ]],
+  ['/workflow-orchestration-api-integration', [
+    { name: 'Home', item: 'https://www.kyotocreative.com/' },
+    { name: 'AI Automations', item: 'https://www.kyotocreative.com/ai-automations' },
+    { name: 'Workflow Orchestration & API Integration' }
+  ]],
+  ['/service/workflow-orchestration-api-integration', [
+    { name: 'Home', item: 'https://www.kyotocreative.com/' },
+    { name: 'AI Automations', item: 'https://www.kyotocreative.com/ai-automations' },
+    { name: 'Workflow Orchestration & API Integration' }
+  ]],
+]);
+
+function buildPageBreadcrumbList(route, canonicalUrl) {
+  const customItems = pageBreadcrumbsMap.get(route);
+  if (!customItems) return null;
+  const breadcrumbId = (canonicalUrl.endsWith('/') ? canonicalUrl.slice(0, -1) : canonicalUrl) + '/#breadcrumb';
+  return {
+    '@type': 'BreadcrumbList',
+    '@id': breadcrumbId,
+    itemListElement: customItems.map((entry, index) => {
+      const itemObj = {
+        '@type': 'ListItem',
+        position: index + 1,
+        name: entry.name,
+      };
+      if (entry.item) {
+        itemObj.item = entry.item;
+      }
+      return itemObj;
+    })
+  };
+}
+
 function updateYoastSchemaGraph(data, route, seo) {
   if (!data || !Array.isArray(data['@graph'])) return data;
-  for (const item of data['@graph']) {
-    if (seo && item['@type'] === 'WebPage') {
-      item.name = seo.title;
-      item.description = seo.description;
-      item.url = seo.canonical;
-      if (item['@id']) item['@id'] = seo.canonical;
-    }
-    if (item['@type'] === 'BreadcrumbList') {
-      const canonicalOrigin = 'https://www.kyotocreative.com';
-      if (item['@id']) {
-        if (item['@id'].startsWith('#') || item['@id'].startsWith('/#')) {
-          item['@id'] = canonicalOrigin + (item['@id'].startsWith('/') ? item['@id'] : '/' + item['@id']);
-        } else if (item['@id'].startsWith('/')) {
-          item['@id'] = canonicalOrigin + item['@id'];
+  const canonicalOrigin = 'https://www.kyotocreative.com';
+  const canonicalPageUrl = seo?.canonical || (canonicalOrigin + (route.startsWith('/') ? route : '/' + route));
+
+  const makeAbsolute = (url) => {
+    if (typeof url !== 'string') return url;
+    if (url.startsWith('http://') || url.startsWith('https://')) return url;
+    if (url.startsWith('/')) return canonicalOrigin + url;
+    if (url.startsWith('#')) return canonicalOrigin + '/' + url;
+    return canonicalOrigin + '/' + url;
+  };
+
+  const normalizeGraphNode = (node) => {
+    if (!node || typeof node !== 'object') return;
+    for (const key of Object.keys(node)) {
+      if (key === '@id' || key === 'url' || key === 'contentUrl') {
+        if (typeof node[key] === 'string' && (node[key].startsWith('/') || node[key].startsWith('#'))) {
+          node[key] = makeAbsolute(node[key]);
         }
+      } else if (typeof node[key] === 'object' && node[key] !== null) {
+        normalizeGraphNode(node[key]);
       }
-      if (Array.isArray(item.itemListElement)) {
-        for (const element of item.itemListElement) {
-          if (element['@type'] === 'ListItem') {
-            if (element.position === 1 && element.name === 'Home') {
-              element.item = canonicalOrigin + '/';
-            } else if (element.item) {
-              if (element.item.startsWith('/')) {
-                element.item = canonicalOrigin + element.item;
-              } else if (!element.item.startsWith('http')) {
-                element.item = canonicalOrigin + '/' + element.item;
+    }
+  };
+
+  const customBreadcrumbList = buildPageBreadcrumbList(route, canonicalPageUrl);
+
+  for (const item of data['@graph']) {
+    normalizeGraphNode(item);
+
+    const types = Array.isArray(item['@type']) ? item['@type'] : [item['@type']];
+
+    if (types.includes('WebPage')) {
+      if (seo) {
+        item.name = seo.title;
+        item.description = seo.description;
+        item.url = seo.canonical;
+        item['@id'] = seo.canonical;
+      }
+      if (customBreadcrumbList) {
+        item.breadcrumb = { '@id': customBreadcrumbList['@id'] };
+      }
+    }
+
+    if (types.includes('BreadcrumbList')) {
+      if (customBreadcrumbList) {
+        item['@id'] = customBreadcrumbList['@id'];
+        item.itemListElement = customBreadcrumbList.itemListElement;
+      } else {
+        // Fallback for blog posts and other routes: ensure valid absolute URLs
+        const pageId = (canonicalPageUrl.endsWith('/') ? canonicalPageUrl.slice(0, -1) : canonicalPageUrl) + '/#breadcrumb';
+        item['@id'] = pageId;
+        if (Array.isArray(item.itemListElement)) {
+          for (const element of item.itemListElement) {
+            if (element['@type'] === 'ListItem') {
+              if (element.position === 1 && element.name === 'Home') {
+                element.item = canonicalOrigin + '/';
+              } else if (element.item) {
+                element.item = makeAbsolute(element.item);
               }
             }
           }
         }
       }
     }
+
+    if (types.includes('WebSite')) {
+      item['@id'] = canonicalOrigin + '/#website';
+      item.url = canonicalOrigin + '/';
+    }
+
+    if (types.includes('Organization')) {
+      item['@id'] = canonicalOrigin + '/#organization';
+      item.url = canonicalOrigin + '/';
+    }
   }
+
+  // Ensure there are no duplicate BreadcrumbList entities in @graph
+  let seenBreadcrumb = false;
+  for (let i = data['@graph'].length - 1; i >= 0; i--) {
+    const item = data['@graph'][i];
+    const types = Array.isArray(item['@type']) ? item['@type'] : [item['@type']];
+    if (types.includes('BreadcrumbList')) {
+      if (seenBreadcrumb) {
+        data['@graph'].splice(i, 1);
+      } else {
+        seenBreadcrumb = true;
+      }
+    }
+  }
+
   return data;
 }
 
