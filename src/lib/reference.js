@@ -1066,6 +1066,7 @@ const lazyImageDimensions = new Map([
   ['/images/leadcourt-logo.png', [463, 65]],
   ['/images/green-square-infra-logo.png', [456, 234]],
   ['/images/seven-gate-holdings-logo.png', [253, 226]],
+  ['/images/interact-financial-devices-mockup.jpg', [1024, 1024]],
 ]);
 
 function imageDimensionsForSource(source) {
@@ -2819,7 +2820,7 @@ export async function documentResponse(request, route) {
   html = configureDocumentMetadata(html, route);
   html = html.replace(/((?:src|href)="\/_next\/static\/[^"?]+\.(?:js|css))"/g, '$1?replica=' + version + '"');
   const lazyLogoSelectors = [...lazyImageDimensions.keys()]
-    .filter(imagePath => imagePath !== '/seven-gate-before-after.png')
+    .filter(imagePath => imagePath !== '/seven-gate-before-after.png' && imagePath !== '/images/interact-financial-devices-mockup.jpg')
     .map(imagePath => `img[src$="${imagePath}"],img[data-src$="${imagePath}"]`)
     .join(',');
   const lazyImageLayoutStyle = `<style>${lazyLogoSelectors}{object-fit:contain!important}</style>`;
@@ -2974,7 +2975,150 @@ export async function documentResponse(request, route) {
       '.Quote_quote__8BTRS svg { width: clamp(1.5rem, 2.5vw, 2rem) !important; margin-bottom: 1rem !important; }' +
       '</style>'
     : '';
-  html = html.replace('<head>', '<head>' + partnersStyle + homepageFooterStyle + serviceHeroLabelStyle + processStyle + contactEmailStyle + agencyEmailStyle + brandStrategyResultsStyle + brandStrategyTestimonialsStyle + toneHeadlineStyle + brandIdentityHeadlineStyle + creativeWebDesignHeadlineStyle + webDevelopmentHeadlineStyle + wordPressCmsHeadlineStyle + seoGeoHeadlineStyle + copywritingHeadlineStyle + sitecareHeadlineStyle + leadcourtQuoteStyle + lazyImageLayoutStyle + '<base href="' + base + '">' + boot);
+  const pilot88MockupStyle = (route === '/work/88pilot' || route === '/work/88pilot/')
+    ? '<style>' +
+      '.ContentBuilder_contentBuilder__FAKQG > section:first-child .Video_videoContainer__21JKT,' +
+      '.ContentBuilder_contentBuilder__FAKQG > section:first-child .Video_loopVideo__1G4By {' +
+      '  background: #000 url("/images/88pilot-mockup-laptop.jpg") center center / cover no-repeat !important;' +
+      '}' +
+      '.ContentBuilder_contentBuilder__FAKQG > section:first-child .Video_loopVideo__1G4By video {' +
+      '  opacity: 0 !important;' +
+      '  visibility: hidden !important;' +
+      '  pointer-events: none !important;' +
+      '}' +
+      '</style>'
+    : '';
+  const leadcourtMockupStyle = (route === '/work/leadcourt' || route === '/work/leadcourt/')
+    ? '<style>' +
+      '.Hero_hero__3FzZ4 + section .Video_videoContainer__21JKT,' +
+      '.Hero_hero__3FzZ4 + section .Video_loopVideo__1G4By,' +
+      '.ContentBuilder_contentBuilder__FAKQG > section:first-child .Video_videoContainer__21JKT,' +
+      '.ContentBuilder_contentBuilder__FAKQG > section:first-child .Video_loopVideo__1G4By {' +
+      '  background: #000 url("/images/leadcourt-mockup-laptop.jpg") center center / cover no-repeat !important;' +
+      '}' +
+      '.Hero_hero__3FzZ4 + section .Video_loopVideo__1G4By video,' +
+      '.ContentBuilder_contentBuilder__FAKQG > section:first-child .Video_loopVideo__1G4By video {' +
+      '  opacity: 0 !important;' +
+      '  visibility: hidden !important;' +
+      '  pointer-events: none !important;' +
+      '}' +
+      '.SingleImage_containedImage__N2jLD .Video_videoContainer__21JKT,' +
+      '.SingleImage_containedImage__N2jLD .Video_loopVideo__1G4By {' +
+      '  background: #fff url("/images/leadcourt-analytics.jpg") center center / cover no-repeat !important;' +
+      '  border-radius: 16px !important;' +
+      '  overflow: hidden !important;' +
+      '  box-shadow: 0 10px 30px rgba(0,0,0,0.08) !important;' +
+      '}' +
+      '.SingleImage_containedImage__N2jLD .Video_loopVideo__1G4By video {' +
+      '  opacity: 0 !important;' +
+      '  visibility: hidden !important;' +
+      '  pointer-events: none !important;' +
+      '}' +
+      '</style>'
+    : '';
+  const interactHeroStyle = (route === '/work/interactfinancial.ca' || route === '/work/interactfinancial.ca/')
+    ? '<style>' +
+      '.Bento_bento__pskN5 .Bento_contained__4KAWy {' +
+      '  aspect-ratio: 1024 / 460 !important;' +
+      '  height: auto !important;' +
+      '  background: transparent !important;' +
+      '}' +
+      '.Bento_bento__pskN5 .Bento_contained__4KAWy > div {' +
+      '  aspect-ratio: 1024 / 460 !important;' +
+      '  height: 100% !important;' +
+      '  background: #000 url("/images/interact-financial-hero-preview.jpg") center center / cover no-repeat !important;' +
+      '}' +
+      '.Bento_bento__pskN5 .Bento_contained__4KAWy video {' +
+      '  opacity: 0 !important;' +
+      '  visibility: hidden !important;' +
+      '  pointer-events: none !important;' +
+      '}' +
+      '.SingleImage_singleImage__NY3zv .SingleImage_containedImage__N2jLD {' +
+      '  max-width: 840px !important;' +
+      '  aspect-ratio: 1 / 1 !important;' +
+      '  height: auto !important;' +
+      '  margin: 0 auto !important;' +
+      '  border-radius: 24px !important;' +
+      '  overflow: hidden !important;' +
+      '  box-shadow: 0 20px 45px -10px rgba(0,0,0,0.12) !important;' +
+      '}' +
+      '.SingleImage_singleImage__NY3zv .SingleImage_containedImage__N2jLD img {' +
+      '  width: 100% !important;' +
+      '  height: 100% !important;' +
+      '  object-fit: cover !important;' +
+      '  display: block !important;' +
+      '  border-radius: 24px !important;' +
+      '}' +
+      '</style>'
+    : '';
+  const greenSquareBannersStyle = (route === '/work/green-square-infra' || route === '/work/green-square-infra/')
+    ? '<style>' +
+      '.Bento_bento__pskN5 .Bento_bentoGrid__25th6 {' +
+      '  display: block !important;' +
+      '  position: relative !important;' +
+      '  width: 100% !important;' +
+      '  aspect-ratio: 16 / 9 !important;' +
+      '  background: #000 url("/images/green-square-banners.jpg") center center / cover no-repeat !important;' +
+      '  border-radius: 24px !important;' +
+      '  overflow: hidden !important;' +
+      '  box-shadow: 0 20px 45px -10px rgba(0,0,0,0.18) !important;' +
+      '}' +
+      '.Bento_bento__pskN5 .Bento_bentoGrid__25th6 > div {' +
+      '  display: none !important;' +
+      '}' +
+      '</style>'
+    : '';
+  const johnRuggieriVideoStyle = (route === '/work/johnruggieri' || route === '/work/johnruggieri/')
+    ? '<style>' +
+      '.ContentBuilder_contentBuilder__FAKQG > section:first-child {' +
+      '  padding: 0 1.5rem !important;' +
+      '  margin: 2rem 0 4rem 0 !important;' +
+      '}' +
+      '.ContentBuilder_contentBuilder__FAKQG > section:first-child .Video_videoContainer__21JKT {' +
+      '  max-width: 1100px !important;' +
+      '  width: 100% !important;' +
+      '  margin: 0 auto !important;' +
+      '  aspect-ratio: 1024 / 796 !important;' +
+      '  background: #111 url("/images/johnruggieri-artwork.jpg") center center / contain no-repeat !important;' +
+      '  border-radius: 24px !important;' +
+      '  overflow: hidden !important;' +
+      '  box-shadow: 0 20px 50px -15px rgba(0,0,0,0.18) !important;' +
+      '}' +
+      '.ContentBuilder_contentBuilder__FAKQG > section:first-child .Video_videoContainer__21JKT video,' +
+      '.ContentBuilder_contentBuilder__FAKQG > section:first-child .Video_videoContainer__21JKT span {' +
+      '  display: none !important;' +
+      '}' +
+      '.SingleImage_containedImage__N2jLD .Video_videoContainer__21JKT {' +
+      '  background: #000 !important;' +
+      '  border-radius: 24px !important;' +
+      '  overflow: hidden !important;' +
+      '  box-shadow: 0 20px 45px -10px rgba(0,0,0,0.18) !important;' +
+      '}' +
+      '.SingleImage_containedImage__N2jLD .Video_videoContainer__21JKT video {' +
+      '  object-fit: contain !important;' +
+      '}' +
+      '.johnruggieri-outcome-portrait-wrap {' +
+      '  display: flex !important;' +
+      '  justify-content: center !important;' +
+      '  margin: 3.5rem auto 1.5rem auto !important;' +
+      '  width: 100% !important;' +
+      '}' +
+      '.johnruggieri-outcome-portrait-card {' +
+      '  max-width: 520px !important;' +
+      '  width: 100% !important;' +
+      '  border-radius: 24px !important;' +
+      '  overflow: hidden !important;' +
+      '  box-shadow: 0 24px 60px -15px rgba(0,0,0,0.18) !important;' +
+      '}' +
+      '.johnruggieri-outcome-portrait-card img {' +
+      '  width: 100% !important;' +
+      '  height: auto !important;' +
+      '  display: block !important;' +
+      '  border-radius: 24px !important;' +
+      '}' +
+      '</style>'
+    : '';
+  html = html.replace('<head>', '<head>' + partnersStyle + homepageFooterStyle + serviceHeroLabelStyle + processStyle + contactEmailStyle + agencyEmailStyle + brandStrategyResultsStyle + brandStrategyTestimonialsStyle + toneHeadlineStyle + brandIdentityHeadlineStyle + creativeWebDesignHeadlineStyle + webDevelopmentHeadlineStyle + wordPressCmsHeadlineStyle + seoGeoHeadlineStyle + copywritingHeadlineStyle + sitecareHeadlineStyle + leadcourtQuoteStyle + pilot88MockupStyle + leadcourtMockupStyle + interactHeroStyle + greenSquareBannersStyle + johnRuggieriVideoStyle + lazyImageLayoutStyle + '<base href="' + base + '">' + boot);
   html = html.replace(/<script[^>]*src="https:\/\/(?:www\.)?(?:googletagmanager\.com|vercel\.live)[^>]*><\/script>/g, '');
   return html;
   });
