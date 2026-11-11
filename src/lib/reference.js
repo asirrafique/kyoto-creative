@@ -2386,31 +2386,59 @@ function updateFlightAstMetadata(node, seo) {
   }
 }
 
+function updateYoastSchemaGraph(data, route, seo) {
+  if (!data || !Array.isArray(data['@graph'])) return data;
+  for (const item of data['@graph']) {
+    if (seo && item['@type'] === 'WebPage') {
+      item.name = seo.title;
+      item.description = seo.description;
+      item.url = seo.canonical;
+      if (item['@id']) item['@id'] = seo.canonical;
+    }
+    if (item['@type'] === 'BreadcrumbList') {
+      const canonicalOrigin = 'https://www.kyotocreative.com';
+      if (item['@id']) {
+        if (item['@id'].startsWith('#') || item['@id'].startsWith('/#')) {
+          item['@id'] = canonicalOrigin + (item['@id'].startsWith('/') ? item['@id'] : '/' + item['@id']);
+        } else if (item['@id'].startsWith('/')) {
+          item['@id'] = canonicalOrigin + item['@id'];
+        }
+      }
+      if (Array.isArray(item.itemListElement)) {
+        for (const element of item.itemListElement) {
+          if (element['@type'] === 'ListItem') {
+            if (element.position === 1 && element.name === 'Home') {
+              element.item = canonicalOrigin + '/';
+            } else if (element.item) {
+              if (element.item.startsWith('/')) {
+                element.item = canonicalOrigin + element.item;
+              } else if (!element.item.startsWith('http')) {
+                element.item = canonicalOrigin + '/' + element.item;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  return data;
+}
+
 function replaceFlightMetadataRow(line, route) {
   const seo = pageSEOMap.get(route);
-  if (!seo) return line;
 
   const tMatch = line.match(/^([a-f\d]+):T([a-f\d]+),(.*)$/i);
   if (tMatch && tMatch[3].includes("@context") && tMatch[3].includes("schema.org")) {
     try {
       const data = JSON.parse(tMatch[3]);
-      if (data["@graph"]) {
-        for (const item of data["@graph"]) {
-          if (item["@type"] === "WebPage") {
-            item.name = seo.title;
-            item.description = seo.description;
-            item.url = seo.canonical;
-            if (item["@id"]) item["@id"] = seo.canonical;
-          }
-        }
-      }
+      updateYoastSchemaGraph(data, route, seo);
       const newJson = JSON.stringify(data);
       const newHex = Buffer.byteLength(newJson).toString(16);
       return tMatch[1] + ":T" + newHex + "," + newJson;
     } catch (_) {}
   }
 
-  if (line.includes('["$","title"') || line.includes('"og:title"')) {
+  if (seo && (line.includes('["$","title"') || line.includes('"og:title"'))) {
     const prefixMatch = line.match(/^([a-f\d]+:)/i);
     if (prefixMatch) {
       const prefix = prefixMatch[1];
@@ -2437,6 +2465,18 @@ function configureDocumentMetadata(html, route) {
   ].join('');
 
   const seo = pageSEOMap.get(route);
+
+  // Update Yoast schema graph in HTML if present (for both mapped and unmapped routes)
+  html = html.replace(/<script\b[^>]*class=["']yoast-schema-graph["'][^>]*>([\s\S]*?)<\/script>/gi, (match, jsonStr) => {
+    try {
+      const data = JSON.parse(jsonStr);
+      updateYoastSchemaGraph(data, route, seo);
+      return '<script type="application/ld+json" class="yoast-schema-graph">' + JSON.stringify(data) + '</script>';
+    } catch (_) {
+      return match;
+    }
+  });
+
   if (seo) {
     // Strip any existing title, description, og:title, og:description, canonical
     html = html.replace(/<title[^>]*>[\s\S]*?<\/title>/gi, '');
@@ -2450,26 +2490,6 @@ function configureDocumentMetadata(html, route) {
       const rel = link.match(/\brel\s*=\s*["']([^"']+)["']/i)?.[1].toLowerCase().split(/\s+/) || [];
       if (rel.some(value => ['icon', 'shortcut', 'apple-touch-icon', 'apple-touch-icon-precomposed'].includes(value))) return '';
       return link;
-    });
-
-    // Update Yoast schema graph in HTML if present
-    html = html.replace(/<script\b[^>]*class=["']yoast-schema-graph["'][^>]*>([\s\S]*?)<\/script>/gi, (match, jsonStr) => {
-      try {
-        const data = JSON.parse(jsonStr);
-        if (data['@graph']) {
-          for (const item of data['@graph']) {
-            if (item['@type'] === 'WebPage') {
-              item.name = seo.title;
-              item.description = seo.description;
-              item.url = seo.canonical;
-              if (item['@id']) item['@id'] = seo.canonical;
-            }
-          }
-        }
-        return '<script type="application/ld+json" class="yoast-schema-graph">' + JSON.stringify(data) + '</script>';
-      } catch (_) {
-        return match;
-      }
     });
 
     const escapedTitle = escapeHtml(seo.title);
