@@ -2998,6 +2998,9 @@ export async function documentResponse(request, route) {
       '  visibility: hidden !important;' +
       '  pointer-events: none !important;' +
       '}' +
+      '.RelatedProjects_relatedProjects__opNhl {' +
+      '  display: none !important;' +
+      '}' +
       '</style>'
     : '';
   const leadcourtMockupStyle = (route === '/work/leadcourt' || route === '/work/leadcourt/')
@@ -3053,6 +3056,9 @@ export async function documentResponse(request, route) {
       '  opacity: 0 !important;' +
       '  visibility: hidden !important;' +
       '  pointer-events: none !important;' +
+      '}' +
+      '.RelatedProjects_relatedProjects__opNhl {' +
+      '  display: none !important;' +
       '}' +
       '</style>'
     : '';
@@ -3221,6 +3227,9 @@ export async function documentResponse(request, route) {
       '    padding-top: 1.5rem !important;' +
       '  }' +
       '}' +
+      '.RelatedProjects_relatedProjects__opNhl {' +
+      '  display: none !important;' +
+      '}' +
       '</style>'
     : '';
   const johnRuggieriVideoStyle = (route === '/work/johnruggieri' || route === '/work/johnruggieri/')
@@ -3286,9 +3295,31 @@ export async function documentResponse(request, route) {
       '.SingleImage_containedImage__N2jLD .Video_videoContainer__21JKT video {' +
       '  object-fit: contain !important;' +
       '}' +
+      '.RelatedProjects_relatedProjects__opNhl {' +
+      '  display: none !important;' +
+      '}' +
       '</style>'
     : '';
-  html = html.replace('<head>', '<head>' + partnersStyle + homepageFooterStyle + serviceHeroLabelStyle + processStyle + contactEmailStyle + agencyEmailStyle + brandStrategyResultsStyle + brandStrategyTestimonialsStyle + toneHeadlineStyle + brandIdentityHeadlineStyle + creativeWebDesignHeadlineStyle + webDevelopmentHeadlineStyle + wordPressCmsHeadlineStyle + seoGeoHeadlineStyle + copywritingHeadlineStyle + sitecareHeadlineStyle + leadcourtQuoteStyle + pilot88MockupStyle + leadcourtMockupStyle + interactHeroStyle + greenSquareBannersStyle + johnRuggieriVideoStyle + lazyImageLayoutStyle + '<base href="' + base + '">' + boot);
+  const agenciesPageStyle = (route === '/agencies' || route === '/agencies/')
+    ? '<style>' +
+      '.Statistics_statistics__op_op, ' +
+      '.RelatedProjects_relatedProjects__opNhl, ' +
+      '.Testimonials_testimonials__l4UZd {' +
+      '  display: none !important;' +
+      '}' +
+      '</style>'
+    : '';
+  const b2bTechPageStyle = (route === '/b2b-tech-software-saas' || route === '/b2b-tech-software-saas/' || route === '/b2b-transformation' || route === '/b2b-transformation/')
+    ? '<style>' +
+      '.Statistics_statistics__op_op, ' +
+      '.RelatedProjects_relatedProjects__opNhl' +
+      (route.startsWith('/b2b-transformation') ? ', .Testimonials_testimonials__l4UZd' : '') +
+      ' {' +
+      '  display: none !important;' +
+      '}' +
+      '</style>'
+    : '';
+  html = html.replace('<head>', '<head>' + agenciesPageStyle + b2bTechPageStyle + partnersStyle + homepageFooterStyle + serviceHeroLabelStyle + processStyle + contactEmailStyle + agencyEmailStyle + brandStrategyResultsStyle + brandStrategyTestimonialsStyle + toneHeadlineStyle + brandIdentityHeadlineStyle + creativeWebDesignHeadlineStyle + webDevelopmentHeadlineStyle + wordPressCmsHeadlineStyle + seoGeoHeadlineStyle + copywritingHeadlineStyle + sitecareHeadlineStyle + leadcourtQuoteStyle + pilot88MockupStyle + leadcourtMockupStyle + interactHeroStyle + greenSquareBannersStyle + johnRuggieriVideoStyle + lazyImageLayoutStyle + '<base href="' + base + '">' + boot);
   html = html.replace(/<script[^>]*src="https:\/\/(?:www\.)?(?:googletagmanager\.com|vercel\.live)[^>]*><\/script>/g, '');
   return html;
   });
