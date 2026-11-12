@@ -6,7 +6,6 @@ import { installHeroVideoControls } from './hero-video.js';
 import { installFaqControls } from './faq-controls.js';
 import { installLinkControls } from './link-controls.js';
 import { installNavigationControls } from './navigation-controls.js';
-import { installWorkArchiveMount } from './work-archive-mount.js';
 import { installMediaScheduling } from './media-scheduling.js';
 import { capturePage, pageKey, readIndex } from './page-cache.js';
 
@@ -1932,7 +1931,7 @@ function localizeDocument(html, route) {
     html = html.replace('<h1><span class="MaskInUp_container__0AW5i" data-fill="false"><div><span><i></i>Agency</span></div></span></h1>', '<h1><span class="MaskInUp_container__0AW5i" data-fill="false"><div><span><i></i>The Agency Behind the Work</span></div></span></h1>');
   }
   if (route === '/work') {
-    html = replaceWorkArchiveHtml(html);
+    // html = replaceWorkArchiveHtml(html);
     html = html.replace('<h1><span class="MaskInUp_container__0AW5i" data-fill="false"><div><span><i></i>Work</span></div></span></h1>', '<h1><span class="MaskInUp_container__0AW5i" data-fill="false"><div><span><i></i>Selected Work &amp; Client Results</span></div></span></h1>');
   }
   if (route === '/') {
@@ -2339,7 +2338,6 @@ const boot = `<script data-replica-runtime>
 (${installFaqControls.toString()})();
 (${installLinkControls.toString()})();
 (${installNavigationControls.toString()})();
-(${installWorkArchiveMount.toString()})();
 (() => {
   // Scroll-triggered videos may leave the viewport while play() is pending.
   // A browser AbortError in that case is expected and must not become an
