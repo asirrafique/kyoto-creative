@@ -2975,11 +2975,25 @@ export async function documentResponse(request, route) {
     : '';
   const pilot88MockupStyle = (route === '/work/88pilot' || route === '/work/88pilot/')
     ? '<style>' +
-      '.ContentBuilder_contentBuilder__FAKQG > section:first-child .Video_videoContainer__21JKT,' +
-      '.ContentBuilder_contentBuilder__FAKQG > section:first-child .Video_loopVideo__1G4By {' +
-      '  background: #000 url("/images/88pilot-mockup-laptop.jpg") center center / cover no-repeat !important;' +
+      '.ContentBuilder_contentBuilder__FAKQG > section:first-child {' +
+      '  padding: 0 1.5rem !important;' +
+      '  margin: 2rem 0 4rem 0 !important;' +
       '}' +
-      '.ContentBuilder_contentBuilder__FAKQG > section:first-child .Video_loopVideo__1G4By video {' +
+      '.ContentBuilder_contentBuilder__FAKQG > section:first-child .Video_videoContainer__21JKT {' +
+      '  max-width: 1000px !important;' +
+      '  width: 100% !important;' +
+      '  margin: 0 auto !important;' +
+      '  aspect-ratio: 16 / 9 !important;' +
+      '  background: #000 url("/images/88pilot-mockup-laptop.jpg") center center / contain no-repeat !important;' +
+      '  border-radius: 24px !important;' +
+      '  overflow: hidden !important;' +
+      '  box-shadow: 0 20px 50px -15px rgba(0,0,0,0.22) !important;' +
+      '}' +
+      '.ContentBuilder_contentBuilder__FAKQG > section:first-child .Video_loopVideo__1G4By {' +
+      '  background: transparent !important;' +
+      '}' +
+      '.ContentBuilder_contentBuilder__FAKQG > section:first-child .Video_loopVideo__1G4By video,' +
+      '.ContentBuilder_contentBuilder__FAKQG > section:first-child .Video_videoContainer__21JKT video {' +
       '  opacity: 0 !important;' +
       '  visibility: hidden !important;' +
       '  pointer-events: none !important;' +
@@ -2988,26 +3002,54 @@ export async function documentResponse(request, route) {
     : '';
   const leadcourtMockupStyle = (route === '/work/leadcourt' || route === '/work/leadcourt/')
     ? '<style>' +
+      '.Hero_hero__3FzZ4 + section {' +
+      '  padding: 0 1.5rem !important;' +
+      '  margin: 2rem 0 4rem 0 !important;' +
+      '}' +
       '.Hero_hero__3FzZ4 + section .Video_videoContainer__21JKT,' +
+      '.ContentBuilder_contentBuilder__FAKQG > section:first-child .Video_videoContainer__21JKT {' +
+      '  max-width: 1000px !important;' +
+      '  width: 100% !important;' +
+      '  margin: 0 auto !important;' +
+      '  aspect-ratio: 16 / 9 !important;' +
+      '  background: #000 url("/images/leadcourt-mockup-laptop.jpg") center center / contain no-repeat !important;' +
+      '  border-radius: 24px !important;' +
+      '  overflow: hidden !important;' +
+      '  box-shadow: 0 20px 50px -15px rgba(0,0,0,0.22) !important;' +
+      '}' +
       '.Hero_hero__3FzZ4 + section .Video_loopVideo__1G4By,' +
-      '.ContentBuilder_contentBuilder__FAKQG > section:first-child .Video_videoContainer__21JKT,' +
       '.ContentBuilder_contentBuilder__FAKQG > section:first-child .Video_loopVideo__1G4By {' +
-      '  background: #000 url("/images/leadcourt-mockup-laptop.jpg") center center / cover no-repeat !important;' +
+      '  background: transparent !important;' +
       '}' +
       '.Hero_hero__3FzZ4 + section .Video_loopVideo__1G4By video,' +
-      '.ContentBuilder_contentBuilder__FAKQG > section:first-child .Video_loopVideo__1G4By video {' +
+      '.Hero_hero__3FzZ4 + section .Video_videoContainer__21JKT video,' +
+      '.ContentBuilder_contentBuilder__FAKQG > section:first-child .Video_loopVideo__1G4By video,' +
+      '.ContentBuilder_contentBuilder__FAKQG > section:first-child .Video_videoContainer__21JKT video {' +
       '  opacity: 0 !important;' +
       '  visibility: hidden !important;' +
       '  pointer-events: none !important;' +
       '}' +
-      '.SingleImage_containedImage__N2jLD .Video_videoContainer__21JKT,' +
-      '.SingleImage_containedImage__N2jLD .Video_loopVideo__1G4By {' +
-      '  background: #fff url("/images/leadcourt-analytics.jpg") center center / cover no-repeat !important;' +
+      '.SingleImage_containedImage__N2jLD {' +
+      '  max-width: 960px !important;' +
+      '  width: 100% !important;' +
+      '  margin: 2.5rem auto !important;' +
+      '  padding: 0 1rem !important;' +
+      '}' +
+      '.SingleImage_containedImage__N2jLD .Video_videoContainer__21JKT {' +
+      '  max-width: 960px !important;' +
+      '  width: 100% !important;' +
+      '  margin: 0 auto !important;' +
+      '  aspect-ratio: 1024 / 575 !important;' +
+      '  background: #fff url("/images/leadcourt-analytics.jpg") center center / contain no-repeat !important;' +
       '  border-radius: 16px !important;' +
       '  overflow: hidden !important;' +
-      '  box-shadow: 0 10px 30px rgba(0,0,0,0.08) !important;' +
+      '  box-shadow: 0 15px 40px -10px rgba(0,0,0,0.12), 0 0 0 1px rgba(0,0,0,0.06) !important;' +
       '}' +
-      '.SingleImage_containedImage__N2jLD .Video_loopVideo__1G4By video {' +
+      '.SingleImage_containedImage__N2jLD .Video_loopVideo__1G4By {' +
+      '  background: transparent !important;' +
+      '}' +
+      '.SingleImage_containedImage__N2jLD .Video_loopVideo__1G4By video,' +
+      '.SingleImage_containedImage__N2jLD .Video_videoContainer__21JKT video {' +
       '  opacity: 0 !important;' +
       '  visibility: hidden !important;' +
       '  pointer-events: none !important;' +
@@ -3019,11 +3061,17 @@ export async function documentResponse(request, route) {
       '.Bento_bento__pskN5 .Bento_contained__4KAWy {' +
       '  aspect-ratio: 1024 / 460 !important;' +
       '  height: auto !important;' +
+      '  max-width: 1100px !important;' +
+      '  margin: 0 auto !important;' +
       '  background: transparent !important;' +
+      '  border-radius: 22px !important;' +
+      '  overflow: hidden !important;' +
+      '  box-shadow: 0 20px 45px -12px rgba(0,0,0,0.18) !important;' +
       '}' +
       '.Bento_bento__pskN5 .Bento_contained__4KAWy > div {' +
       '  aspect-ratio: 1024 / 460 !important;' +
       '  height: 100% !important;' +
+      '  border-radius: 22px !important;' +
       '  background: #000 url("/images/interact-financial-hero-preview.jpg") center center / cover no-repeat !important;' +
       '}' +
       '.Bento_bento__pskN5 .Bento_contained__4KAWy video {' +
@@ -3031,16 +3079,46 @@ export async function documentResponse(request, route) {
       '  visibility: hidden !important;' +
       '  pointer-events: none !important;' +
       '}' +
-      '.SingleImage_singleImage__NY3zv .SingleImage_containedImage__N2jLD {' +
-      '  max-width: 840px !important;' +
+      '.SingleImage_singleImage__NY3zv.interactfinancial-gallery {' +
+      '  width: 100% !important;' +
+      '  max-width: 100% !important;' +
+      '  margin: 3.5rem 0 !important;' +
+      '  display: block !important;' +
+      '}' +
+      '.SingleImage_singleImage__NY3zv.interactfinancial-gallery .container {' +
+      '  display: block !important;' +
+      '  width: 100% !important;' +
+      '  max-width: 1400px !important;' +
+      '  margin: 0 auto !important;' +
+      '  padding: 0 4% !important;' +
+      '  box-sizing: border-box !important;' +
+      '}' +
+      '.SingleImage_singleImage__NY3zv .interactfinancial-dual-grid {' +
+      '  display: grid !important;' +
+      '  grid-template-columns: 1fr 1fr !important;' +
+      '  grid-column: 1 / -1 !important;' +
+      '  gap: 2.5rem !important;' +
+      '  width: 100% !important;' +
+      '  margin: 0 auto !important;' +
+      '}' +
+      '@media (max-width: 768px) {' +
+      '  .SingleImage_singleImage__NY3zv .interactfinancial-dual-grid {' +
+      '    grid-template-columns: 1fr !important;' +
+      '    gap: 1.5rem !important;' +
+      '  }' +
+      '}' +
+      '.SingleImage_singleImage__NY3zv .interactfinancial-dual-grid .SingleImage_containedImage__N2jLD {' +
+      '  grid-column: auto !important;' +
+      '  width: 100% !important;' +
       '  aspect-ratio: 1 / 1 !important;' +
       '  height: auto !important;' +
-      '  margin: 0 auto !important;' +
+      '  margin: 0 !important;' +
       '  border-radius: 24px !important;' +
       '  overflow: hidden !important;' +
-      '  box-shadow: 0 20px 45px -10px rgba(0,0,0,0.12) !important;' +
+      '  box-shadow: 0 20px 45px -10px rgba(0,0,0,0.15) !important;' +
+      '  background: #ececec !important;' +
       '}' +
-      '.SingleImage_singleImage__NY3zv .SingleImage_containedImage__N2jLD img {' +
+      '.SingleImage_singleImage__NY3zv .interactfinancial-dual-grid .SingleImage_containedImage__N2jLD img {' +
       '  width: 100% !important;' +
       '  height: 100% !important;' +
       '  object-fit: cover !important;' +
@@ -3051,40 +3129,153 @@ export async function documentResponse(request, route) {
     : '';
   const greenSquareBannersStyle = (route === '/work/green-square-infra' || route === '/work/green-square-infra/')
     ? '<style>' +
+      '.Bento_bento__pskN5 {' +
+      '  margin-top: 1.5rem !important;' +
+      '  margin-bottom: 0 !important;' +
+      '  padding-bottom: 0 !important;' +
+      '}' +
+      '.Bento_bento__pskN5 .container {' +
+      '  max-width: 1200px !important;' +
+      '  margin: 0 auto !important;' +
+      '  padding: 0 1.5rem !important;' +
+      '}' +
       '.Bento_bento__pskN5 .Bento_bentoGrid__25th6 {' +
-      '  display: block !important;' +
-      '  position: relative !important;' +
+      '  display: grid !important;' +
+      '  grid-template-columns: repeat(3, 1fr) !important;' +
+      '  grid-template-rows: none !important;' +
+      '  gap: 2.25rem !important;' +
       '  width: 100% !important;' +
-      '  aspect-ratio: 16 / 9 !important;' +
-      '  background: #000 url("/images/green-square-banners.jpg") center center / cover no-repeat !important;' +
-      '  border-radius: 24px !important;' +
-      '  overflow: hidden !important;' +
-      '  box-shadow: 0 20px 45px -10px rgba(0,0,0,0.18) !important;' +
+      '  aspect-ratio: auto !important;' +
+      '  background: transparent !important;' +
+      '  border: none !important;' +
+      '  border-radius: 0 !important;' +
+      '  box-shadow: none !important;' +
+      '  padding: 0 !important;' +
+      '  margin-bottom: 0 !important;' +
       '}' +
       '.Bento_bento__pskN5 .Bento_bentoGrid__25th6 > div {' +
+      '  display: block !important;' +
+      '  grid-column: auto !important;' +
+      '  grid-row: auto !important;' +
+      '  width: 100% !important;' +
+      '  aspect-ratio: 270 / 479 !important;' +
+      '  border-radius: 20px !important;' +
+      '  overflow: hidden !important;' +
+      '  box-shadow: 0 16px 36px -10px rgba(0,0,0,0.18) !important;' +
+      '  background-size: cover !important;' +
+      '  background-position: center !important;' +
+      '  background-repeat: no-repeat !important;' +
+      '  transition: transform 0.3s ease, box-shadow 0.3s ease !important;' +
+      '}' +
+      '.Bento_bento__pskN5 .Bento_bentoGrid__25th6 > div:hover {' +
+      '  transform: translateY(-4px) !important;' +
+      '  box-shadow: 0 24px 48px -12px rgba(0,0,0,0.25) !important;' +
+      '}' +
+      '.Bento_bento__pskN5 .Bento_bentoGrid__25th6 .Bento_media1__Zf6n4 {' +
+      '  background-image: url("/images/green-square-banner-1-hd.jpg") !important;' +
+      '}' +
+      '.Bento_bento__pskN5 .Bento_bentoGrid__25th6 .Bento_media2__Z_9Z_ {' +
+      '  background-image: url("/images/green-square-banner-2-hd.jpg") !important;' +
+      '}' +
+      '.Bento_bento__pskN5 .Bento_bentoGrid__25th6 .Bento_media3__Je_Pc {' +
+      '  background-image: url("/images/green-square-banner-3-hd.jpg") !important;' +
+      '}' +
+      '.Bento_bento__pskN5 .Bento_bentoGrid__25th6 .Bento_media4__xfRDt {' +
       '  display: none !important;' +
+      '}' +
+      '.Bento_bento__pskN5 .Bento_bentoGrid__25th6 video {' +
+      '  display: none !important;' +
+      '}' +
+      'section.Intro_intro__kvY3Y,' +
+      '.Intro_intro__kvY3Y {' +
+      '  padding-top: 1.5rem !important;' +
+      '  padding-bottom: 2.5rem !important;' +
+      '  margin-top: 0 !important;' +
+      '}' +
+      '@media (min-width: 769px) {' +
+      '  .Bento_bento__pskN5 .Bento_bentoGrid__25th6 {' +
+      '    grid-template-columns: repeat(3, 1fr) !important;' +
+      '    grid-template-rows: none !important;' +
+      '  }' +
+      '  section.Intro_intro__kvY3Y,' +
+      '  .Intro_intro__kvY3Y {' +
+      '    padding-top: 1.5rem !important;' +
+      '  }' +
+      '}' +
+      '@media (min-width: 850px) {' +
+      '  section.Intro_intro__kvY3Y,' +
+      '  .Intro_intro__kvY3Y {' +
+      '    padding-top: 1.5rem !important;' +
+      '  }' +
+      '}' +
+      '@media (max-width: 768px) {' +
+      '  .Bento_bento__pskN5 .Bento_bentoGrid__25th6 {' +
+      '    grid-template-columns: 1fr !important;' +
+      '    grid-template-rows: none !important;' +
+      '    max-width: 360px !important;' +
+      '    margin: 0 auto !important;' +
+      '    gap: 1.75rem !important;' +
+      '  }' +
+      '  section.Intro_intro__kvY3Y,' +
+      '  .Intro_intro__kvY3Y {' +
+      '    padding-top: 1.5rem !important;' +
+      '  }' +
       '}' +
       '</style>'
     : '';
   const johnRuggieriVideoStyle = (route === '/work/johnruggieri' || route === '/work/johnruggieri/')
     ? '<style>' +
-      '.ContentBuilder_contentBuilder__FAKQG > section:first-child {' +
-      '  padding: 0 1.5rem !important;' +
-      '  margin: 2rem 0 4rem 0 !important;' +
-      '}' +
-      '.ContentBuilder_contentBuilder__FAKQG > section:first-child .Video_videoContainer__21JKT {' +
-      '  max-width: 1100px !important;' +
-      '  width: 100% !important;' +
-      '  margin: 0 auto !important;' +
-      '  aspect-ratio: 1024 / 796 !important;' +
-      '  background: #111 url("/images/johnruggieri-artwork.jpg") center center / contain no-repeat !important;' +
-      '  border-radius: 24px !important;' +
+      '.Bento_bento__pskN5 .Bento_media1__Zf6n4 {' +
+      '  background: #000 url("/images/johnruggieri-bento-cube.jpg") center center / cover no-repeat !important;' +
+      '  border-radius: 20px !important;' +
       '  overflow: hidden !important;' +
-      '  box-shadow: 0 20px 50px -15px rgba(0,0,0,0.18) !important;' +
+      '  box-shadow: 0 16px 36px -10px rgba(0,0,0,0.18) !important;' +
       '}' +
-      '.ContentBuilder_contentBuilder__FAKQG > section:first-child .Video_videoContainer__21JKT video,' +
-      '.ContentBuilder_contentBuilder__FAKQG > section:first-child .Video_videoContainer__21JKT span {' +
+      '.Bento_bento__pskN5 .Bento_media1__Zf6n4 video,' +
+      '.Bento_bento__pskN5 .Bento_media1__Zf6n4 span {' +
       '  display: none !important;' +
+      '  opacity: 0 !important;' +
+      '  visibility: hidden !important;' +
+      '  pointer-events: none !important;' +
+      '}' +
+      '.Bento_bento__pskN5 .Bento_media2__Z_9Z_ {' +
+      '  background: #000 url("/images/johnruggieri-bento-signature.jpg") center center / cover no-repeat !important;' +
+      '  border-radius: 20px !important;' +
+      '  overflow: hidden !important;' +
+      '  box-shadow: 0 16px 36px -10px rgba(0,0,0,0.18) !important;' +
+      '}' +
+      '.Bento_bento__pskN5 .Bento_media2__Z_9Z_ video,' +
+      '.Bento_bento__pskN5 .Bento_media2__Z_9Z_ span {' +
+      '  display: none !important;' +
+      '  opacity: 0 !important;' +
+      '  visibility: hidden !important;' +
+      '  pointer-events: none !important;' +
+      '}' +
+      '.Bento_bento__pskN5 .Bento_media3__Je_Pc {' +
+      '  background: #fff url("/images/johnruggieri-bento-signature-clean.jpg") center center / contain no-repeat !important;' +
+      '  border-radius: 20px !important;' +
+      '  overflow: hidden !important;' +
+      '  box-shadow: 0 16px 36px -10px rgba(0,0,0,0.18) !important;' +
+      '}' +
+      '.Bento_bento__pskN5 .Bento_media3__Je_Pc video,' +
+      '.Bento_bento__pskN5 .Bento_media3__Je_Pc span {' +
+      '  display: none !important;' +
+      '  opacity: 0 !important;' +
+      '  visibility: hidden !important;' +
+      '  pointer-events: none !important;' +
+      '}' +
+      '.Bento_bento__pskN5 .Bento_media4__xfRDt {' +
+      '  background: #000 url("/images/johnruggieri-bento-portrait.jpg") center top / cover no-repeat !important;' +
+      '  border-radius: 20px !important;' +
+      '  overflow: hidden !important;' +
+      '  box-shadow: 0 16px 36px -10px rgba(0,0,0,0.18) !important;' +
+      '}' +
+      '.Bento_bento__pskN5 .Bento_media4__xfRDt video,' +
+      '.Bento_bento__pskN5 .Bento_media4__xfRDt span {' +
+      '  display: none !important;' +
+      '  opacity: 0 !important;' +
+      '  visibility: hidden !important;' +
+      '  pointer-events: none !important;' +
       '}' +
       '.SingleImage_containedImage__N2jLD .Video_videoContainer__21JKT {' +
       '  background: #000 !important;' +
@@ -3094,25 +3285,6 @@ export async function documentResponse(request, route) {
       '}' +
       '.SingleImage_containedImage__N2jLD .Video_videoContainer__21JKT video {' +
       '  object-fit: contain !important;' +
-      '}' +
-      '.johnruggieri-outcome-portrait-wrap {' +
-      '  display: flex !important;' +
-      '  justify-content: center !important;' +
-      '  margin: 3.5rem auto 1.5rem auto !important;' +
-      '  width: 100% !important;' +
-      '}' +
-      '.johnruggieri-outcome-portrait-card {' +
-      '  max-width: 520px !important;' +
-      '  width: 100% !important;' +
-      '  border-radius: 24px !important;' +
-      '  overflow: hidden !important;' +
-      '  box-shadow: 0 24px 60px -15px rgba(0,0,0,0.18) !important;' +
-      '}' +
-      '.johnruggieri-outcome-portrait-card img {' +
-      '  width: 100% !important;' +
-      '  height: auto !important;' +
-      '  display: block !important;' +
-      '  border-radius: 24px !important;' +
       '}' +
       '</style>'
     : '';

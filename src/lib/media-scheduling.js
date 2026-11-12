@@ -1,11 +1,11 @@
 /** Start decorative project loops near the viewport, preserving their source/crop. */
 export function installMediaScheduling() {
   const videoSources = [
-    { selector: '.Bento_media1__Zf6n4 video', src: 'https://kota-content.b-cdn.net/app/uploads/2025/04/Square-Rotating-Cube2.mp4' },
-    { selector: '.Bento_media2__Z_9Z_ video', src: 'https://kota-content.b-cdn.net/app/uploads/2025/04/Bento-Right2.mp4' },
-    { selector: '.Bento_media3__Je_Pc video', src: 'https://kota-content.b-cdn.net/app/uploads/2025/04/Bento-Earth-Spin2.mp4' },
-    { selector: '.Bento_media4__xfRDt video', src: 'https://kota-content.b-cdn.net/app/uploads/2025/04/Right-Side-Mobile-Devices5.mp4' },
-    { selector: '.Video_loopVideo__1G4By video', src: 'https://kota-content.b-cdn.net/app/uploads/2025/04/All-Pages-3D-2.mp4' },
+    
+    
+    
+    
+    
   ];
 
   function ensureSources() {
