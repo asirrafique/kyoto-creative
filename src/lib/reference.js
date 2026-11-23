@@ -2795,13 +2795,14 @@ export async function documentResponse(request, route) {
   let temporary = false;
   let sanityPost = null;
 
-  if (!file && route.startsWith('/blog/')) {
+  if (route.startsWith('/blog/')) {
     const slug = route.replace(/^\/blog\//, '').replace(/\/$/, '');
     sanityPost = await fetchPublishedBlogPostBySlug(slug);
-    if (sanityPost) {
-      // Use existing captured blog post template
-      file = routes['/blog/10-creative-websites-to-inspire-your-next-web-design-2025-update'];
+    if (!sanityPost) {
+      return new Response('Page not found.', { status: 404 });
     }
+    // Use existing captured blog post template
+    file = routes['/blog/10-creative-websites-to-inspire-your-next-web-design-2025-update'];
   }
 
   const cacheable = !sanityPost && key === route && Boolean(file);
@@ -2822,9 +2823,9 @@ export async function documentResponse(request, route) {
       let responseFlight = flight;
       if (route === '/blog') {
         const sanityPosts = await fetchPublishedBlogPosts();
-        if (sanityPosts.length > 0 && responseFlight.includes('"posts":[')) {
-          const innerJson = JSON.stringify(sanityPosts).slice(1, -1);
-          responseFlight = responseFlight.replace('"posts":[', '"posts":[' + innerJson + ',');
+        if (responseFlight.includes('"posts":[')) {
+          const innerJson = sanityPosts.length > 0 ? JSON.stringify(sanityPosts).slice(1, -1) : '';
+          responseFlight = responseFlight.replace('"posts":[', '"posts":[' + innerJson);
         }
       }
       return new Response(responseFlight, { headers: { 'Content-Type': 'text/x-component', 'Cache-Control': 'no-cache', Vary: 'RSC, Next-Router-State-Tree, Next-Router-Prefetch' } });
@@ -2845,6 +2846,13 @@ export async function documentResponse(request, route) {
   // Fresh principal pages use untouched source markup. Older mirrored documents
   // have rewritten relative URLs; a base restores their original directory.
   const base = route === '/' ? '/' : route.slice(0, route.lastIndexOf('/') + 1);
+  const blogPageStyle = (route === '/blog' || route === '/blog/')
+    ? '<style>' +
+      '.Filters_filters__26Hdd, [class*="Filters_filters"] {' +
+      '  display: none !important;' +
+      '}' +
+      '</style>'
+    : '';
   const partnersStyle = route === '/' ? '<style>.Partners_partners__jBo8y{display:none!important}</style>' : '';
   const homepageFooterStyle = route === '/'
     ? '<style>' +
@@ -3339,7 +3347,7 @@ export async function documentResponse(request, route) {
       '}' +
       '</style>'
     : '';
-  html = html.replace('<head>', '<head>' + agenciesPageStyle + b2bTechPageStyle + partnersStyle + homepageFooterStyle + serviceHeroLabelStyle + processStyle + contactEmailStyle + agencyEmailStyle + brandStrategyResultsStyle + brandStrategyTestimonialsStyle + toneHeadlineStyle + brandIdentityHeadlineStyle + creativeWebDesignHeadlineStyle + webDevelopmentHeadlineStyle + wordPressCmsHeadlineStyle + seoGeoHeadlineStyle + copywritingHeadlineStyle + sitecareHeadlineStyle + leadcourtQuoteStyle + pilot88MockupStyle + leadcourtMockupStyle + interactHeroStyle + greenSquareBannersStyle + johnRuggieriVideoStyle + lazyImageLayoutStyle + '<base href="' + base + '">' + boot);
+  html = html.replace('<head>', '<head>' + blogPageStyle + agenciesPageStyle + b2bTechPageStyle + partnersStyle + homepageFooterStyle + serviceHeroLabelStyle + processStyle + contactEmailStyle + agencyEmailStyle + brandStrategyResultsStyle + brandStrategyTestimonialsStyle + toneHeadlineStyle + brandIdentityHeadlineStyle + creativeWebDesignHeadlineStyle + webDevelopmentHeadlineStyle + wordPressCmsHeadlineStyle + seoGeoHeadlineStyle + copywritingHeadlineStyle + sitecareHeadlineStyle + leadcourtQuoteStyle + pilot88MockupStyle + leadcourtMockupStyle + interactHeroStyle + greenSquareBannersStyle + johnRuggieriVideoStyle + lazyImageLayoutStyle + '<base href="' + base + '">' + boot);
   html = html.replace(/<script[^>]*src="https:\/\/(?:www\.)?(?:googletagmanager\.com|vercel\.live)[^>]*><\/script>/g, '');
   return html;
   });
@@ -3367,10 +3375,10 @@ export async function documentResponse(request, route) {
   }
   if (route === '/blog') {
     const sanityPosts = await fetchPublishedBlogPosts();
-    if (sanityPosts.length > 0 && html.includes('\\"posts\\":[')) {
-      const innerJson = JSON.stringify(sanityPosts).slice(1, -1);
+    if (html.includes('\\"posts\\":[')) {
+      const innerJson = sanityPosts.length > 0 ? JSON.stringify(sanityPosts).slice(1, -1) : '';
       const escapedForHtml = innerJson.replace(/"/g, '\\"');
-      html = html.replace('\\"posts\\":[', '\\"posts\\":[' + escapedForHtml + ',');
+      html = html.replace('\\"posts\\":[', '\\"posts\\":[' + escapedForHtml);
     }
   }
   if (sanityPost) {
