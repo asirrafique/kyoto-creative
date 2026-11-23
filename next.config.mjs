@@ -16,11 +16,15 @@ const config = {
     ];
   },
   async rewrites() {
-    return { beforeFiles: [
-      { source: '/_next/static/:asset*', destination: prefix + '/__assets/kota.co.uk/_next/static/:asset*' },
-      { source: '/_next/image', destination: '/__assets/kota.co.uk/_next/image' },
-      { source: '/__assets/:asset*', destination: prefix + '/__assets/:asset*' },
-    ] };
+    return {
+      beforeFiles: [
+        { source: '/_next/image', destination: '/__assets/kota.co.uk/_next/image' },
+        { source: '/__assets/:asset*', destination: prefix + '/__assets/:asset*' },
+      ],
+      fallback: [
+        { source: '/_next/static/:asset*', destination: prefix + '/__assets/kota.co.uk/_next/static/:asset*' },
+      ],
+    };
   },
 };
 export default config;

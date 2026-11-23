@@ -8,6 +8,7 @@ import { installLinkControls } from './link-controls.js';
 import { installNavigationControls } from './navigation-controls.js';
 import { installMediaScheduling } from './media-scheduling.js';
 import { capturePage, pageKey, readIndex } from './page-cache.js';
+import { fetchPublishedBlogPosts, fetchPublishedBlogPostBySlug, renderSanityBlogPostHtml } from './sanity/posts.js';
 
 import { localize } from './localize.mjs';
 export { localize } from './localize.mjs';
@@ -2792,7 +2793,18 @@ export async function documentResponse(request, route) {
   const variants = await readIndex('variants.json');
   let file = key === route ? routes[route] : variants[key];
   let temporary = false;
-  const cacheable = key === route && Boolean(file);
+  let sanityPost = null;
+
+  if (!file && route.startsWith('/blog/')) {
+    const slug = route.replace(/^\/blog\//, '').replace(/\/$/, '');
+    sanityPost = await fetchPublishedBlogPostBySlug(slug);
+    if (sanityPost) {
+      // Use existing captured blog post template
+      file = routes['/blog/10-creative-websites-to-inspire-your-next-web-design-2025-update'];
+    }
+  }
+
+  const cacheable = !sanityPost && key === route && Boolean(file);
   if (!file) {
     const captured = await capturePage(key);
     if (captured.redirect) return Response.redirect(new URL(captured.redirect, request.url), 307);
@@ -2807,7 +2819,15 @@ export async function documentResponse(request, route) {
         text = reserveLazyImageDimensionsInFlight(localizeFlight(text, route));
         return adjustJohnRuggieriQuote(text, route);
       });
-      return new Response(flight, { headers: { 'Content-Type': 'text/x-component', 'Cache-Control': 'no-cache', Vary: 'RSC, Next-Router-State-Tree, Next-Router-Prefetch' } });
+      let responseFlight = flight;
+      if (route === '/blog') {
+        const sanityPosts = await fetchPublishedBlogPosts();
+        if (sanityPosts.length > 0 && responseFlight.includes('"posts":[')) {
+          const innerJson = JSON.stringify(sanityPosts).slice(1, -1);
+          responseFlight = responseFlight.replace('"posts":[', '"posts":[' + innerJson + ',');
+        }
+      }
+      return new Response(responseFlight, { headers: { 'Content-Type': 'text/x-component', 'Cache-Control': 'no-cache', Vary: 'RSC, Next-Router-State-Tree, Next-Router-Prefetch' } });
     } catch { /* Next's client falls back to document navigation if uncaptured. */ }
   }
   let html = await memoize(cacheable && route + ':' + file, async () => {
@@ -3344,6 +3364,17 @@ export async function documentResponse(request, route) {
     const replacementFlight = `\\"className\\":\\"Header_logo____uDV\\",\\"href\\":\\"/\\",\\"children\\":[${desktopFlightSvg},${mobileFlightSvg}]`;
 
     html = html.replace(targetFlight, replacementFlight);
+  }
+  if (route === '/blog') {
+    const sanityPosts = await fetchPublishedBlogPosts();
+    if (sanityPosts.length > 0 && html.includes('\\"posts\\":[')) {
+      const innerJson = JSON.stringify(sanityPosts).slice(1, -1);
+      const escapedForHtml = innerJson.replace(/"/g, '\\"');
+      html = html.replace('\\"posts\\":[', '\\"posts\\":[' + escapedForHtml + ',');
+    }
+  }
+  if (sanityPost) {
+    html = renderSanityBlogPostHtml(html, sanityPost);
   }
   return new Response(html, { headers: { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'no-cache', Vary: 'RSC, Next-Router-State-Tree, Next-Router-Prefetch' } });
 }
