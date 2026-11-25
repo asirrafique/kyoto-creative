@@ -8,7 +8,7 @@ import { installLinkControls } from './link-controls.js';
 import { installNavigationControls } from './navigation-controls.js';
 import { installMediaScheduling } from './media-scheduling.js';
 import { capturePage, pageKey, readIndex } from './page-cache.js';
-import { fetchPublishedBlogPosts, fetchPublishedBlogPostBySlug, renderSanityBlogPostHtml } from './sanity/posts.js';
+import { fetchPublishedBlogPosts, fetchPublishedBlogPostBySlug, renderSanityBlogPostHtml, renderSanityBlogPostRsc } from './sanity/posts.js';
 
 import { localize } from './localize.mjs';
 export { localize } from './localize.mjs';
@@ -2827,6 +2827,9 @@ export async function documentResponse(request, route) {
           const innerJson = sanityPosts.length > 0 ? JSON.stringify(sanityPosts).slice(1, -1) : '';
           responseFlight = responseFlight.replace('"posts":[', '"posts":[' + innerJson);
         }
+      }
+      if (sanityPost) {
+        responseFlight = renderSanityBlogPostRsc(responseFlight, sanityPost);
       }
       return new Response(responseFlight, { headers: { 'Content-Type': 'text/x-component', 'Cache-Control': 'no-cache', Vary: 'RSC, Next-Router-State-Tree, Next-Router-Prefetch' } });
     } catch { /* Next's client falls back to document navigation if uncaptured. */ }

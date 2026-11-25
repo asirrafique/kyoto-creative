@@ -29,7 +29,9 @@ export function installLinkControls() {
       // Next.js App Router client transition (router.push) fails on static replica pages
       // with "Error: Connection closed" / "Application error: a client-side exception has occurred",
       // trapping the user on the current URL.
+      event.preventDefault();
       event.stopImmediatePropagation();
+      window.location.href = destination.href;
     }
   }, true);
 }
